@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Отдел продаж Алины Агеевой</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600&display=swap">
+<style>
+/* Рабочий кабинет: шапка с выбором роли, слева меню (снизу на телефоне), справа экран; карточка клиента — выезжающая панель */
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --sunk:#E9EDE8; --line:#D6DDD5;
+  --ink:#1C2320; --muted:#5E6A64; --faint:#8A958F;
+  --accent:#7A3D6B; --accent-soft:#F2E6EF; --accent-ink:#FFFFFF;
+  --ok:#2E7451; --ok-soft:#E1F0E7; --warn:#9A6312; --warn-soft:#FBEFD9; --crit:#B23A35; --crit-soft:#F8E1DF;
+  --tg:#2A7BB8; --tg-soft:#E3EFF8;
+  --c-diag:#1F7A7A; --c-sess:#7A3D6B; --c-lera:#A0561E; --c-other:#5A6B85;
+  --f-ui:"Golos Text", "Segoe UI", system-ui, sans-serif;
+  --f-head:"Literata", Georgia, "Times New Roman", serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141917; --surface:#1C2320; --sunk:#232B28; --line:#33403B;
+  --ink:#E8EEEA; --muted:#A3B0A9; --faint:#7C8983;
+  --accent:#D59BC6; --accent-soft:#3A2636; --accent-ink:#1C1219;
+  --ok:#7CC79D; --ok-soft:#1E3529; --warn:#E3B464; --warn-soft:#3A2E17; --crit:#EE8B85; --crit-soft:#3E2220;
+  --tg:#7DB8E6; --tg-soft:#1D2E3B; --c-diag:#6CC7C2; --c-sess:#D59BC6; --c-lera:#E3A06B; --c-other:#9FB0CC; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1C2320; --sunk:#232B28; --line:#33403B;
+  --ink:#E8EEEA; --muted:#A3B0A9; --faint:#7C8983;
+  --accent:#D59BC6; --accent-soft:#3A2636; --accent-ink:#1C1219;
+  --ok:#7CC79D; --ok-soft:#1E3529; --warn:#E3B464; --warn-soft:#3A2E17; --crit:#EE8B85; --crit-soft:#3E2220;
+  --tg:#7DB8E6; --tg-soft:#1D2E3B; --c-diag:#6CC7C2; --c-sess:#D59BC6; --c-lera:#E3A06B; --c-other:#9FB0CC; color-scheme:dark}
+*{box-sizing:border-box}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.calday{display:flex;flex-direction:column;gap:8px}
+.calday h3{font-family:var(--f-head);font-size:1rem}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--f-ui);font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-head);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:1.55rem} h2{font-size:1.15rem} h3{font-size:1rem;font-family:var(--f-ui)}
+.lbl{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)} .small{font-size:.85rem}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px;
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.brand{display:flex;flex-direction:column;line-height:1.15;margin-right:auto}
+.brand b{font-family:var(--f-head);font-size:1.05rem}
+.brand span{font-size:.78rem;color:var(--muted)}
+.roles{display:flex;gap:6px;flex-wrap:wrap}
+.role{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:.88rem}
+.role[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.proto{width:100%;font-size:.8rem;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:6px 10px}
+
+.shell{display:grid;grid-template-columns:220px 1fr;min-height:calc(100% - 64px)}
+nav.side{border-right:1px solid var(--line);padding:16px 10px;display:flex;flex-direction:column;gap:2px;background:var(--surface)}
+.tab{display:flex;align-items:center;gap:8px;justify-content:space-between;border:0;background:none;text-align:left;padding:9px 12px;border-radius:8px;color:var(--ink)}
+.tab:hover{background:var(--sunk)}
+.tab[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.badge{font-size:.72rem;min-width:22px;text-align:center;padding:1px 6px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.badge.hot{background:var(--crit);color:#fff}
+main{padding-block:22px 90px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));min-width:0}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px}
+.head p{margin:4px 0 0;color:var(--muted);max-width:62ch}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;font-size:.88rem}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.ok{border-color:var(--ok);color:var(--ok)}
+.btn.sm{padding:4px 9px;font-size:.82rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 11px;font-size:.84rem}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.kpi b{font-size:1.5rem;font-family:var(--f-head);font-weight:600}
+.kpi .note{font-size:.8rem;color:var(--muted)}
+.kpi.bad b{color:var(--crit)} .kpi.good b{color:var(--ok)}
+
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:.76rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.pill.crit{background:var(--crit-soft);color:var(--crit)} .pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.acc{background:var(--accent-soft);color:var(--accent)} .pill.tg{background:var(--tg-soft);color:var(--tg)}
+
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;grid-template-columns:4px 1fr;gap:0 12px}
+.item .stripe{border-radius:4px;background:var(--line)}
+.item.crit .stripe{background:var(--crit)} .item.warn .stripe{background:var(--warn)} .item.ok .stripe{background:var(--ok)} .item.acc .stripe{background:var(--accent)}
+.item .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.who{font-weight:600}
+.link{border:0;background:none;padding:0;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.why{color:var(--muted);font-size:.9rem}
+.outs{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.done{opacity:.55}
+.group-t{display:flex;align-items:center;gap:8px;margin-top:6px}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;white-space:nowrap}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+td.tw{white-space:normal;min-width:200px}
+.tglink{color:var(--tg);font-weight:600;text-decoration:none}
+.tglink:hover{text-decoration:underline;text-underline-offset:3px}
+
+.funnel{display:flex;flex-direction:column;gap:8px}
+.fstep{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;font-size:.9rem}
+.fbar{height:22px;background:var(--sunk);border-radius:6px;overflow:hidden}
+.fbar i{display:block;height:100%;background:var(--accent);opacity:.85;border-radius:6px}
+.fstep .v{text-align:right;font-weight:600}
+
+/* карточка клиента */
+.scrim{position:fixed;inset:0;background:rgba(10,14,12,.38);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--bg);z-index:21;overflow-y:auto;
+  padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(30px + env(safe-area-inset-bottom,0px));
+  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:14px;box-shadow:-10px 0 40px rgba(0,0,0,.18)}
+.dhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.close{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:36px;height:36px;font-size:1.1rem;flex:none}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 12px;font-size:.9rem}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.contact{display:flex;flex-wrap:wrap;gap:6px}
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.ev{position:relative;padding:0 0 12px 16px;font-size:.9rem}
+.ev::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.ev.acc::before{border-color:var(--accent)} .ev.ok::before{border-color:var(--ok)} .ev.crit::before{border-color:var(--crit)}
+.ev time{font-size:.78rem;color:var(--muted);display:block}
+.next{background:var(--accent-soft);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.next b{color:var(--accent)}
+
+/* формы и всплывашки */
+.sheet{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:31;width:min(460px,calc(100% - 32px));max-height:calc(100% - 40px);overflow-y:auto;
+  background:var(--surface);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.sheet-scrim{position:fixed;inset:0;background:rgba(10,14,12,.4);z-index:30}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.86rem;color:var(--muted)}
+.f input,.f select,.f textarea{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);color:var(--ink)}
+.hint{font-size:.84rem;background:var(--sunk);border-radius:8px;padding:8px 10px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);
+  padding:10px 16px;border-radius:10px;z-index:40;font-size:.9rem;max-width:calc(100% - 32px)}
+
+/* Telegram */
+.tgwrap{background:var(--tg-soft);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;max-width:560px}
+.tgmsg{background:var(--surface);border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:.9rem;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 0 var(--line)}
+.tgmsg .from{color:var(--tg);font-weight:600;font-size:.82rem}
+.tgbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:4px}
+.tgbtns span{background:var(--tg-soft);color:var(--tg);text-align:center;border-radius:6px;padding:5px;font-size:.8rem;font-weight:600}
+.tgtime{align-self:center;font-size:.78rem;color:var(--muted);background:var(--surface);border-radius:999px;padding:2px 10px}
+
+.progress{height:10px;background:var(--sunk);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--ok)}
+.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+
+@media (max-width:820px){
+  .shell{grid-template-columns:1fr}
+  nav.side{position:fixed;left:0;right:0;bottom:0;z-index:6;flex-direction:row;overflow-x:auto;border-right:0;border-top:1px solid var(--line);
+    padding:6px max(8px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-right,0px))}
+  .tab{flex-direction:column;gap:2px;font-size:.74rem;padding:6px 10px;white-space:nowrap;flex:none}
+  .g2,.g3{grid-template-columns:1fr}
+  .fstep{grid-template-columns:110px 1fr 54px;font-size:.84rem}
+  .kv{grid-template-columns:1fr} .kv dt{margin-top:4px}
+  .brand{width:100%}
+}
+@media (prefers-reduced-motion:no-preference){.drawer{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(30px);opacity:.6}}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="brand"><b>Отдел продаж · Алина Агеева</b><span id="whoami">Вы смотрите как: Пётр</span></div>
+  <div class="roles" id="roles" role="group" aria-label="Чьими глазами смотреть"></div>
+  <div class="proto">Прототип для обсуждения. Все люди и цифры выдуманы, нажатия ничего не сохраняют — после обновления страницы всё вернётся как было.</div>
+</header>
+<div class="shell">
+  <nav class="side" id="nav" aria-label="Разделы"></nav>
+  <main><div class="wrap" id="view"></div></main>
+</div>
+<div id="layer"></div>
+
+<script>
+/* ===================== ТЕСТОВЫЕ ДАННЫЕ ===================== */
+const TODAY = new Date(2026, 9, 26, 9, 0);
+const D = (d, m, h = 12, mi = 0) => new Date(2026, m - 1, d, h, mi);
+const MAN = { 'Аня': '@a40tokens', 'Лера': '@valeriachuk', 'Ева': 'место свободно', 'Полина': '@polinaloooo', 'Алина': '@ali_shali', 'Пётр': '@petr_doudnik', 'Ира': '@Irochek0601' };
+// после брони или покупки клиент передаётся на следующий шаг: сессии в расписание, доступы. Менеджер остаётся ответственным за касания
+const HANDOFF_TO = { 'Полина':'Полина — ассистент: сессии в расписание', 'Ира':'Ира — доступы и GetCourse', 'Лера':'Лера — её сессии и кураторство', 'Алина':'Алина' };
+const HANDOFF_PRODUCTS = ['1 сессия Алины','Пакет 3 сессий Алины','Пакет 3 сессий Валерии','«Формула счастья»','Аптечка','Телесная терапия — онлайн','Телесная терапия — онлайн + очно','Практикум'];
+function handoffFor(p, nick){
+  if (/Алины/.test(p)) return ['Полина', `Согласовать время и поставить ${/Пакет/.test(p) ? 'сессии' : 'сессию'} в общий календарь проекта: «Сессия ${nick}»`];
+  if (/Валерии/.test(p)) return ['Лера', `Согласовать время сессий и поставить в календарь: «Сессия ${nick}»`];
+  if (/Формула/.test(p)) return ['Ира', 'Открыть доступ к предобучению «Формулы счастья» в GetCourse и добавить в чат участниц'];
+  if (/Аптечка/.test(p)) return ['Ира', 'Открыть доступ к «Аптечке» в GetCourse'];
+  if (/Телесная/.test(p)) return ['Ира', 'Открыть доступ к обучению и добавить в чат группы'];
+  return ['Полина', 'Добавить в чат практикума и прислать детали встречи'];
+}
+
+const PRICES = [
+  { p: 'Диагностика', from: D(1, 10), full: 3900, part: 3900, bron: 0 },
+  { p: '1 сессия Алины', from: D(1, 10), full: 42000, part: 55000, bron: 5000 },
+  { p: '1 сессия Алины', from: D(21, 10), full: 30000, part: 39000, bron: 5000 },
+  { p: 'Пакет 3 сессий Алины', from: D(1, 10), full: 114000, part: 148000, bron: 5000 },
+  { p: 'Пакет 3 сессий Алины', from: D(21, 10), full: 81000, part: 105000, bron: 5000 },
+  { p: 'Пакет 3 сессий Валерии', from: D(1, 10), full: 19500, part: 25500, bron: 5000 },
+  { p: 'ФС индивидуальная — С психологом', from: D(1, 10), full: 29000, part: 38000, bron: 5000 },
+  { p: 'Телесная терапия — онлайн', from: D(1, 10), full: 120000, part: 150000, bron: 10000 },
+  { p: 'Телесная терапия — онлайн + очно', from: D(1, 10), full: 210000, part: 250000, bron: 10000 },
+  { p: 'Аптечка', from: D(20, 10), full: 5000, part: 5000, bron: 0 },
+];
+// База продуктов: карточки по списку Леры (планёрка 27.10). Пусто — значит, текст ещё не прислали
+const PRODUCTS = [
+  { p:'Диагностика', what:'Первичная сессия-диагностика с психологом команды', dur:'', who:'Всем, кто заполнил анкету', pay:'Только полная оплата' },
+  { p:'1 сессия Алины', what:'Личная сессия с Алиной', dur:'1 час', who:'Если после диагностики человеку нужна Алина без программы', pay:'Полная оплата или частями' },
+  { p:'Пакет 3 сессий Алины', what:'Три личные сессии с Алиной', dur:'3 сессии', who:'Если после диагностики человеку нужна Алина без программы', pay:'Полная оплата или частями' },
+  { p:'Пакет 3 сессий Валерии', what:'Три сессии с психологом Валерией', dur:'3 сессии', who:'Бережный вход, доход до 80 000', pay:'Полная оплата или частями' },
+  { p:'Телесная терапия — онлайн', what:'Обучение методу Алины, до 10 мест', dur:'13 недель, 108 ак. ч', who:'Помогающим практикам, после кастдева', pay:'Полная оплата или частями' },
+  { p:'Телесная терапия — онлайн + очно', what:'Обучение методу Алины + 6 очных встреч в Москве', dur:'13 недель', who:'Помогающим практикам, после кастдева', pay:'Полная оплата или частями' },
+  { p:'Аптечка', what:'Онлайн-продукт: видеоуроки и аудиопрактика', dur:'', who:'Лёгкий вход для тех, кому пока дорого', pay:'Полная оплата' },
+];
+// База лид-магнитов: что отправить клиентке, чтобы догреть. Пустая ссылка — ссылку ещё не добавили
+const LM_TYPES = ['PDF','Тест','Эфир','Видео','Подкаст','О продукте'];
+const MAGNETS = [
+  { title:'Карта 7 телесных зажимов', type:'PDF', link:'', themes:['Тело и психосоматика','Тревога и страхи'], when:'Первое касание: показать, как тело хранит напряжение и где искать свой зажим' },
+  { title:'Тест: какой у тебя ведущий зажим', type:'Тест', link:'https://ageevapsy.github.io/test-zazhimy/', themes:['Тело и психосоматика','Тревога и страхи'], when:'Сомневается, «моё ли это». Дать пройти тест и обсудить результат' },
+  { title:'Гайд «Выбирать себя»', type:'PDF', link:'', themes:['Самоценность и стыд','Выгорание и усталость'], when:'Живёт для других, не умеет ставить себя на первое место' },
+  { title:'Эфир «Я всё сама»', type:'Эфир', link:'', themes:['Выгорание и усталость','Отношения'], when:'Тащит всё на себе, не умеет просить о помощи' },
+  { title:'Эфир «Головная женщина»', type:'Эфир', link:'', themes:['Отношения','Тело и психосоматика'], when:'«Всё понимаю, но легче не становится» — главное возражение, ответ: телом, а не разговором' },
+  { title:'Видео из автоворонки, 18 минут', type:'Видео', link:'', themes:['Отношения','Тревога и страхи'], when:'Пришла из рилс, первое знакомство с методом Алины' },
+  { title:'Выступление Алины на телеканале «Пятница»', type:'Видео', link:'', themes:[], when:'Сомневается в экспертности — показать Алину со стороны' },
+  { title:'Подкаст с психологом про хейт', type:'Подкаст', link:'', themes:['Самоценность и стыд'], when:'Боится осуждения, стыдно проявляться' },
+  { title:'Программа «Телесная терапия: метод Алины Агеевой»', type:'О продукте', link:'', themes:['Деньги и реализация'], when:'Помогающий практик, интересуется обучением' },
+];
+const RULES = [
+  ['Графики', ''],
+  ['Передача клиента', 'Кто начал вести клиента — доводит до конца со своего аккаунта. Подключился второй человек — сначала спрашивает, на чём остановилась переписка. Передать клиента другому менеджеру можно только кнопкой в карточке — так это останется в истории.'],
+  ['Общение с клиентом', 'Только на «вы» — и в директе, и после покупки.'],
+  ['Сколько отвечаем клиенту', ''],
+  ['Система продлений', 'Клиента ведёт тот, кто продал. После каждой сессии — касание в течение суток: как прошла сессия → планирует ли продолжать → предложение продления по текущим условиям с ограниченным сроком → если молчит, голосовое Алины.'],
+  ['Клиент написал вечером, а ответить сейчас не можем', ''],
+];
+const TERMS = [['Оплата менеджеров', ''], ['Оплата РОП', '']];
+
+let C = [
+ { id:1, name:'Вероника Сомова', tg:'@veronika_somova', phone:'+7 916 ••• 12 40', src:'Шапка профиля', owner:null, stage:'Новая анкета', at:D(26,10,8,40),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Тревога, ком в горле перед разговорами с мужем', age:'34', city:'Москва', consent:null },
+ { id:2, name:'Ксения Луговая', tg:'@ksu_lug', phone:'+7 921 ••• 03 77', src:'Rutube', owner:null, stage:'Новая анкета', at:D(25,10,22,15),
+   income:'до 80 тыс.', ready:'Пока изучаю варианты', req:'Не чувствую тело, живу на автомате', age:'27', city:'Санкт-Петербург', consent:null },
+ { id:3, name:'Дарина Ветрова', tg:'@darina_v', phone:'+7 903 ••• 55 18', src:'Сторис Алины', owner:null, stage:'Новая анкета', at:D(26,10,7,5),
+   income:'150–300 тыс.', ready:'Очень важно, готова инвестировать', req:'После развода не могу расслабиться, зажата челюсть', age:'38', city:'Казань', consent:null },
+ { id:4, name:'Елизавета Крон', tg:'@liza_kron', phone:'+7 915 ••• 88 01', src:'Ссылка Ани', owner:'Аня', stage:'Написала', at:D(24,10,11,20),
+   income:'80–150 тыс.', ready:'Важно, но есть сомнения', req:'Ревность, контроль, хочу доверять партнёру', age:'31', city:'Екатеринбург', consent:null,
+   touches:[{t:D(24,10,15,10), who:'Аня', what:'Написала после анкеты', res:'Написала, жду ответа'}],
+   task:{ kind:'Дожим 1', due:D(25,10,15,10), why:'Написала 24.10 в 15:10, ответа нет больше суток. Первый из двух дожимов' } },
+ { id:5, name:'Марина Белова', tg:'@marina_belova', phone:'+7 926 ••• 41 09', src:'Директ (без анкеты)', owner:'Аня', stage:'Лид из директа', at:D(25,10,13,0),
+   income:'не спрашивали', ready:'—', req:'Спросила в директе, сколько стоит сессия с Алиной и как проходит', age:'—', city:'—', consent:null,
+   touches:[{t:D(25,10,13,5), who:'Аня', what:'Лид из директа: спросила про сессии', res:'Внесла в базу'}],
+   task:{ kind:'Отправить анкету', due:D(26,10,13,5), why:'Лид из директа: спросила про сессии с Алиной. Следующий шаг — чтобы заполнила анкету' } },
+ { id:6, name:'Таисия Ремизова', tg:'@tasya_rem', phone:'+7 917 ••• 20 66', src:'Ссылка Ани', owner:'Аня', stage:'Думает', at:D(19,10,10,0), thinkUntil:D(26,10,19,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Психосоматика: спина и плечи, постоянная усталость', age:'36', city:'Москва', consent:true,
+   diag:{ when:D(23,10,16,0), by:'Лера', res:'Проведена, думает', note:'Сильное напряжение в плечах, тема «всё тащу сама». Предложили пакет 3 сессий Алины.' },
+   touches:[{t:D(23,10,17,20), who:'Аня', what:'После диагностики', res:'Думает — договорились о связи до 26.10'}],
+   task:{ kind:'Вернуться к «думает»', due:D(26,10,19,0), why:'Договорились, что решит до сегодня. Если не ответит в течение суток — голосовое от Алины' } },
+ { id:7, name:'Нина Арсеньева', tg:'@nina_ars', phone:'+7 999 ••• 71 32', src:'Шапка профиля', owner:'Аня', stage:'Думает', at:D(16,10,9,0), thinkUntil:D(24,10,19,0),
+   income:'150–300 тыс.', ready:'Важно, но есть сомнения', req:'Не могу выйти из отношений, которые душат', age:'40', city:'Сочи', consent:true,
+   diag:{ when:D(21,10,18,0), by:'Лера', res:'Проведена, думает', note:'Страх остаться одной, зажат живот. Подходит пакет 3 сессий Алины.' },
+   touches:[{t:D(21,10,19,0), who:'Аня', what:'После диагностики', res:'Думает — договорились о связи до 24.10'},
+            {t:D(25,10,11,0), who:'Аня', what:'Вернулась, как договаривались', res:'Не отвечает'}],
+   alinaVoice:{ due:D(26,10,21,0) },
+   task:{ kind:'Ждёт голосовое Алины', due:D(26,10,21,0), why:'После договорённого срока не отвечает сутки. Следующий шаг — голосовое от Алины с зеркала' } },
+ { id:8, name:'Яна Корнеева', tg:'@yana_korn', phone:'+7 916 ••• 64 25', src:'Ссылка Ани', owner:'Аня', stage:'Клиент', at:D(10,10,12,0),
+   income:'150–300 тыс.', ready:'Очень важно, готова инвестировать', req:'Перестала чувствовать желание, отдалились с мужем', age:'33', city:'Москва', consent:true,
+   diag:{ when:D(14,10,15,0), by:'Аня', res:'Проведена, купил / бронь', note:'Купила пакет на диагностике.' },
+   deals:[{ p:'Пакет 3 сессий Алины', cond:'Полная оплата', price:81000, at:D(21,10), seller:'Аня', pays:[{t:D(21,10), sum:81000, how:'ЮKassa — СБП', auto:true}] }],
+   sessions:[{ t:D(22,10,18,0), n:'1 из 3', with:'Алина', st:'прошла' },{ t:D(25,10,18,0), n:'2 из 3', with:'Алина', st:'прошла' }],
+   touches:[{t:D(23,10,12,0), who:'Аня', what:'После сессии 1 из 3', res:'Всё хорошо, ждёт следующую'}],
+   task:{ kind:'Как прошла сессия', due:D(26,10,18,0), why:'Сессия 2 из 3 с Алиной прошла вчера в 18:00. Написать вечером через 3–4 часа или на следующий день, крайний срок — сутки' } },
+ { id:9, name:'Алёна Мирская', tg:'@alena_mir', phone:'+7 905 ••• 30 90', src:'Шапка профиля', owner:'Аня', stage:'Клиент', at:D(8,10,12,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Тревога по ночам, не могу уснуть', age:'29', city:'Новосибирск', consent:true,
+   diag:{ when:D(12,10,12,0), by:'Аня', res:'Проведена, купил / бронь', note:'' },
+   deals:[{ p:'1 сессия Алины', cond:'Полная оплата', price:42000, at:D(15,10), seller:'Аня', pays:[{t:D(15,10), sum:42000, how:'Продамус — СБП', auto:true}] }],
+   sessions:[{ t:D(21,10,12,0), n:'1 из 1', with:'Алина', st:'прошла' }],
+   touches:[{t:D(22,10,10,0), who:'Аня', what:'Как прошла сессия', res:'Ответила, отзыв получен'}], review:true,
+   task:{ kind:'Спросить о продолжении', due:D(26,10,20,0), why:'Сессия 21.10 была единственной, отзыв получен. Спросить, планирует ли продолжать работу с Алиной, — пока без сроков и цены' } },
+ { id:10, name:'Софья Дроздова', tg:'@sofia_drozd', phone:'+7 911 ••• 17 52', src:'Ссылка Ани', owner:'Аня', stage:'Бронь', at:D(17,10,12,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Злость на маму, срываюсь на ребёнка', age:'35', city:'Москва', consent:true,
+   diag:{ when:D(20,10,17,0), by:'Аня', res:'Проведена, купил / бронь', note:'Бронь пакета.' },
+   deals:[{ p:'Пакет 3 сессий Алины', cond:'Полная оплата', price:81000, at:D(22,10), seller:'Аня', pays:[{t:D(22,10), sum:5000, how:'ЮKassa — карта', auto:true, bron:true}] }],
+   sessions:[{ t:D(30,10,11,0), n:'1 из 3', with:'Алина', st:'назначена' }],
+   task:{ kind:'Доплата до старта', due:D(29,10,12,0), why:'Бронь 5 000 ₽. Первая сессия 30.10 — оплатить остаток 76 000 ₽ нужно до 29.10' } },
+ { id:11, name:'Евгения Лаптева', tg:'@zhenya_lapt', phone:'+7 913 ••• 02 81', src:'Ссылка Ани', owner:'Аня', stage:'Клиент', at:D(13,10,12,0),
+   income:'до 80 тыс.', ready:'Важно, но есть сомнения', req:'Постоянно болит голова, врачи ничего не находят', age:'24', city:'Пермь', consent:true,
+   diag:{ when:D(18,10,14,0), by:'Лера', res:'Проведена, купил / бронь', note:'Бережный вход — пакет Валерии.' },
+   deals:[{ p:'Пакет 3 сессий Валерии', cond:'Полная оплата', price:19500, at:D(21,10), seller:'Аня', pays:[{t:D(21,10), sum:19500, how:'ЮKassa — SberPay', auto:true}] }],
+   sessions:[{ t:D(24,10,19,0), n:'1 из 3', with:'Лера', st:'прошла' }],
+   task:{ kind:'Как прошла сессия', due:D(25,10,20,0), why:'Сессия 1 из 3 с Лерой прошла 24.10. Касания нет больше суток — видит Лера' , escalated:true } },
+ { id:12, name:'Карина Юсупова', tg:'@karina_yus', phone:'+7 927 ••• 49 13', src:'Ссылка Ани', owner:'Аня', stage:'Диагностика оплачена', at:D(23,10,12,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Стыдно проявляться, боюсь вести блог', age:'30', city:'Самара', consent:false,
+   deals:[{ p:'Диагностика', cond:'Полная оплата', price:3900, at:D(25,10), seller:'Аня', pays:[{t:D(25,10,16,40), sum:3900, how:'ЮKassa — T-Pay (с Тильды)', auto:true}] }],
+   task:{ kind:'Назначить диагностику', due:D(26,10,16,40), why:'Оплатила вчера в 16:40. Согласуй время и поставь в календарь «Диагностики»: «Диагностика @karina_yus»' } },
+ { id:13, name:'Ульяна Сорокина', tg:'@ulya_sor', phone:'+7 985 ••• 66 30', src:'Ссылка Ани', owner:'Аня', stage:'Заказ без оплаты', at:D(24,10,12,0),
+   income:'до 80 тыс.', ready:'Очень важно, готова инвестировать', req:'Панические атаки в транспорте', age:'26', city:'Москва', consent:true,
+   task:{ kind:'Помочь с оплатой', due:D(26,10,9,50), why:'Оформила заказ на диагностику на сайте сегодня в 7:50, оплата не прошла' } },
+ { id:14, name:'Регина Фомина', tg:'@regina_f', phone:'+7 912 ••• 11 04', src:'Шапка профиля', owner:'Аня', stage:'Кладбище лидов', at:D(15,10,12,0), graveAt:D(20,10,11,0), graveFrom:'Написала',
+   income:'до 80 тыс.', ready:'Пока изучаю варианты', req:'Хочу полюбить своё тело', age:'22', city:'Уфа', consent:null,
+   touches:[{t:D(15,10,18,0), who:'Аня', what:'После анкеты', res:'Написала, жду ответа'},{t:D(16,10,18,0), who:'Аня', what:'Дожим 1', res:'Не отвечает'},{t:D(18,10,11,0), who:'Аня', what:'Дожим 2', res:'Не отвечает'}] },
+ { id:25, name:'Алиса Громова', tg:'@alisa_grom', phone:'+7 929 ••• 31 84', src:'Ссылка Ани', owner:'Аня', stage:'Диалог', at:D(20,10,12,0),
+   income:'до 80 тыс.', ready:'Важно, но есть сомнения', req:'Не могу отпустить бывшего, прошёл год', age:'28', city:'Тверь', consent:null,
+   touches:[{t:D(20,10,18,0), who:'Аня', what:'После анкеты', res:'Ответила, в диалоге'},{t:D(21,10,12,0), who:'Аня', what:'Предложить диагностику', res:'Не отвечает'},
+            {t:D(22,10,12,0), who:'Аня', what:'Дожим 1', res:'Отправила дожим 1'},{t:D(25,10,8,0), who:'Аня', what:'Дожим 2', res:'Отправила дожим 2'}],
+   task:{ kind:'Нет ответа после дожимов', due:D(26,10,8,0), why:'Второй дожим отправлен 25.10 в 8:00, ответа нет больше суток. Можно переводить в кладбище лидов' } },
+ { id:24, name:'Маргарита Лис', tg:'@rita_lis', phone:'+7 916 ••• 52 77', src:'Ссылка Ани', owner:'Аня', stage:'Кладбище лидов', at:D(6,10,12,0), graveAt:D(22,10,12,0), graveFrom:'Думает',
+   income:'80–150 тыс.', ready:'Важно, но есть сомнения', req:'Боюсь, что муж уйдёт, постоянно проверяю его', age:'35', city:'Москва', consent:true,
+   diag:{ when:D(9,10,18,0), by:'Лера', res:'Проведена, думает', note:'Тревожная привязанность, зажата диафрагма.' },
+   touches:[{t:D(10,10,12,0), who:'Аня', what:'После диагностики', res:'Думает — договорились о связи до 13.10'},{t:D(14,10,12,0), who:'Аня', what:'Вернулась, как договаривались', res:'Не отвечает'},
+            {t:D(15,10,20,0), who:'Алина', what:'Голосовое с зеркала', res:'Не отвечает'},{t:D(17,10,12,0), who:'Аня', what:'Дожим 1', res:'Не отвечает'},{t:D(22,10,12,0), who:'Аня', what:'Дожим 2', res:'Не отвечает'}] },
+ { id:15, name:'Виктория Лапина', tg:'@vika_lap', phone:'+7 916 ••• 70 70', src:'Ссылка Ани', owner:'Аня', stage:'Завершила', at:D(2,9,12,0),
+   income:'150–300 тыс.', ready:'Очень важно, готова инвестировать', req:'Отношения с мужчинами по одному сценарию', age:'37', city:'Москва', consent:true,
+   deals:[{ p:'1 сессия Алины', cond:'Полная оплата', price:42000, at:D(9,9), seller:'Аня', pays:[{t:D(9,9), sum:42000, how:'Продамус — карта', auto:true}] }],
+   sessions:[{ t:D(16,9,12,0), n:'1 из 1', with:'Алина', st:'прошла' }],
+   touches:[{t:D(17,9,12,0), who:'Аня', what:'После сессии', res:'Не хочет продолжать сейчас'}] },
+ { id:16, name:'Мария Звонарёва', tg:'@masha_zvon', phone:'+7 920 ••• 38 45', src:'Шапка профиля', owner:'Лера', stage:'Диагностика назначена', at:D(22,10,12,0),
+   income:'150–300 тыс.', ready:'Очень важно, готова инвестировать', req:'Выгорание, не могу остановиться', age:'42', city:'Москва', consent:true,
+   deals:[{ p:'Диагностика', cond:'Полная оплата', price:3900, at:D(24,10), seller:'Лера', pays:[{t:D(24,10), sum:3900, how:'ЮKassa — Alfa Pay', auto:true}] }],
+   diagPlan:{ when:D(26,10,15,0), by:'Лера' },
+   task:{ kind:'Диагностика сегодня', due:D(26,10,15,0), why:'Сегодня в 15:00 проводит Лера. Согласие на запись есть' } },
+ { id:17, name:'Анна Ковалёва', tg:'@anna_kov', phone:'+7 903 ••• 92 61', src:'Ссылка Евы', owner:'Ева', stage:'Клиент', at:D(5,10,12,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Тревога за детей, не отпускаю контроль', age:'39', city:'Москва', consent:true,
+   deals:[{ p:'1 сессия Алины', cond:'Полная оплата', price:42000, at:D(10,10), seller:'Ева', pays:[{t:D(10,10), sum:42000, how:'ЮKassa — карта', auto:true}] }],
+   sessions:[{ t:D(28,10,17,0), n:'1 из 1', with:'Алина', st:'назначена' }],
+   task:{ kind:'Передать клиента', due:D(26,10,12,0), why:'Ева больше не работает. Лере — передать клиента другому менеджеру до сессии 28.10' } },
+ { id:18, name:'Дина Ласточкина', tg:'@dina_last', phone:'+7 916 ••• 25 97', src:'Ссылка Ани', owner:'Аня', stage:'Клиент', at:D(1,10,12,0),
+   income:'150–300 тыс.', ready:'Очень важно, готова инвестировать', req:'Не могу забеременеть, врачи говорят «всё в порядке»', age:'34', city:'Москва', consent:true,
+   deals:[{ p:'Пакет 3 сессий Алины', cond:'Полная оплата', price:114000, at:D(6,10), seller:'Аня', pays:[{t:D(6,10), sum:114000, how:'ЮKassa — карта', auto:true}] }],
+   sessions:[{ t:D(13,10,19,0), n:'1 из 3', with:'Алина', st:'прошла' },{ t:D(27,10,19,0), n:'2 из 3', with:'Алина', st:'назначена' }],
+   touches:[{t:D(14,10,12,0), who:'Аня', what:'После сессии 1 из 3', res:'Всё хорошо, ждёт следующую'}] },
+ { id:19, name:'Олеся Гринева', tg:'@olesya_grin', phone:'+7 926 ••• 08 33', src:'Шапка профиля', owner:'Аня', stage:'Клиент', at:D(14,10,12,0),
+   income:'80–150 тыс.', ready:'Очень важно, готова инвестировать', req:'Зажата в сексе, стыд', age:'32', city:'Тула', consent:true,
+   deals:[{ p:'1 сессия Алины', cond:'Полная оплата', price:30000, at:D(23,10), seller:'Аня', pays:[{t:D(23,10), sum:30000, how:'ЮKassa — СБП', auto:true}] }],
+   sessions:[], milaTask:true },
+ { id:20, name:'Светлана Орехова', tg:'@sveta_oreh', phone:'+7 916 ••• 44 12', src:'Чат практикума', owner:null, stage:'Завершила', at:D(10,9,12,0),
+   income:'80–150 тыс.', ready:'—', req:'Тревога, не могу расслабиться даже в отпуске', age:'41', city:'Москва', consent:true,
+   buys:[{ g:'Практикумы', p:'Практикум «Тело и тревога»', t:D(14,9) }] },
+ { id:21, name:'Ирина Голуб', tg:'@ira_golub', phone:'+7 925 ••• 18 90', src:'Чат практикума', owner:'Аня', stage:'Завершила', at:D(10,9,12,0),
+   income:'150–300 тыс.', ready:'—', req:'Хочу перестать всё контролировать в отношениях', age:'36', city:'Москва', consent:true,
+   buys:[{ g:'Практикумы', p:'Практикум «Тело и тревога»', t:D(14,9) },{ g:'Формула счастья', p:'«Формула счастья», тариф 49 000', t:D(21,9) }] },
+ { id:22, name:'Жанна Ким', tg:'@zhanna_kim', phone:'+7 917 ••• 63 05', src:'Запуск «Формулы счастья»', owner:'Лера', stage:'Клиент', at:D(15,9,12,0),
+   income:'80–150 тыс.', ready:'—', req:'Отношения с мужем на автопилоте', age:'33', city:'Казань', consent:true,
+   buys:[{ g:'Формула счастья', p:'«Формула счастья», тариф 25 000', t:D(21,9) }] },
+ { id:23, name:'Любовь Сафонова', tg:'@lyuba_saf', phone:'+7 921 ••• 07 38', src:'Чат практикума', owner:null, stage:'Завершила', at:D(15,7,12,0),
+   income:'до 80 тыс.', ready:'—', req:'Стыд за своё тело', age:'29', city:'Санкт-Петербург', consent:null,
+   buys:[{ g:'Практикумы', p:'Практикум «Женская сексуальность»', t:D(20,7) }] },
+];
+C.find(c => c.id===15).buys = [{ g:'Практикумы', p:'Практикум «Тело и тревога»', t:D(14,9) }];
+// отчёты смен: сдать до 23:59 по Москве в день смены. ok — вовремя, late — после полуночи, miss — не сдан, off — не её смена
+// какие дни смена — ставит Лера в «Графике смен»; в остальные дни отчёт не нужен
+const SHIFTS = {
+  'Аня': { 14:['ok','22:40'], 15:['late','16 окт, 00:12'], 16:['late','17 окт, 11:52'], 17:['late','18 окт, 10:42'], 18:['ok','23:05'], 19:['ok','21:30'], 20:['off'], 21:['late','22 окт, 01:03'], 22:['late','23 окт, 00:34'], 23:['ok','23:41'], 24:['ok','22:10'], 25:['miss'], 26:['today'] },
+};
+const MANAGERS = ['Аня', 'Новый менеджер'];
+const SCHED = new Set();
+for (let i = 0; i < 14; i++){ const d = new Date(2026, 9, 26 + i); if (d.getDate() !== 1) SCHED.add('Аня|' + d.toDateString()); }
+const shiftStats = who => { const v = Object.values(SHIFTS[who]).filter(x => x[0]!=='off' && x[0]!=='today'); return { all:v.length, ok:v.filter(x=>x[0]==='ok').length, late:v.filter(x=>x[0]==='late').length, miss:v.filter(x=>x[0]==='miss').length }; };
+const onShiftToday = () => MANAGERS.filter(m => SCHED.has(m + '|' + new Date(2026,9,26).toDateString()));
+const yesterdayMissing = who => SHIFTS[who] && SHIFTS[who][25] && SHIFTS[who][25][0]==='miss';
+// расходы проекта: вносит ассистент (Полина); из них считается чистая прибыль
+const EXP_CATS = ['Съёмки','Монтажёр','Контент-продюсер','Технический специалист','Ассистент','Подписки','Площадки и мероприятия','Незапланированное','Прочее'];
+const EXPENSES = [
+  { t:D(3,10), cat:'Подписки', what:'Бот Жени (Точка)', sum:5597 },
+  { t:D(7,10), cat:'Технический специалист', what:'Женя — воронки и кодовые слова', sum:15000 },
+  { t:D(10,10), cat:'Съёмки', what:'Артём — горизонтальное видео', sum:20000 },
+  { t:D(15,10), cat:'Монтажёр', what:'Настя — рилсы, первая половина месяца', sum:15000 },
+  { t:D(20,10), cat:'Ассистент', what:'Полина — ассистент проекта', sum:15000 },
+  { t:D(24,10), cat:'Площадки и мероприятия', what:'Предоплата площадки VIP-тренинга 31.10', sum:10000 },
+];
+// оплаты, которые пришли в кассу, но не нашли карточку клиента
+const UNMATCHED = [
+  { id:1, t:D(24,10,14,12), sum:3900, how:'ЮKassa — T-Pay', payer:'в чеке: Ульяна С., +7 985 ••• 66 30' },
+  { id:2, t:D(25,10,19,40), sum:3900, how:'ЮKassa — SberPay', payer:'в чеке: Дарья, телефона нет' },
+];
+// диагностики месяца для цифр (сверх карточек выше)
+const DIAG_EXTRA = 5;
+const INVITES = [
+  { ev:'Оффлайн-практикум 5 декабря «Стыд, секс, суть»', list:[ [15,'Пригласила'], [9,'Ответила «да»'], [18,'Не пригласила'] ] },
+  { ev:'Эфир в Telegram 12 ноября (тестовое событие)', list:[ [15,'Не пригласила'], [14,'Не пригласила'] ] },
+];
+
+/* ===================== ПОМОЩНИКИ ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const dd = d => `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+const hm = d => `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+const dt = d => `${dd(d)}, ${hm(d)}`;
+const rub = n => n.toLocaleString('ru-RU').replace(/,/g,' ') + ' ₽';
+const byId = id => C.find(c => c.id === id);
+const sameDay = (a,b) => a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+function hoursAgo(d){ const h = Math.round((TODAY - d)/36e5); return h < 1 ? 'только что' : h < 24 ? `${h} ч назад` : `${Math.floor(h/24)} дн назад`; }
+function dueState(d){ if (d < TODAY) return 'crit'; if (sameDay(d,TODAY)) return 'warn'; return 'ok'; }
+function dueLabel(d){ if (d < TODAY && !sameDay(d,TODAY)) return `просрочено с ${dd(d)}`; if (d < TODAY) return `просрочено с ${hm(d)}`; if (sameDay(d,TODAY)) return `сегодня до ${hm(d)}`; if (sameDay(d,addDays(TODAY,1))) return `завтра до ${hm(d)}`; return `до ${dd(d)}`; }
+function toast(t){ const el = document.createElement('div'); el.className='toast'; el.textContent=t; document.body.append(el); setTimeout(()=>el.remove(), 2600); }
+
+const STAGE_PILL = { 'Новая анкета':'acc','Лид из директа':'acc','Анкета отправлена':'acc','Анкета заполнена':'acc','Написала':'', 'Диалог':'', 'Заказ без оплаты':'warn','Диагностика оплачена':'warn','Диагностика назначена':'warn',
+  'Думает':'warn','Бронь':'warn','Клиент':'ok','Кладбище лидов':'', 'Завершила':'', 'Отказ':'' };
+const pill = s => `<span class="pill ${STAGE_PILL[s]||''}">${esc(s)}</span>`;
+// ник Telegram — всегда ссылка: нажал и сразу в переписке с человеком
+const tgLink = nick => { const u = String(nick || '').trim().replace(/^@/, '');
+  return /^[A-Za-z0-9_]{5,32}$/.test(u) ? `<a class="tglink" href="https://t.me/${u}" target="_blank" rel="noopener" title="Открыть переписку в Telegram">@${esc(u)}</a>` : esc(nick); };
+// телефон: WhatsApp открывает чат сразу; у MAX ссылки на чат по номеру нет — копируем номер и открываем web.max.ru
+const phoneDigits = p => { const s = String(p || ''); if (/•/.test(s)) return ''; let d = s.replace(/\D/g, ''); if (d.length===11 && d[0]==='8') d = '7' + d.slice(1); return d.length >= 11 ? d : ''; };
+const phoneBtns = c => {
+  if (!c.phone || c.phone==='—') return '<span class="pill">телефона нет</span>';
+  const d = phoneDigits(c.phone);
+  return (d ? `<a class="btn sm" href="https://wa.me/${d}" target="_blank" rel="noopener">WhatsApp</a>` : `<button class="btn sm" data-wademo="${c.id}">WhatsApp</button>`)
+    + `<a class="btn sm" href="https://web.max.ru/" target="_blank" rel="noopener" data-maxcopy="${c.id}">MAX</a>`;
+};
+const consentPill = c => c.consent===false ? '<span class="pill crit">нет согласия на запись</span>' : c.consent ? '<span class="pill ok">согласие на запись есть</span>' : '<span class="pill">согласие неизвестно</span>';
+
+/* варианты итогов касаний */
+const OUTS = {
+  'Отправить анкету':['Отправила ссылку на анкету','Не отвечает'],
+  'Анкета не заполнена':['Заполнила анкету','Не отвечает'],
+  'Дожим 1':['Отправила дожим 1','Ответила, в диалоге','Отказ'],
+  'Дожим 2':['Отправила дожим 2','Ответила, в диалоге','Отказ'],
+  'Нет ответа после дожимов':['Перевести в кладбище лидов','Ответила, в диалоге'],
+  'Предложить диагностику':['Купила диагностику','Думает','Не отвечает','Отказ'],
+  'Вернуться к «думает»':['Купила','Бронь','Ещё думает','Не отвечает','Отказ'],
+  'Как прошла сессия':['Ответила, отзыв получен','Ответила','Есть вопрос — передала Алине или Полине','Не отвечает'],
+  'Спросить о продолжении':['Хочет продолжить','Думает','Не планирует','Не отвечает'],
+  'Предложить продление':['Купила продолжение','Думает','Не отвечает'],
+  'Касание':['Написала, жду ответа','Ответила, в диалоге','Не отвечает'],
+  'Доплата до старта':['Доплатила','Напомнила, ждём','Переносит старт'],
+  'Назначить диагностику':['Поставила в календарь','Не отвечает'],
+  'Помочь с оплатой':['Оплатила','Помогла, ждём оплату','Не отвечает'],
+  'Новая анкета':['Написала, жду ответа','Ответила, в диалоге'],
+};
+// конструктор сообщений: черновики, финальные тексты придут вместе с продающими линиями
+const TEMPLATES = {
+  'Отправить анкету':'Здравствуйте, {имя}! Чтобы подобрать вам формат работы, заполните, пожалуйста, короткую анкету — это займёт минут пять: {ссылка на анкету}',
+  'Как прошла сессия':'{имя}, добрый вечер! Это {менеджер} из команды Алины. Как вы после сессии? Как себя чувствуете? Если захочется поделиться впечатлениями — буду рада услышать.',
+  'Спросить о продолжении':'{имя}, вы приходили с запросом «{запрос}». Как сейчас с этим? Планируете продолжать работу с Алиной?',
+  'Предложить продление':'{имя}, рада, что вы хотите продолжить. Сейчас можно взять пакет из трёх сессий с Алиной — {цена} при полной оплате. Можем закрепить за вами место до {срок}: сессий у Алины в месяц немного.',
+};
+TEMPLATES['Приглашение на эфир'] = '{имя}, здравствуйте! Это {менеджер} из команды Алины. Скоро у Алины эфир как раз про то, с чем вы приходили, — «{запрос}». Прислать ссылку?';
+TEMPLATES['Своё сообщение'] = '';
+const fillTpl = (c, k) => (TEMPLATES[k] || '').replace('{имя}', c.name.split(' ')[0]).replace('{менеджер}', c.owner || 'менеджер')
+  .replace('{запрос}', c.req).replace('{цена}', '81 000 ₽').replace('{срок}', dd(addDays(TODAY,3)));
+const cmpBtn = (c, cls = '') => `<button class="btn sm ${cls}" data-compose="${c.id}">Составить сообщение</button>`;
+function composeSheet(id){
+  const c = byId(id), k = c.task && !c.task.done && TEMPLATES[c.task.kind] ? c.task.kind : 'Своё сообщение';
+  const text = fillTpl(c, k);
+  const me = c.owner || role;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:00`;
+  sheet(`<h2>Составить сообщение</h2><p class="small muted">${esc(c.name)} · ${tgLink(c.tg)}</p>
+    <label class="f">Шаблон<select id="cmpTpl" data-cid="${c.id}">${Object.keys(TEMPLATES).map(t => `<option ${t===k?'selected':''}>${esc(t)}</option>`).join('')}</select></label>
+    <div class="grid g2">
+      <label class="f">С какого аккаунта<select id="cmpFrom"><option value="me">Аккаунт менеджера (${esc(me)})</option><option value="mirror">Зеркало Алины</option></select></label>
+      <label class="f">Тип сообщения<select id="cmpType"><option>Текст</option><option>Голосовое</option><option>Кружочек</option></select></label>
+    </div>
+    <label class="f" id="cmpLbl">Текст — можно поправить перед отправкой<textarea id="cmp" rows="6">${esc(text)}</textarea></label>
+    <div id="cmpAlina" hidden class="grid">
+      <div class="hint">Это текст для Алины: она запишет его с Зеркала. Как только нажмёшь «Отправить Алине», в ветке отдела продаж придёт задача с тегом @ali_shali, текстом и сроком.</div>
+      <label class="f">Записать до<input id="cmpDue" type="datetime-local" value="${iso(new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate(), 18))}"></label>
+    </div>
+    <div class="hint" id="cmpHint">Черновик: имя, запрос клиентки и цена подставились сами. Финальные тексты напишем вместе с продающими линиями — они встанут сюда готовыми шаблонами.</div>
+    <div class="row"><button class="btn pri" id="cmpCopy" data-copy>Скопировать</button><button class="btn pri" id="cmpSend" data-alinasend="${c.id}" hidden>Отправить Алине на запись</button><button class="btn" data-sclose>Закрыть</button></div>`);
+}
+function updateCompose(){
+  const mirror = $('#cmpFrom').value==='mirror', type = $('#cmpType').value, toAlina = mirror && type!=='Текст';
+  $('#cmpAlina').hidden = !toAlina; $('#cmpSend').hidden = !toAlina; $('#cmpCopy').hidden = toAlina; $('#cmpHint').hidden = toAlina;
+  $('#cmpLbl').firstChild.textContent = toAlina ? `Что Алина скажет в ${type==='Кружочек' ? 'кружочке' : 'голосовом'}` : (type==='Текст' ? 'Текст — можно поправить перед отправкой' : `Что сказать в ${type==='Кружочек' ? 'кружочке' : 'голосовом'} — запишешь сама`);
+}
+function voiceBody(c){
+  const first = esc(c.name.split(' ')[0]), ow = esc(c.owner||''), owTo = c.owner==='Аня' ? 'Ане' : ow;
+  const last = (c.touches||[]).slice(-1)[0];
+  if (c.alinaVoice.text) return `<div class="small"><b>${esc(c.alinaVoice.by)} написала текст${c.alinaVoice.type==='Кружочек' ? ' для кружочка' : ' для голосового'}:</b></div>
+    <div class="hint" style="white-space:pre-line">${esc(c.alinaVoice.text)}</div>`;
+  if (c.alinaVoice.after){
+    const s = (c.sessions||[]).filter(x => x.st==='прошла').slice(-1)[0];
+    return `<div class="small"><b>Что было:</b> ${s ? `сессия ${s.n}, ${dd(s.t)}` : 'сессия'}; ${ow} написала ${last ? dd(last.t) : ''} — ответа нет.</div>
+      <div class="hint">Опора для голосового: «${first}, привет. Как твоё состояние? Поделись, что поменялось. Знаю, что с тобой ${ow} на связи — ответь ей или мне».</div>`;
+  }
+  return `<div class="small"><b>Диагностика (${esc(c.diag.by)}, ${dd(c.diag.when)}):</b> ${esc(c.diag.note)}</div>
+    <div class="small"><b>Что было:</b> думала до ${c.thinkUntil ? dd(c.thinkUntil) : '—'}, ${ow} написала ${last ? dd(last.t) : ''} — ответа нет.</div>
+    <div class="hint">Опора для голосового: «${first}, привет. Мне ${esc(c.diag.by)} рассказала, как прошла диагностика… Думаю, тебе подойдёт пакет. Ответь, пожалуйста, ${owTo} или мне, идёшь или нет, — чтобы зафиксировать за тобой место: их в этом месяце мало».</div>`;
+}
+const THINK_OUTS =['Думает','Ещё думает','Предложила продолжение, думает'];
+
+/* ===================== ЗАДАЧИ «СЕГОДНЯ» ===================== */
+function tasksFor(person){
+  return C.filter(c => c.task && !c.task.done && (person==='Лера' ? (c.owner==='Лера' || c.task.escalated || c.owner==='Ева') : c.owner===person) && c.task.kind!=='Ждёт голосовое Алины')
+          .sort((a,b) => a.task.due - b.task.due);
+}
+function newAnkety(){ return C.filter(c => c.stage==='Новая анкета' && !c.owner); }
+
+/* ===================== КОМУ ПИСАТЬ ПЕРВЫМ ===================== */
+// блоки сверху вниз; внутри блока — сначала тот, у кого раньше срок, потом кто горячее
+const TIERS = ['🔴 Просрочено','🔥 Только что прошли сессию или продукт','🟠 Деньги на подходе','🟢 Тёплые лиды','⚪ Позже','Без задач — всё по плану','Навести порядок'];
+const AFTER_SESSION = ['Как прошла сессия','Спросить о продолжении','Предложить продление'];
+const MONEY_NEAR = ['Доплата до старта','Помочь с оплатой','Назначить диагностику','Вернуться к «думает»'];
+const endOfToday = () => { const e = new Date(TODAY); e.setHours(23,59); return e; };
+const lastSession = c => (c.sessions||[]).filter(x => x.st==='прошла').slice(-1)[0];
+const justFinished = c => { const s = lastSession(c); return !!s && /^(\d+) из \1$/.test(s.n) && TODAY - s.t < 7*864e5; };
+function attention(c){
+  const t = c.task && !c.task.done ? c.task : null;
+  if (c.handoffPending && !c.handoff) return { tier:0, why:'Не передан дальше после брони или покупки' };
+  if (!t) return { tier:5, why: c.stage==='Клиент' ? 'Сессии идут по плану' : 'Задач нет' };
+  if (t.kind==='Нет ответа после дожимов') return { tier:6, why:'Два дожима без ответа — можно переводить на кладбище лидов' };
+  const why = `${t.kind} · ${dueLabel(t.due)}`;
+  if (t.due < TODAY) return { tier:0, why };
+  if (t.due > endOfToday()) return { tier:4, why };
+  if (AFTER_SESSION.includes(t.kind)) return { tier:1, why: why + (justFinished(c) ? ' · продукт закончился' : '') };
+  if (MONEY_NEAR.includes(t.kind) || ['Бронь','Заказ без оплаты'].includes(c.stage)) return { tier:2, why };
+  return { tier:3, why };
+}
+// температура: из того, что менеджер отметил в карточке. Личную переписку система не видит
+function temperature(c){
+  const now = TODAY.getTime(), T = c.touches || [];
+  let s = 0;
+  if (T.some(x => now - x.t < 864e5 && (/^Ответила|^Купила|^Хочет/.test(x.res) || x.what==='Клиентка написала сама'))) s += 3;
+  if (T.some(x => x.what==='Клиентка написала сама' && now - x.t < 864e5)) s += 2;
+  if (/Очень важно/.test(c.ready || '')) s += 2; else if (/сомнения/.test(c.ready || '')) s += 1;
+  if (/^(150|300)/.test(c.income || '')) s += 1;
+  if (c.diag || ['Диагностика оплачена','Диагностика назначена'].includes(c.stage)) s += 2;
+  if (c.stage==='Бронь') s += 3;
+  const ls = lastSession(c);
+  if (justFinished(c)) s += 4; else if (ls && now - ls.t < 2*864e5) s += 3;
+  s -= 2 * T.filter(x => /^Дожим/.test(x.what)).length;
+  const last = T.slice(-1)[0];
+  if (last && /Не отвечает|жду ответа|Отправила дожим/.test(last.res) && now - last.t > 864e5) s -= 2;
+  return s;
+}
+const tempPill = s => s >= 5 ? '<span class="pill warn">🔥 горячая</span>' : s >= 2 ? '<span class="pill acc">тёплая</span>' : '<span class="pill">холодная</span>';
+const dueOf = c => c.task && !c.task.done ? c.task.due.getTime() : Infinity;
+const rankCmp = (x, y) => x.a.tier - y.a.tier || (x.a.tier===1 ? justFinished(y.c) - justFinished(x.c) : 0) || (dueOf(x.c) - dueOf(y.c)) || (y.t - x.t);
+function overdue(){ return C.filter(c => c.task && !c.task.done && c.task.due < TODAY); }
+
+/* ===================== РОЛИ И РАЗДЕЛЫ ===================== */
+const ROLES = {
+  'Пётр': ['home','new','clients','base','grave','team','shifts','calendar','money','expenses','products','magnets','tg','cheat','people'],
+  'Алина':['sessions','voice','alina','money','products'],
+  'Лера': ['team','shifts','new','today','clients','base','grave','calendar','money','products','magnets','cheat'],
+  'Аня':  ['today','new','clients','grave','calendar','invite','magnets','pay','products','shift','cheat'],
+  'Полина': ['mila','calendar','expenses'],
+  'Ира':  ['team','shifts','new','clients','base','grave','calendar','money','expenses','products','magnets','cheat'],
+};
+const TABS = {
+  home:'Главная', new:'Новые анкеты', shifts:'График смен', calendar:'Календарь проекта', base:'База клиентов', products:'База продуктов', cheat:'Шпаргалка', expenses:'Расходы', grave:'Кладбище лидов', magnets:'База лид-магнитов', people:'Люди и доступы', clients:'Клиенты', team:'Команда', money:'Деньги', prices:'Цены', tg:'Как выглядит в Telegram',
+  sessions:'Мои сессии', voice:'Голосовые', alina:'Показатели', today:'Сегодня', invite:'Приглашения', pay:'Мои выплаты', shift:'Отчёт смены',
+  mila:'Назначить сессии', schedule:'Расписание Алины'
+};
+let lmType = 'Все', lmTheme = 'Все';
+// кто под чьим входом что видит: Пётр и Алина — всё; Ира — всё, кроме вкладок Пети и Алины; Лера — свои и менеджеров; остальные — только свои
+const ACCESS = {
+  'Пётр':  ['Пётр','Алина','Ира','Лера','Аня','Полина'],
+  'Алина': ['Алина','Пётр','Ира','Лера','Аня','Полина'],
+  'Ира':   ['Ира','Лера','Аня','Полина'],
+  'Лера':  ['Лера','Аня'],
+  'Аня':   ['Аня'],
+  'Полина':['Полина'],
+};
+const ROLE_NOTE = { 'Пётр':'продюсер', 'Алина':'эксперт', 'Ира':'проджект', 'Лера':'РОП', 'Аня':'менеджер', 'Полина':'ассистент' };
+let login = 'Пётр';
+let role = 'Пётр', tab = 'home', clientFilter = 'В работе', basePreset = 'Все, кто покупал', prodSection = 'Продуктовая линейка';
+const baseSel = new Set();
+
+function badgeFor(t){
+  if (t==='new') return newAnkety().length;
+  if (t==='today') return tasksFor(role).filter(c => c.task.due <= addDays(TODAY,0).setHours(23,59)).length + (yesterdayMissing(role)?1:0);
+  if (t==='shift') return yesterdayMissing(role) ? 1 : 0;
+  if (t==='team') return overdue().length;
+  if (t==='voice') return C.filter(c => c.alinaVoice && !c.alinaVoice.done).length;
+  if (t==='mila') return C.filter(c => c.milaTask).length;
+  return 0;
+}
+function renderChrome(){
+  const can = ACCESS[login];
+  $('#roles').innerHTML = `<label class="small muted">Вход (в прототипе)<select id="loginSel" class="btn sm" style="margin-left:6px">${Object.keys(ACCESS).map(p => `<option ${p===login?'selected':''}>${p}</option>`).join('')}</select></label>`
+    + (can.length > 1 ? `<span class="small muted">Смотреть как:</span>` + can.map(r => `<button class="role" aria-pressed="${r===role}" data-role="${r}">${r} · ${ROLE_NOTE[r]}</button>`).join('') : '');
+  $('#whoami').textContent = `Вошли: ${login}` + (role!==login ? ` · смотрите как ${role}` : '');
+  $('#nav').innerHTML = ROLES[role].map(t => { const b = badgeFor(t); return `<button class="tab" data-tab="${t}" ${t===tab?'aria-current="page"':''}><span>${TABS[t]}</span>${b?`<span class="badge ${['new','today','team','voice','mila','shift'].includes(t)?'hot':''}">${b}</span>`:''}</button>`; }).join('');
+}
+function render(){ renderChrome(); $('#view').innerHTML = (VIEWS[tab]||VIEWS.home)(); window.scrollTo({top:0}); }
+
+/* ===================== ЭКРАНЫ ===================== */
+const VIEWS = {};
+
+VIEWS.home = () => {
+  const ank = 37, direct = 9, directAnk = 4;
+  const f = [['Анкеты', ank+directAnk],['Написали',38],['Ответили',31],['Купили диагностику',11],['Провели диагностику',8],['Купили продукт',5]];
+  const max = f[0][1];
+  const od = overdue();
+  return `
+  <div class="head"><div><h1>Главная</h1><p>Октябрь 2026, с 1 по 26 число. Всё считается само из анкет, оплат, календарей и отметок менеджеров.</p></div>
+    <div class="chips"><span class="chip" aria-pressed="true">Октябрь</span><span class="chip">Неделя</span><span class="chip">Сентябрь</span></div></div>
+  <div class="kpis">
+    <div class="kpi"><span class="lbl">Анкеты</span><b>${ank+directAnk}</b><span class="note">из них ${directAnk} — лиды из директа</span></div>
+    <div class="kpi"><span class="lbl">Лиды из директа</span><b>${direct}</b><span class="note">${directAnk} заполнили анкету · ${Math.round(directAnk/direct*100)}%</span></div>
+    <div class="kpi bad"><span class="lbl">Первое касание</span><b>31 ч</b><span class="note">в среднем, норма 24 ч · вовремя 58%</span></div>
+    <div class="kpi"><span class="lbl">Диагностики</span><b>8 из 11</b><span class="note">проведено из оплаченных</span></div>
+    <div class="kpi good"><span class="lbl">Касания после сессий</span><b>86%</b><span class="note">сделаны в течение 24 ч</span></div>
+    <div class="kpi bad"><span class="lbl">Просрочено сейчас</span><b>${od.length}</b><span class="note">задач у команды</span></div>
+    <div class="kpi ${shiftStats('Аня').miss?'bad':''}"><span class="lbl">Отчёты смен вовремя</span><b>${shiftStats('Аня').ok} из ${shiftStats('Аня').all}</b><span class="note">Аня · ${shiftStats('Аня').miss?'вчерашний не сдан':'всё сдано'}</span></div>
+  </div>
+  <div class="grid g2">
+    <section class="panel"><h2>Воронка</h2><p class="muted small">От анкеты до покупки продукта</p>
+      <div class="funnel">${f.map(([n,v]) => `<div class="fstep"><span>${n}</span><div class="fbar"><i style="width:${Math.max(4,v/max*100)}%"></i></div><span class="v">${v}</span></div>`).join('')}</div>
+      <p class="small muted">До анкет: лиды из директа ${direct} → заполнили анкету ${directAnk}. Анкета → продукт: <b>${Math.round(5/(ank+directAnk)*100)}%</b> · Диагностика → продукт: <b>${Math.round(5/8*100)}%</b></p>
+    </section>
+    <section class="panel"><h2>Просрочки по людям</h2><p class="muted small">Нажми на клиента — откроется карточка</p>
+      <div class="list">${od.map(c => `<div class="row"><span class="pill crit">${esc(c.task.escalated?'Лера (передано)':c.owner)}</span><button class="link" data-open="${c.id}">${esc(c.name)}</button>${cmpBtn(c)}<span class="why">${esc(c.task.kind)} · ${dueLabel(c.task.due)}</span></div>`).join('') || '<div class="empty">Просрочек нет</div>'}</div>
+    </section>
+  </div>
+  <section class="panel"><h2>Откуда приходят</h2>
+    <div class="tbl"><table><thead><tr><th>Источник</th><th class="num">Анкеты</th><th class="num">Диагностика</th><th class="num">Продукт</th><th class="num">Выручка</th></tr></thead><tbody>
+      <tr><td>Ссылки менеджеров</td><td class="num">14</td><td class="num">6</td><td class="num">4</td><td class="num">${rub(203000)}</td></tr>
+      <tr><td>Шапка профиля</td><td class="num">16</td><td class="num">4</td><td class="num">1</td><td class="num">${rub(30000)}</td></tr>
+      <tr><td>Директ (9 лидов → 4 анкеты)</td><td class="num">4</td><td class="num">1</td><td class="num">0</td><td class="num">0 ₽</td></tr>
+      <tr><td>Сторис Алины</td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num">0 ₽</td></tr>
+      <tr><td>Rutube</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0 ₽</td></tr>
+    </tbody></table></div></section>`;
+};
+
+VIEWS.new = () => {
+  const list = newAnkety();
+  const canTake = role==='Аня' || role==='Лера';
+  const on = onShiftToday();
+  return `<div class="head"><div><h1>Новые анкеты</h1><p>Анкеты с общих ссылок: шапка профиля, сторис Алины, Rutube. Кто на смене — нажимает «Беру», и клиент закрепляется за ним. Срок первого касания — 24 часа с момента анкеты.</p></div>
+    <span class="pill ${on.length?'ok':'crit'}">Сегодня на смене: ${on.length?on.join(', '):'никого — поставь в «Графике смен»'}</span></div>
+  ${list.length ? `<div class="list">${list.map(c => `
+    <div class="item ${(TODAY-c.at)/36e5>2?'warn':'acc'}"><div class="stripe"></div><div class="body">
+      <div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill">${esc(c.src)}</span><span class="pill ${(TODAY-c.at)/36e5>2?'warn':''}">пришла ${hoursAgo(c.at)}</span></div>
+      <div class="why">«${esc(c.req)}»</div>
+      <div class="row small muted"><span>Доход: ${esc(c.income)}</span><span>· ${esc(c.ready)}</span><span>· ${esc(c.city)}, ${esc(c.age)}</span></div>
+      <div class="outs">${canTake?`<button class="btn pri sm" data-take="${c.id}">Беру</button>`:''}
+        ${role==='Пётр'||role==='Лера'?`<select class="btn sm" data-assign="${c.id}" aria-label="Отдать менеджеру"><option value="">Отдать…</option><option>Аня</option><option>Лера</option><option>Ева</option></select>`:''}</div>
+    </div></div>`).join('')}</div>` : '<div class="empty">Все анкеты разобраны</div>'}`;
+};
+
+function taskCard(c){
+  const t = c.task, st = t.done ? 'ok' : dueState(t.due);
+  const outs = OUTS[t.kind] || ['Сделала'];
+  const extra = [];
+  if (c.consent===false) extra.push('<span class="pill crit">нет согласия на запись</span>');
+  if (c.thinkUntil) extra.push(`<span class="pill warn">думает до ${dd(c.thinkUntil)}</span>`);
+  return `<div class="item ${st} ${t.done?'done':''}"><div class="stripe"></div><div class="body">
+    <div class="row"><b>${esc(t.kind)}</b>${t.done ? '' : tempPill(temperature(c))}<span class="pill ${st==='crit'?'crit':st==='warn'?'warn':'ok'}">${t.done?'сделано':dueLabel(t.due)}</span>${extra.join('')}</div>
+    <div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${pill(c.stage)}</div>
+    <div class="why">${esc(t.why)}</div>
+    ${t.done ? `<div class="small" style="color:var(--ok)">Записано: ${esc(t.done)}</div>` :
+    `<div class="outs">${outs.map(o => `<button class="btn sm ${o.startsWith('Купила')||o==='Оплатила'||o==='Доплатила'?'ok':''}" data-out="${c.id}" data-val="${esc(o)}">${esc(o)}</button>`).join('')}${cmpBtn(c, 'pri')}</div>`}
+  </div></div>`;
+}
+VIEWS.today = () => {
+  const me = role==='Пётр' ? 'Аня' : role;
+  const all = tasksFor(me);
+  // те же блоки, что в «Мои клиенты»: здесь только то, что нужно сделать сегодня
+  const R = all.map(c => ({ c, a: c.task.done ? { tier:9 } : attention(c), t: temperature(c) })).sort(rankCmp);
+  const SHOW = { 0:TIERS[0], 1:TIERS[1], 2:TIERS[2], 3:TIERS[3], 6:TIERS[6], 9:'✅ Сделано сегодня' };
+  const g = {}; R.forEach(x => { const n = SHOW[x.a.tier]; if (n) (g[n] = g[n] || []).push(x.c); });
+  const later = R.filter(x => x.a.tier===4).length;
+  return `<div class="head"><div><h1>Сегодня</h1><p>${dd(TODAY)}, понедельник. Кому написать сегодня — одна строка на клиента. Нажми итог, и он запишется в карточку. Это же в 9:00 пришло в ветку «Отдел продаж».</p></div>
+    <button class="btn pri" data-direct>+ Лид из директа</button></div>
+  ${yesterdayMissing(me) ? `<div class="item crit"><div class="stripe"></div><div class="body">
+    <div class="row"><b>Отчёт смены за 25 октября не заполнен</b><span class="pill crit">нужно было до 23:59</span></div>
+    <div class="why">Петя и Лера видят, что отчёт не сдан. Заполни сейчас — он засчитается как сданный с опозданием.</div>
+    <div class="outs"><button class="btn pri sm" data-tab="shift">Заполнить отчёт</button></div></div></div>` : ''}
+  ${C.filter(c => c.handoffPending && !c.handoff && c.owner===me).map(c => `<div class="item crit"><div class="stripe"></div><div class="body">
+    <div class="row"><b>Клиент не передан дальше</b><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}</div>
+    <div class="why">Бронь или покупка отмечены, а следующий шаг никому не передан. Клиент не должен остаться один.</div>
+    <div class="outs"><button class="btn pri sm" data-handoff="${c.id}">Передать</button></div></div></div>`).join('')}
+  ${C.filter(c => c.handoff && !c.handoff.done && c.handoff.to===me).map(c => `<div class="item acc"><div class="stripe"></div><div class="body">
+    <div class="row"><b>Передали тебе</b><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill warn">${dueLabel(c.handoff.due)}</span></div>
+    <div class="why">${esc(c.handoff.prod)} · ${esc(c.handoff.what)} · передала ${esc(c.handoff.from)}</div>
+    <div class="outs"><button class="btn pri sm" data-hodone="${c.id}">Сделала</button></div></div></div>`).join('')}
+  ${Object.entries(g).map(([name, list]) => list.length ? `<div class="group-t"><h2>${name}</h2><span class="badge ${name===TIERS[0]?'hot':''}">${list.length}</span></div><div class="list">${list.map(taskCard).join('')}</div>` : '').join('')}
+  ${later ? `<div class="hint">Ещё ${later} — не сегодня. Весь список по тому же порядку — в «Мои клиенты».</div>` : ''}`;
+};
+
+VIEWS.clients = () => {
+  const mine = role==='Аня' ? C.filter(c => c.owner==='Аня') : role==='Лера' ? C.filter(c => c.owner==='Лера' || c.owner==='Ева') : C;
+  const F = { 'В работе':c=>!['Кладбище лидов','Завершила','Отказ'].includes(c.stage), 'Лиды':c=>['Новая анкета','Лид из директа','Анкета отправлена','Анкета заполнена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена'].includes(c.stage),
+    'Думают':c=>c.stage==='Думает'||c.stage==='Бронь', 'Клиенты':c=>c.stage==='Клиент', 'Завершили':c=>c.stage==='Завершила' };
+  const list = mine.filter(F[clientFilter]);
+  const ranked = list.map(c => ({ c, a: attention(c), t: temperature(c) })).sort(rankCmp);
+  const cols = role!=='Аня' ? 5 : 4;
+  let lastTier = -1;
+  return `<div class="head"><div><h1>${role==='Пётр'?'Все клиенты':'Мои клиенты'}</h1><p>${role==='Аня'?'В работе — только те, кого ты сейчас ведёшь: потенциальные и действующие клиенты. Кто не ответил на два дожима, уходит на «Кладбище лидов», завершившие — в «Завершили». Клиент закреплён за тобой навсегда.':'Вся база с ответственными. Передать клиента другому менеджеру — в его карточке.'}</p></div>
+    ${role!=='Пётр'?'<button class="btn pri" data-direct>+ Лид из директа</button>':''}</div>
+  <div class="chips">${Object.keys(F).map(k => `<button class="chip" aria-pressed="${k===clientFilter}" data-filter="${k}">${k} · ${mine.filter(F[k]).length}</button>`).join('')}</div>
+  <div class="tbl"><table><thead><tr><th>Клиент</th><th>Этап и температура</th>${role!=='Аня'?'<th>Ответственный</th>':''}<th>Почему здесь</th><th>Откуда</th></tr></thead><tbody>
+  ${ranked.map(({c, a, t}) => (a.tier!==lastTier ? (lastTier = a.tier, `<tr><td colspan="${cols}" style="background:var(--sunk)"><b>${TIERS[a.tier]}</b></td></tr>`) : '') + `<tr><td><button class="link" data-open="${c.id}">${esc(c.name)}</button><div class="small muted">${tgLink(c.tg)}</div>${cmpBtn(c)}</td><td>${pill(c.stage)} ${tempPill(t)} <button class="btn sm" data-stagebtn="${c.id}">сменить</button></td>${role!=='Аня'?`<td>${esc(c.owner||'не взяли')}</td>`:''}
+    <td class="tw"><span class="pill ${a.tier===0?'crit':a.tier<=2?'warn':''}">${esc(a.why)}</span></td><td>${esc(c.src)}</td></tr>`).join('')}
+  </tbody></table></div>`;
+};
+
+function buysOf(c){
+  const out = (c.deals||[]).map(d => ({ g: d.p==='Диагностика' ? 'Диагностики' : d.p.includes('Алины') ? 'Сессии с Алиной' : d.p.includes('Валерии') ? 'Сессии с Лерой' : 'Другое', p:d.p, t:d.at }));
+  if (c.diag && !out.some(b => b.g==='Диагностики')) out.push({ g:'Диагностики', p:'Диагностика', t:c.diag.when });
+  return out.concat(c.buys||[]).sort((a,b) => a.t - b.t);
+}
+const has = (c, g) => buysOf(c).some(b => b.g===g);
+// темы запросов: в рабочей версии подбираются по словам из анкеты, менеджер может поправить в карточке
+const THEMES = {
+  'Отношения': ['отношен','муж','партнёр','партнер','ревност','развод','мужчин','доверя'],
+  'Тревога и страхи': ['тревог','паническ','страх','уснуть','контрол'],
+  'Тело и психосоматика': ['психосоматик','спин','плеч','голов','тело','зажат','ком в горле','челюст','матк','забеременеть','врачи'],
+  'Самоценность и стыд': ['стыд','проявля','полюбить','мнение окружающ','любовь к себе'],
+  'Выгорание и усталость': ['выгоран','усталост','автомат','всё бросить','не раду','остановиться'],
+  'Сексуальность и желание': ['секс','желани','влечен'],
+  'Мама и дети': ['мам','ребён','ребен','дет'],
+  'Деньги и реализация': ['финансов','деньг','реализац','блог'],
+};
+const themesOf = c => c.themes || (c.themes = Object.keys(THEMES).filter(t => THEMES[t].some(k => (c.req||'').toLowerCase().includes(k))));
+const cityOf = c => c.city && c.city!=='—' ? c.city : 'не указан';
+const incomeOf = c => /тыс/.test(c.income||'') ? c.income : 'не указан';
+const ALL_BUYERS = 'Все, кто покупал', ALL_BASE = 'Все в базе, включая тех, кто не покупал';
+let baseF = { prod: ALL_BUYERS, city:'Все', income:'Все', theme:'Все' };
+const SEGMENTS = { 'А · Практикумы':{ prod:'Практикумы' }, 'Б · Сессии с Алиной':{ prod:'Сессии с Алиной' }, 'В · Диагностики + Москва':{ prod:'Диагностики', city:'Москва' } };
+function baseList(){
+  return C.filter(c => {
+    const b = buysOf(c);
+    if (baseF.prod===ALL_BUYERS && !b.length) return false;
+    if (baseF.prod!==ALL_BUYERS && baseF.prod!==ALL_BASE && !b.some(x => x.g===baseF.prod)) return false;
+    if (baseF.city!=='Все' && cityOf(c)!==baseF.city) return false;
+    if (baseF.income!=='Все' && incomeOf(c)!==baseF.income) return false;
+    if (baseF.theme!=='Все' && !themesOf(c).includes(baseF.theme)) return false;
+    return true;
+  }).sort((a,b) => { const la = buysOf(a).slice(-1)[0], lb = buysOf(b).slice(-1)[0]; return (lb ? lb.t : b.at) - (la ? la.t : a.at); });
+}
+VIEWS.base = () => {
+  const list = baseList();
+  const sel = list.filter(c => baseSel.has(c.id));
+  const groups = [...new Set(C.flatMap(c => buysOf(c).map(b => b.g)))];
+  const cities = [...new Set(C.map(cityOf))].sort((a,b) => a==='не указан' ? 1 : b==='не указан' ? -1 : a.localeCompare(b,'ru'));
+  const incomes = ['до 80 тыс.','80–150 тыс.','150–300 тыс.','300+ тыс.','не указан'];
+  const opt = (key, vals) => vals.map(v => `<option ${baseF[key]===v?'selected':''}>${esc(v)}</option>`).join('');
+  return `<div class="head"><div><h1>База клиентов</h1><p>Все, кто был с нами, — с фильтрами по продукту, городу, доходу и запросу. Отсюда собираем списки для рассылок и личных приглашений: например, на тематический эфир — всех, у кого похожий запрос.</p></div>
+    <button class="btn" data-bimport>+ Занести участниц практикума</button></div>
+  <section class="panel grid g2">
+    <label class="f">Что покупала<select data-bf="prod">${opt('prod', [ALL_BUYERS, ...groups, ALL_BASE])}</select></label>
+    <label class="f">Город<select data-bf="city">${opt('city', ['Все', ...cities])}</select></label>
+    <label class="f">Доход (из анкеты)<select data-bf="income">${opt('income', ['Все', ...incomes])}</select></label>
+    <label class="f">Запрос<select data-bf="theme">${opt('theme', ['Все', ...Object.keys(THEMES)])}</select></label>
+  </section>
+  <div class="row"><span class="lbl">Быстрые сегменты</span>${Object.keys(SEGMENTS).map(k => `<button class="chip" data-preset="${k}">${k}</button>`).join('')}<button class="chip" data-preset="reset">Сбросить фильтры</button></div>
+  <div class="row"><b>Найдено: ${list.length}</b><button class="btn pri" data-bcopy>Скопировать ники${sel.length ? ` (${sel.length})` : ` всех (${list.length})`}</button><button class="btn" data-bselall>${sel.length===list.length && list.length ? 'Снять выбор' : 'Выбрать всех'}</button>
+    ${baseF.theme!=='Все' && list.length ? `<button class="btn ok" data-invtheme>Пригласить на эфир «${esc(baseF.theme)}»</button>` : ''}</div>
+  <div class="tbl"><table><thead><tr><th></th><th>Клиент</th><th>Запрос</th><th>Что покупала</th><th>Город</th><th>Доход</th><th>Менеджер</th></tr></thead><tbody>
+  ${list.map(c => `<tr><td><input type="checkbox" aria-label="Выбрать ${esc(c.name)}" data-bsel="${c.id}" ${baseSel.has(c.id)?'checked':''}></td>
+    <td><button class="link" data-open="${c.id}">${esc(c.name)}</button><div class="small muted">${tgLink(c.tg)}</div>${cmpBtn(c)}</td>
+    <td class="tw"><div class="chips">${themesOf(c).map(t => `<span class="pill acc">${esc(t)}</span>`).join('') || '<span class="pill">тема не определена</span>'}</div>${c.req && c.req!=='—' ? `<div class="small muted" style="margin-top:4px">«${esc(c.req)}»</div>` : ''}</td>
+    <td class="tw small">${buysOf(c).map(b => `<b>${esc(b.g)}</b>: ${esc(b.p)} · ${dd(b.t)}`).join('<br>') || '<span class="muted">не покупала</span>'}</td>
+    <td>${esc(cityOf(c))}</td><td>${esc(incomeOf(c))}</td><td>${esc(c.owner || 'не закреплена')}</td></tr>`).join('')}
+  </tbody></table></div>`;
+};
+function importSheet(){
+  sheet(`<h2>Занести участниц практикума</h2><p class="small muted">Базы практикумов сейчас живут только в чатах. Скопируй ники из чата — по одному в строке. Кто уже есть в базе, получит отметку о практикуме, новые появятся карточками.</p>
+    <form id="importform" class="grid">
+      <label class="f">Практикум<input id="i1" value="Практикум «Тело и тревога»"></label>
+      <label class="f">Дата практикума<input id="i2" type="date" value="2026-09-14"></label>
+      <label class="f">Ники участниц<textarea id="i3" rows="5">@sveta_oreh
+@new_member_1
+@new_member_2</textarea></label>
+      <div class="row"><button class="btn pri" type="submit">Занести</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+VIEWS.team = () => {
+  const od = overdue();
+  return `<div class="head"><div><h1>Команда</h1><p>Что горит у отдела продаж и как работает каждый менеджер в октябре.</p></div></div>
+  <div class="kpis">
+    <div class="kpi bad"><span class="lbl">Просрочено</span><b>${od.length}</b><span class="note">задач прямо сейчас</span></div>
+    <div class="kpi"><span class="lbl">Не взяли анкеты</span><b>${newAnkety().length}</b><span class="note">ждут, кто нажмёт «Беру»</span></div>
+    <div class="kpi"><span class="lbl">Ждут голосовое Алины</span><b>${C.filter(c=>c.alinaVoice&&!c.alinaVoice.done).length}</b><span class="note">«думали» и замолчали</span></div>
+    <div class="kpi"><span class="lbl">Без назначенной сессии</span><b>${C.filter(c=>c.milaTask).length}</b><span class="note">купили — ждут Полину</span></div>
+  </div>
+  <section class="panel"><h2>Просрочки</h2><div class="list" style="margin-top:10px">${od.map(c => `<div class="row"><span class="pill crit">${esc(c.owner)}</span><button class="link" data-open="${c.id}">${esc(c.name)}</button>${cmpBtn(c)}<span class="why">${esc(c.task.kind)} · ${dueLabel(c.task.due)}${c.task.escalated?' · передано Лере':''}</span></div>`).join('')}</div></section>
+  ${shiftPanel()}
+  <section class="panel"><h2>По менеджерам</h2>
+  <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Менеджер</th><th class="num">Анкет и лидов</th><th class="num">Касание вовремя</th><th class="num">Диагностик продано</th><th class="num">Продуктов продано</th><th class="num">После сессий вовремя</th><th class="num">Смен</th></tr></thead><tbody>
+    <tr><td>Аня</td><td class="num">31</td><td class="num">62%</td><td class="num">9</td><td class="num">5</td><td class="num">83%</td><td class="num">12</td></tr>
+    <tr><td>Лера</td><td class="num">4</td><td class="num">75%</td><td class="num">2</td><td class="num">0</td><td class="num">100%</td><td class="num">—</td></tr>
+    <tr><td>Ева (место свободно)</td><td class="num">1</td><td class="num">—</td><td class="num">0</td><td class="num">1</td><td class="num">—</td><td class="num">2</td></tr>
+  </tbody></table></div></section>`;
+};
+
+const WD = ['вс','пн','вт','ср','чт','пт','сб'];
+VIEWS.shifts = () => {
+  const days = Array.from({length:14}, (_,i) => new Date(2026, 9, 26 + i));
+  const canEdit = role==='Лера' || role==='Пётр';
+  return `<div class="head"><div><h1>График смен</h1><p>Лера отмечает, в какую дату кто из менеджеров работает. Отчёт смены и «Новые анкеты» привязаны к этим дням: в день без смены отчёт не требуется и прогулом не считается.</p></div></div>
+  <div class="tbl"><table><thead><tr><th>Менеджер</th>${days.map(d=>`<th class="num">${WD[d.getDay()]}<br>${d.getDate()}.${String(d.getMonth()+1).padStart(2,'0')}</th>`).join('')}</tr></thead><tbody>
+  ${MANAGERS.map(m => `<tr><td>${m}${m==='Новый менеджер'?'<div class="small muted">вместо Евы</div>':''}</td>${days.map(d => { const on = SCHED.has(m+'|'+d.toDateString());
+      return `<td class="num"><button class="chip" aria-pressed="${on}" ${canEdit?`data-sched="${m}|${d.toDateString()}"`:'disabled'} aria-label="${m}, ${dd(d)}: ${on?'смена':'выходной'}">${on?'смена':'—'}</button></td>`; }).join('')}</tr>`).join('')}
+  </tbody></table></div>
+  <div class="hint">Нажми на день, чтобы поставить или снять смену. Пример: у Ани выходной 1 ноября — в этот день отчёт от неё не ждём, а анкеты на «Беру» видит тот, кто на смене.</div>`;
+};
+function shiftPanel(){
+  const days = Object.keys(SHIFTS['Аня']).map(Number).sort((a,b)=>a-b);
+  const cell = x => !x ? '<td class="num muted">·</td>' : x[0]==='today' ? '<td class="num"><span class="pill">сегодня, до 23:59</span></td>' :
+    x[0]==='ok' ? `<td class="num"><span class="pill ok" title="сдан в ${x[1]}">✓ ${x[1]}</span></td>` :
+    x[0]==='late' ? `<td class="num"><span class="pill warn" title="сдан ${x[1]}">${x[1].split(', ')[1]}</span></td>` :
+    x[0]==='miss' ? '<td class="num"><span class="pill crit">не сдан</span></td>' : '<td class="num muted">—</td>';
+  return `<section class="panel"><h2>Отчёты смен</h2><p class="small muted">Сдать в день смены до 23:59 по Москве. Зелёный — вовремя, жёлтый — после полуночи (время сдачи), красный — не сдан, прочерк — не её смена. Не сдан к утру — в 9:00 менеджеру приходит напоминание.</p>
+    <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Менеджер</th><th class="num">Вовремя</th>${days.map(d=>`<th class="num">${d}.10</th>`).join('')}</tr></thead><tbody>
+    ${Object.keys(SHIFTS).map(w => { const s = shiftStats(w); return `<tr><td>${w}</td><td class="num"><b>${s.ok} из ${s.all}</b><div class="small muted">опозд. ${s.late} · нет ${s.miss}</div></td>${days.map(d=>cell(SHIFTS[w][d])).join('')}</tr>`; }).join('')}
+    </tbody></table></div><p class="small muted">Смены берутся из «Графика смен», который ведёт Лера. Прочерк — выходной по графику. Место Евы свободно — придёт новый менеджер, появится строкой.</p></section>`;
+}
+function payments(){ const out=[]; C.forEach(c => (c.deals||[]).forEach(d => d.pays.forEach(p => out.push({c, d, p})))); return out; }
+VIEWS.money = () => {
+  const P = payments().filter(x => x.p.t.getMonth()===9);
+  const rev = P.reduce((s,x)=>s+x.p.sum,0) + DIAG_EXTRA*3900;
+  const prod = P.filter(x=>x.d.p!=='Диагностика').reduce((s,x)=>s+x.p.sum,0);
+  const anya = Math.round(P.filter(x=>x.d.seller==='Аня'&&x.d.p!=='Диагностика'&&!x.p.bron).reduce((s,x)=>s+x.p.sum,0)*0.06) + 5000 + 9*500 + 5*1000;
+  const lera = Math.round(prod*0.02) + 6*2000 + 6000;
+  const tax = Math.round(rev*0.07), acq = Math.round(rev*0.035);
+  const EXM = EXPENSES.filter(e => e.t.getMonth()===9);
+  const exp = EXM.reduce((s,e) => s + e.sum, 0);
+  const byCat = EXP_CATS.map(k => [k, EXM.filter(e => e.cat===k).reduce((s,e) => s + e.sum, 0)]).filter(x => x[1]);
+  const profit = rev - tax - acq - anya - lera - 5000 - exp;
+  const showShares = role==='Пётр' || role==='Алина';
+  const unmatched = UNMATCHED;
+  return `<div class="head"><div><h1>${role==='Лера'?'Деньги отдела':'Деньги'}</h1><p>Октябрь 2026. Оплаты из ЮKassa и Продамуса приходят сами, остальное менеджер вносит руками. ${role==='Лера'?'Доли проекта здесь не показываются.':''}</p></div></div>
+  <div class="kpis">
+    <div class="kpi"><span class="lbl">Выручка</span><b>${rub(rev)}</b><span class="note">продукты ${rub(prod)} · диагностики ${rub(rev-prod)}</span></div>
+    <div class="kpi"><span class="lbl">Зарплата Ани</span><b>${rub(anya)}</b><span class="note">фикс 5 000 + 6% + диагностики</span></div>
+    <div class="kpi"><span class="lbl">Зарплата Леры</span><b>${rub(lera)}</b><span class="note">2% РОП + диагностики + сопровождение</span></div>
+    <div class="kpi"><span class="lbl">Зарплата Евы</span><b>${rub(5000)}</b><span class="note">место свободно</span></div>
+  </div>
+  ${showShares ? `<section class="panel"><h2>Доли · видят только Пётр и Алина</h2>
+    <div class="tbl" style="margin-top:10px"><table><tbody>
+      <tr><td>Выручка</td><td class="num">${rub(rev)}</td></tr><tr><td>− налог 7%</td><td class="num">${rub(tax)}</td></tr><tr><td>− эквайринг</td><td class="num">${rub(acq)}</td></tr>
+      <tr><td>− отдел продаж</td><td class="num">${rub(anya+lera+5000)}</td></tr><tr><td>− расходы проекта<div class="small muted">${byCat.map(x => `${x[0]} ${rub(x[1])}`).join(' · ')}</div></td><td class="num">${rub(exp)}</td></tr>
+      <tr><td><b>Чистая прибыль</b></td><td class="num"><b>${rub(profit)}</b></td></tr>
+      <tr><td>Алина · 65%</td><td class="num">${rub(Math.round(profit*.65))}</td></tr><tr><td>Пётр · 35%</td><td class="num">${rub(Math.round(profit*.35))}</td></tr>
+    </tbody></table></div><p class="small muted">Тестовый расчёт. Расходы проекта вносит ассистент во вкладке «Расходы» — чистая прибыль пересчитывается сразу.</p></section>` : ''}
+  ${unmatched.length ? `<section class="panel" style="border-color:var(--warn)"><h2>Сверка оплат: ${unmatched.length} без клиента</h2>
+    <p class="small muted">Платформа берёт оплаты прямо из ЮKassa и Продамуса, а не из таблицы Тильды, и каждый день сверяет их с заказами на сайте. Здесь — деньги, которые пришли в кассу, но не нашли свою карточку: например, заказ с Тильды не дошёл в таблицу.</p>
+    <div class="list" style="margin-top:10px">${unmatched.map(u => `<div class="row"><span class="pill warn">${dd(u.t)}, ${hm(u.t)}</span><b>${rub(u.sum)}</b><span class="muted">${esc(u.how)} · ${esc(u.payer)}</span>${u.done ? `<span class="pill ok">привязана: ${esc(u.done)}</span>` : `<button class="btn sm" data-match="${u.id}">Привязать к клиенту</button>`}</div>`).join('')}</div></section>` : ''}
+  <section class="panel"><h2>Оплаты</h2><div class="tbl" style="margin-top:10px"><table><thead><tr><th>Дата</th><th>Клиент</th><th>Продукт</th><th class="num">Сумма</th><th>Как пришла</th><th>Продал</th></tr></thead><tbody>
+    ${P.sort((a,b)=>b.p.t-a.p.t).map(x => `<tr><td>${dd(x.p.t)}</td><td><button class="link" data-open="${x.c.id}">${esc(x.c.name)}</button></td><td>${esc(x.d.p)}${x.p.bron?' · бронь':''}</td><td class="num">${rub(x.p.sum)}</td><td>${x.p.auto?'<span class="pill ok">пришла сама</span>':'<span class="pill">вручную</span>'} <span class="small muted">${esc(x.p.how)}</span></td><td>${esc(x.d.seller)}</td></tr>`).join('')}
+  </tbody></table></div></section>`;
+};
+
+VIEWS.prices = () => {
+  const prods = [...new Set(PRICES.map(p=>p.p))];
+  const cur = p => PRICES.filter(x=>x.p===p && x.from<=TODAY).sort((a,b)=>b.from-a.from)[0];
+  return `<div class="head"><div><h1>Цены</h1><p>Новая цена — новой строкой с датой «действует с». Старые строки остаются. Сделка запоминает цену на день первой оплаты или брони, поэтому прошлые продажи, проценты и выплаты не меняются.</p></div>
+    <button class="btn pri" data-newprice>Новая цена</button></div>
+  <div class="tbl"><table><thead><tr><th>Продукт</th><th class="num">Сейчас, полная</th><th class="num">Частями</th><th class="num">Бронь</th><th>История</th></tr></thead><tbody>
+  ${prods.map(p => { const c = cur(p); const h = PRICES.filter(x=>x.p===p).sort((a,b)=>a.from-b.from);
+    return `<tr><td>${esc(p)}</td><td class="num"><b>${rub(c.full)}</b></td><td class="num">${rub(c.part)}</td><td class="num">${rub(c.bron)}</td>
+    <td class="tw small">${h.map(x => `${x.from>TODAY?'<span class="pill acc">с '+dd(x.from)+'</span>':'с '+dd(x.from)}: ${rub(x.full)}`).join(' → ')}</td></tr>`; }).join('')}
+  </tbody></table></div>
+  <div class="hint">Пример: Алёна Мирская купила сессию 15 октября за 42 000 ₽. С 21 октября сессия стоит 30 000 ₽, но в её сделке так и осталось 42 000 ₽, и процент Ани посчитан от 42 000.</div>`;
+};
+
+// кто входит в платформу: почта для входа и уровень доступа. Почты в прототипе скрыты
+const PEOPLE = [
+  { name:'Пётр', level:'Пётр', mail:'gsh•••@gmail.com', open:true },
+  { name:'Алина', level:'Алина', mail:'почта Алины', open:true },
+  { name:'Ира', level:'Ира', mail:'iro•••@gmail.com', open:true },
+  { name:'Лера', level:'Лера', mail:'rom•••@gmail.com', open:true },
+  { name:'Аня', level:'Аня', mail:'dol•••@gmail.com', open:true },
+  { name:'Полина', level:'Полина', mail:'почта Полины', open:true },
+  { name:'Ева', level:'Аня', mail:'eva•••@gmail.com', open:false, note:'ушла 27.10' },
+];
+const LEVEL_SEES = {
+  'Пётр':'Всё, включая доли и расходы',
+  'Алина':'Всё, включая доли и расходы',
+  'Ира':'Всё, кроме вкладок Пети и Алины: выручка и зарплаты команды, без долей',
+  'Лера':'Свои вкладки и вкладки менеджеров: все клиенты отдела, выручка и зарплаты команды, без долей',
+  'Аня':'Только свои вкладки и своих клиентов, свои выплаты',
+  'Полина':'Только свои вкладки: назначить сессии, календарь, расходы',
+};
+const LEVEL_NAME = { 'Пётр':'Продюсер', 'Алина':'Эксперт', 'Ира':'Проджект', 'Лера':'РОП', 'Аня':'Менеджер', 'Полина':'Ассистент' };
+VIEWS.people = () => `<div class="head"><div><h1>Люди и доступы</h1><p>Кто входит в платформу и что видит. Вход — по почте: на неё приходит код, пароли не нужны. Закрыла доступ — человек больше не войдёт, его клиенты остаются в системе.</p></div>
+    <button class="btn pri" data-addperson>+ Добавить человека</button></div>
+  <div class="tbl"><table><thead><tr><th>Человек</th><th>Почта для входа</th><th>Роль</th><th>Что видит</th><th></th></tr></thead><tbody>
+  ${PEOPLE.map((p,i) => `<tr class="${p.open?'':'done'}"><td><b>${esc(p.name)}</b>${p.note?`<div class="small muted">${esc(p.note)}</div>`:''}</td><td>${esc(p.mail)}</td><td>${LEVEL_NAME[p.level]}</td><td class="tw small">${LEVEL_SEES[p.level]}</td>
+    <td>${['Пётр','Алина'].includes(p.name) ? '' : `<button class="btn sm" data-access="${i}">${p.open ? 'Закрыть доступ' : 'Открыть доступ'}</button>`}</td></tr>`).join('')}
+  </tbody></table></div>
+  <div class="hint">Доступ проверяет сервер, а не только меню: менеджер не откроет чужого клиента даже по прямой ссылке.</div>`;
+function personSheet(){
+  sheet(`<h2>Добавить человека</h2><form id="personform" class="grid">
+    <label class="f">Имя<input id="pp1" placeholder="Например: Маша"></label>
+    <label class="f">Почта для входа<input id="pp2" type="email" placeholder="name@mail.ru"></label>
+    <label class="f">Роль<select id="pp3">${Object.entries(LEVEL_NAME).filter(([k]) => !['Пётр','Алина'].includes(k)).map(([k,v]) => `<option value="${k}">${v} — ${LEVEL_SEES[k].toLowerCase()}</option>`).join('')}</select></label>
+    <div class="small muted">На почту придёт приглашение. Новый менеджер встанет в «График смен» вместо свободного места.</div>
+    <div class="row"><button class="btn pri" type="submit">Добавить</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+VIEWS.grave = () => {
+  const list = C.filter(c => c.stage==='Кладбище лидов' && (role==='Аня' ? c.owner==='Аня' : true)).sort((a,b) => b.graveAt - a.graveAt);
+  return `<div class="head"><div><h1>Кладбище лидов</h1><p>Те, с кем был диалог, но они перестали отвечать. Сюда попадают только после двух дожимов и суток без ответа после второго — так их нет в твоём рабочем списке. Человек написал сам — верни его кнопкой, он снова окажется у тебя в «Мои клиенты».</p></div>
+    ${list.length ? `<button class="btn" data-gcopy>Скопировать ники (${list.length})</button>` : ''}</div>
+  ${list.length ? `<div class="list">${list.map(c => { const last = (c.touches||[]).slice(-1)[0];
+    return `<div class="item"><div class="stripe"></div><div class="body">
+      <div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}${themesOf(c).map(t => `<span class="pill acc">${esc(t)}</span>`).join('')}</div>
+      <div class="why">Замолчала на этапе «${esc(c.graveFrom || '—')}» · на кладбище с ${dd(c.graveAt)}${role!=='Аня' ? ` · вела ${esc(c.owner)}` : ''}</div>
+      ${last ? `<div class="small muted">Последнее касание ${dd(last.t)}: ${esc(last.what)} — ${esc(last.res)}</div>` : ''}
+      <div class="outs"><button class="btn sm ok" data-revive="${c.id}">Ответила — вернуть в мои клиенты</button></div>
+    </div></div>`; }).join('')}</div>` : '<div class="empty">Кладбище пустое</div>'}
+  <div class="hint">Отсюда же зовём на эфиры и спецпредложения: в «Базе клиентов» выбери «Все в базе» и тему запроса — кладбище тоже попадёт в список.</div>`;
+};
+VIEWS.expenses = () => {
+  const EXM = EXPENSES.filter(e => e.t.getMonth()===9).sort((a,b) => b.t - a.t);
+  const total = EXM.reduce((s,e) => s + e.sum, 0);
+  return `<div class="head"><div><h1>Расходы</h1><p>Каждый расход проекта — сюда, в день оплаты: съёмки, монтаж, подписки, площадки, оплаты подрядчикам. Из них Петя и Алина видят реальную чистую прибыль.</p></div></div>
+  <form class="panel grid g2" id="expform">
+    <label class="f">Дата<input id="e1" type="date" value="2026-10-26"></label>
+    <label class="f">Категория<select id="e2">${EXP_CATS.map(k => `<option>${k}</option>`).join('')}</select></label>
+    <label class="f">За что<input id="e3" placeholder="Например: Артём — съёмка 31.10"></label>
+    <label class="f">Сумма, ₽<input id="e4" type="number" min="0" placeholder="0"></label>
+    <div><button class="btn pri" type="submit">Добавить расход</button></div></form>
+  <section class="panel"><h2>Октябрь · ${rub(total)}</h2>
+  <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Дата</th><th>Категория</th><th>За что</th><th class="num">Сумма</th></tr></thead><tbody>
+    ${EXM.map(e => `<tr><td>${dd(e.t)}</td><td>${esc(e.cat)}</td><td class="tw">${esc(e.what)}</td><td class="num">${rub(e.sum)}</td></tr>`).join('')}
+  </tbody></table></div></section>`;
+};
+VIEWS.cheat = () => `<div class="head"><div><h1>Шпаргалка</h1><p>Работаем только здесь. Таблицы остаются «под капотом»: платформа сама дописывает их для аналитики и архива, вносить туда руками больше не нужно.</p></div></div>
+  <section class="panel"><h2>Продающая линия</h2><p class="small muted">Что и как писать клиенту на каждом шаге. Открывается в новой вкладке.</p>
+    <p class="muted">В рабочей версии здесь будет ссылка на продающую линию.</p></section>
+  <section class="panel"><h2>Было в таблицах — теперь здесь</h2>
+  <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Раньше</th><th>Теперь</th></tr></thead><tbody>
+    <tr><td class="tw">CRM-таблица, лист «Анкеты»: искать свою анкету, ставить статус</td><td class="tw">«Новые анкеты» → «Беру». Дальше клиент в «Мои клиенты», этап меняется кнопками итогов или «Сменить этап» в карточке</td></tr>
+    <tr><td class="tw">Google-форма «Отчёт смены»</td><td class="tw">Вкладка «Отчёт смены» — до 23:59 в день смены</td></tr>
+    <tr><td class="tw">«Учёт сделок», лист «Оплаты»: вносить каждый платёж</td><td class="tw">Оплаты ЮKassa и Продамуса приходят сами. Lava и переводы — «Внести оплату» в карточке. Строку в учёт сделок платформа допишет сама</td></tr>
+    <tr><td class="tw">Таблица оплат с Тильды: смотреть согласие на запись</td><td class="tw">Согласие видно в карточке, в календаре и в списке сессий</td></tr>
+    <tr><td class="tw">Помнить, кому написать после сессии</td><td class="tw">«Сегодня»: задача появляется сама после каждой сессии, с готовым черновиком сообщения</td></tr>
+    <tr><td class="tw">Собирать людей из чатов практикумов для рассылки</td><td class="tw">«База клиентов» → сегмент → «Скопировать ники»</td></tr>
+    <tr><td class="tw">Лист «Конверсии»</td><td class="tw">«Главная» у Пети, «Команда» у Леры — считается само</td></tr>
+  </tbody></table></div></section>`;
+const lmCard = (m, i, cid) => `<section class="panel"><div class="row"><span class="pill acc">${esc(m.type)}</span>${m.themes.map(t => `<span class="pill">${esc(t)}</span>`).join('')}</div>
+  <h2 style="margin-top:8px">${esc(m.title)}</h2><p class="small"><b>Когда отправлять:</b> ${esc(m.when)}</p>
+  <div class="row">${m.link ? `<a class="btn sm" href="${esc(m.link)}" target="_blank" rel="noopener">Открыть</a><button class="btn sm pri" data-lmsend="${cid||''}|${i}">${cid ? 'Скопировать и отметить, что отправила' : 'Скопировать ссылку'}</button>` : '<span class="pill warn">ссылка появится</span>'}</div></section>`;
+VIEWS.magnets = () => {
+  const list = MAGNETS.map((m,i) => [m,i]).filter(([m]) => (lmType==='Все' || m.type===lmType) && (lmTheme==='Все' || m.themes.includes(lmTheme)));
+  return `<div class="head"><div><h1>База лид-магнитов</h1><p>Полезное, чем догреваем клиентку между касаниями: PDF, тесты, эфиры, видео, подкасты, материалы о продуктах. Под каждым — в какой ситуации отправлять. В карточке клиентки подходящие под её запрос лид-магниты видны сразу.</p></div>
+    ${role==='Пётр' || role==='Лера' ? '<button class="btn" data-lmadd>+ Добавить лид-магнит</button>' : ''}</div>
+  <div class="chips">${['Все', ...LM_TYPES].map(t => `<button class="chip" aria-pressed="${t===lmType}" data-lmtype="${t}">${t}</button>`).join('')}</div>
+  <label class="f" style="max-width:320px">Под запрос<select data-lmtheme>${['Все', ...Object.keys(THEMES)].map(t => `<option ${t===lmTheme?'selected':''}>${t}</option>`).join('')}</select></label>
+  ${list.length ? `<div class="grid g2">${list.map(([m,i]) => lmCard(m, i)).join('')}</div>` : '<div class="empty">Под этот фильтр лид-магнитов пока нет</div>'}`;
+};
+function lmSheet(){
+  sheet(`<h2>Новый лид-магнит</h2><form id="lmform" class="grid">
+    <label class="f">Название<input id="l1" placeholder="Например: Эфир «Стыд и тело»"></label>
+    <label class="f">Что это<select id="l2">${LM_TYPES.map(t => `<option>${t}</option>`).join('')}</select></label>
+    <label class="f">Ссылка<input id="l3" placeholder="https://"></label>
+    <label class="f">Когда отправлять<textarea id="l4" rows="2" placeholder="В какой ситуации и кому это подходит"></textarea></label>
+    <div class="row"><button class="btn pri" type="submit">Добавить</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+VIEWS.products = () => {
+  const cur = p => PRICES.filter(x => x.p===p && x.from<=TODAY).sort((a,b) => b.from-a.from)[0];
+  const hist = p => PRICES.filter(x => x.p===p).sort((a,b) => a.from-b.from);
+  const empty = '<span class="muted">текст пришлёт Лера</span>';
+  const kv = (k, v) => `<dt>${k}</dt><dd>${v || '<span class="muted">—</span>'}</dd>`;
+  const body = {
+    'Продуктовая линейка': () => `<div class="hint">Цены здесь — справка для менеджера. В сделке цена фиксируется на день продажи и не пересчитывается, если цена здесь поменяется.</div>
+      ${role==='Пётр' ? '<div><button class="btn pri" data-newprice>Новая цена</button></div>' : ''}
+      <div class="grid g2">${PRODUCTS.map(x => { const c = cur(x.p);
+        return `<section class="panel"><h2>${esc(x.p)}</h2><dl class="kv" style="margin-top:10px">
+          ${kv('Что это', esc(x.what))}${kv('Длительность', esc(x.dur))}${kv('Кому', esc(x.who))}
+          ${kv('Стоимость', c ? `<b>${rub(c.full)}</b>${c.part!==c.full ? ` · частями ${rub(c.part)}` : ''}` : '')}
+          ${kv('Бронь', c && c.bron ? rub(c.bron) : 'нет')}${kv('Условия оплаты', esc(x.pay))}
+          ${kv('Ссылки на оплату', '<span class="pill">ЮKassa</span> <span class="pill">Продамус</span> <span class="small muted">базовые, без индивидуальных условий</span>')}
+          ${kv('Продающая презентация', '')}${kv('Кейсы', '')}
+          ${kv('История цены', hist(x.p).map(h => `с ${dd(h.from)}: ${rub(h.full)}`).join(' → '))}
+        </dl></section>`; }).join('')}
+        <section class="panel"><h2>Практикумы и мини-курсы</h2><p class="small muted">Добавим карточками, когда будут описания.</p></section></div>`,
+    'Правила работы': () => `<div class="grid g2">${RULES.map(([t, txt]) => `<section class="panel"><h2>${t}</h2><p class="small">${txt ? esc(txt) : empty}</p></section>`).join('')}</div>`,
+    'Условия работы': () => `<div class="grid g2">${TERMS.map(([t, txt]) => `<section class="panel"><h2>${t}</h2><p class="small">${txt ? esc(txt) : empty}</p></section>`).join('')}</div>`,
+  };
+  return `<div class="head"><div><h1>База продуктов</h1><p>Всё, что нужно менеджеру под рукой: что продаём, по каким правилам работаем и как считается оплата команды.</p></div></div>
+  <div class="chips">${Object.keys(body).map(k => `<button class="chip" aria-pressed="${k===prodSection}" data-psec="${k}">${k}</button>`).join('')}</div>
+  ${body[prodSection]()}`;
+};
+VIEWS.tg = () => {
+  const ts = tasksFor('Аня').concat(C.filter(c=>c.task&&c.task.escalated)).filter((c,i,a)=>a.indexOf(c)===i).slice(0,4);
+  return `<div class="head"><div><h1>Как выглядит в Telegram</h1><p>Ветка «Отдел продаж» в чате команды. В 9:00 бот присылает каждому, кому написать сегодня, — одно сообщение на одного клиента. Срочное (новая анкета, оплата, заказ без оплаты) приходит сразу, но только с 9:00 до 21:00.</p></div></div>
+  <div class="tgwrap">
+    <span class="tgtime">Сегодня, 9:00</span>
+    ${yesterdayMissing('Аня')?`<div class="tgmsg"><span class="from">Бот отдела продаж</span><div>@a40tokens · <b>Отчёт смены за вчера не заполнен</b></div><div>Смена 25 октября — отчёт нужно было сдать до 23:59. Заполни сейчас, он засчитается с опозданием.</div><div class="tgbtns"><span>Заполнить отчёт</span></div></div>`:''}
+    ${ts.map(c => `<div class="tgmsg"><span class="from">Бот отдела продаж</span>
+      <div>${c.task.escalated?'@valeriachuk':MAN[c.owner]} · <b>${c.task.due<TODAY?'⚠️ Просрочено: ':''}${esc(c.task.kind)}</b></div>
+      <div>${tgLink(c.tg)} — ${esc(c.task.why)}</div><div class="small muted">Срок: ${dueLabel(c.task.due)} · карточка: crm.alinaageeva.ru/k/${c.id}</div>
+      <div class="tgbtns">${(OUTS[c.task.kind]||['Сделала']).slice(0,4).map(o=>`<span>${esc(o)}</span>`).join('')}</div></div>`).join('')}
+    <span class="tgtime">Сегодня, 9:12 · пришло сразу</span>
+    <div class="tgmsg"><span class="from">Бот отдела продаж</span><div><b>Новая анкета</b> · шапка профиля</div><div>Вероника, доход 80–150 тыс., «Тревога, ком в горле…». Кто на смене — нажми «Беру».</div><div class="tgbtns"><span>Беру</span></div></div>
+    ${C.filter(c => c.handoff && !c.handoff.done).map(c => `<div class="tgmsg"><span class="from">Бот отдела продаж</span>
+      <div>${MAN[c.handoff.to] || esc(c.handoff.to)} · <b>Клиент передан тебе</b>: ${tgLink(c.tg)}</div>
+      <div>${esc(c.handoff.prod)}. ${esc(c.handoff.what)}</div>
+      <div class="small muted">Срок: ${dueLabel(c.handoff.due)} · передала ${esc(c.handoff.from)}, она остаётся ответственной за клиентку</div>
+      <div class="tgbtns"><span>Готово</span></div></div>`).join('')}
+    ${C.filter(c => c.alinaVoice && !c.alinaVoice.done).map(c => `<div class="tgmsg"><span class="from">Бот отдела продаж</span>
+      <div>@ali_shali · <b>Записать ${c.alinaVoice.type==='Кружочек' ? 'кружочек' : 'голосовое'} с Зеркала</b> для ${tgLink(c.tg)}</div>
+      ${c.alinaVoice.text ? `<div style="white-space:pre-line">${esc(c.alinaVoice.text)}</div>` : `<div>${esc(c.name)} замолчала — нужно твоё личное касание. Текст-опора — в карточке.</div>`}
+      <div class="small muted">Срок: ${dueLabel(c.alinaVoice.due)}${c.alinaVoice.by ? ` · попросила ${esc(c.alinaVoice.by)}` : ''}</div>
+      <div class="tgbtns"><span>Записала, отправила</span></div></div>`).join('')}
+  </div>
+  <div class="hint">В сообщении только ник и повод: телефона, сумм и запроса клиентки целиком в Telegram нет — всё в карточке по ссылке. Нажатие на кнопку записывает итог и убирает сообщение из ветки.</div>`;
+};
+
+VIEWS.sessions = (title = 'Мои сессии', sub = 'Расписание подтягивается из общего календаря проекта, сессии в нём ставит Полина. Перед сессией видно, кто это, какая сессия по счёту и что менеджер узнал после прошлой.') => {
+  const S = []; C.forEach(c => (c.sessions||[]).forEach(s => { if (s.with==='Алина' && s.t>=addDays(TODAY,-1)) S.push({c,s}); }));
+  S.sort((a,b)=>a.s.t-b.s.t);
+  return `<div class="head"><div><h1>${title}</h1><p>${sub}</p></div></div>
+  <div class="list">${S.map(({c,s}) => { const last = (c.touches||[]).slice(-1)[0];
+    return `<div class="item ${s.st==='прошла'?'ok':'acc'}"><div class="stripe"></div><div class="body">
+    <div class="row"><b>${dt(s.t)}</b><span class="pill ${s.st==='прошла'?'ok':'acc'}">${s.st}</span><span class="pill">сессия ${s.n}</span>${consentPill(c)}</div>
+    <div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="small muted">ведёт ${esc(c.owner)}</span></div>
+    <div class="why">Запрос: «${esc(c.req)}»</div>
+    ${c.diag&&c.diag.note?`<div class="small">Диагностика (${esc(c.diag.by)}): ${esc(c.diag.note)}</div>`:''}
+    ${last?`<div class="small muted">Последнее касание ${dd(last.t)}: ${esc(last.res)}</div>`:''}
+    </div></div>`; }).join('')}</div>`;
+};
+
+VIEWS.voice = () => {
+  const L = C.filter(c => c.alinaVoice);
+  return `<div class="head"><div><h1>Голосовые</h1><p>Голосовые и кружочки с Зеркала, которые нужно записать. Либо менеджер прописал текст и срок, либо клиентка замолчала и нужно твоё личное касание. Здесь всё, что нужно сказать.</p></div></div>
+  <div class="list">${L.map(c => `<div class="item ${c.alinaVoice.done?'ok done':'warn'}"><div class="stripe"></div><div class="body">
+    <div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span><span class="pill acc">${esc(c.alinaVoice.type || 'Голосовое')}</span><span class="pill warn">записать ${dueLabel(c.alinaVoice.due)}</span></div>
+    <div class="small"><b>Её запрос:</b> «${esc(c.req)}»</div>
+    ${voiceBody(c)}
+    <div class="outs">${c.alinaVoice.done?`<span class="pill ok">${c.alinaVoice.type==='Кружочек'?'кружочек ушёл':'голосовое ушло'}</span>`:`<button class="btn pri sm" data-voice="${c.id}">${c.alinaVoice.type==='Кружочек'?'Записала, кружочек ушёл':'Записала, голосовое ушло'}</button>`}</div>
+  </div></div>`).join('')}</div>`;
+};
+
+VIEWS.alina = () => `<div class="head"><div><h1>Показатели</h1><p>Октябрь 2026, коротко.</p></div></div>
+  <div class="kpis">
+    <div class="kpi"><span class="lbl">Сессий проведено</span><b>9</b><span class="note">ещё 4 назначено до конца месяца</span></div>
+    <div class="kpi"><span class="lbl">Клиентов в работе</span><b>6</b><span class="note">пакеты и разовые сессии</span></div>
+    <div class="kpi good"><span class="lbl">Продлили</span><b>2 из 5</b><span class="note">после последней сессии</span></div>
+    <div class="kpi"><span class="lbl">Анкет</span><b>41</b><span class="note">из них 4 — лиды из директа</span></div>
+  </div>
+  <div class="hint">Выручка и доли — во вкладке «Деньги».</div>`;
+
+VIEWS.invite = () => `<div class="head"><div><h1>Приглашения</h1><p>Лично зовёшь своих клиенток на эфиры, запуски и акции. Отмечай, кого позвала и что ответили, — Петя увидит, сколько пришло из личных приглашений.</p></div></div>
+  ${INVITES.map((ev,i) => `<section class="panel"><h2>${esc(ev.ev)}</h2><div class="list" style="margin-top:10px">
+    ${ev.list.map(([id,st]) => { const c = byId(id); return `<div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button>${pill(c.stage)}${cmpBtn(c)}<select class="btn sm" aria-label="Статус приглашения" data-inv="${i}-${id}">${['Не пригласила','Пригласила','Ответила «да»','Пришла','Купила','Не интересно'].map(o=>`<option ${o===st?'selected':''}>${o}</option>`).join('')}</select></div>`; }).join('')}
+    <button class="btn sm" data-addinv>+ Добавить из моей базы</button></div></section>`).join('')}`;
+
+VIEWS.pay = () => {
+  const P = payments().filter(x => x.p.t.getMonth()===9 && x.d.seller==='Аня');
+  const prod = P.filter(x=>x.d.p!=='Диагностика'&&!x.p.bron).reduce((s,x)=>s+x.p.sum,0);
+  const rows = [['Фикс', 5000],['6% с продаж продуктов ('+rub(prod)+')', Math.round(prod*.06)],['Продажа диагностик · 9 × 500', 4500],['Проведение диагностик · 5 × 1 000', 5000]];
+  const total = rows.reduce((s,r)=>s+r[1],0);
+  return `<div class="head"><div><h1>Мои выплаты</h1><p>Октябрь 2026. Видишь только свои начисления. Выплата — 15-го и 1-го числа.</p></div></div>
+  <section class="panel"><div class="tbl"><table><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${rub(r[1])}</td></tr>`).join('')}<tr><td><b>Итого за октябрь</b></td><td class="num"><b>${rub(total)}</b></td></tr></tbody></table></div></section>
+  <section class="panel"><h2>Личный план</h2><p class="small muted">При 250 000 ₽ продаж продуктов за месяц ставка 7% вместо 6% — за весь месяц.</p>
+    <div class="progress"><i style="width:${Math.min(100,prod/250000*100)}%"></i></div><p class="small">${rub(prod)} из ${rub(250000)} · осталось ${rub(Math.max(0,250000-prod))}</p></section>`;
+};
+
+VIEWS.shift = () => `<div class="head"><div><h1>Отчёт смены</h1><p>Сдать в день смены до 23:59 по Москве. Только то, чего система не видит сама: анкеты, диагностики и продажи она посчитает без тебя.</p></div></div>
+  ${yesterdayMissing(role==='Пётр'?'Аня':role) ? '<div class="hint" style="color:var(--crit);background:var(--crit-soft)">За 25 октября отчёт не сдан. Выбери эту дату и заполни — засчитается с опозданием.</div>' : ''}
+  <form class="panel grid g2" id="shiftform">
+    <label class="f" style="grid-column:1/-1">За какую смену<select id="sh0">${yesterdayMissing(role==='Пётр'?'Аня':role)?'<option value="25">25 октября — не сдан</option>':''}<option value="26">26 октября — сегодня, до 23:59</option></select></label>
+    <label class="f">Сообщений в директе<input id="sh1" type="number" min="0" value="9"></label>
+    <label class="f">Из них целевых<input id="sh2" type="number" min="0" value="3"></label>
+    <label class="f">Комментариев отвечено<input id="sh3" type="number" min="0" value="2"></label>
+    <label class="f">Из них целевых<input id="sh4" type="number" min="0" value="1"></label>
+    <label class="f" style="grid-column:1/-1">Что важного за смену<textarea id="sh5" rows="2">Две спрашивали про цену сессии — внесла как лиды из директа</textarea></label>
+    <div><button class="btn pri" type="submit">Отправить отчёт</button></div></form>`;
+
+VIEWS.mila = () => {
+  const L = C.filter(c => c.milaTask || (c.stage==='Клиент' && c.task && c.task.kind==='Касание после сессии' && c.id===8));
+  return `<div class="head"><div><h1>Назначить сессии</h1><p>Кто купил, а сессии в общем календаре проекта ещё нет. Согласуй с клиенткой время и поставь сессию в календарь с ником в названии — «Сессия @ник», — клиентка уйдёт из списка сама.</p></div></div>
+  <div class="list">
+    ${C.filter(c=>c.milaTask).map(c => `<div class="item warn"><div class="stripe"></div><div class="body"><div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill warn">${c.handoff ? `передала ${esc(c.handoff.from)}, сделать ${dueLabel(c.handoff.due)}` : `купила ${dd(c.deals[0].at)}, сессии нет`}</span></div>
+      <div class="why">${c.handoff ? `${esc(c.handoff.prod)} · ${esc(c.handoff.what)}` : `${esc(c.deals[0].p)} · продала ${esc(c.deals[0].seller)}`}</div><div class="outs"><button class="btn pri sm" data-mila="${c.id}">Поставила в календарь</button></div></div></div>`).join('')}
+    <div class="item warn"><div class="stripe"></div><div class="body"><div class="row"><button class="link" data-open="8">Яна Корнеева</button><span class="muted">@yana_korn</span><span class="pill warn">пакет: 2 из 3 прошли, 3-я не стоит</span></div>
+      <div class="why">Последняя сессия была 25.10. Напомню снова, если через 7 дней её не будет в календаре.</div></div></div>
+  </div><div class="hint">Если сессия не состоялась — отметь это в карточке клиентки, менеджеру придёт задача перенести.</div>`;
+};
+const OTHER_EVENTS = [
+  { t:D(27,10,10,0), kind:'other', title:'Планёрка команды' },
+  { t:D(31,10,12,0), kind:'other', title:'VIP-тренинг «Формула счастья», 12:00–16:00' },
+];
+VIEWS.calendar = () => {
+  const days = Array.from({length:7}, (_,i) => new Date(2026, 9, 26 + i));
+  const E = OTHER_EVENTS.map(e => ({...e}));
+  C.forEach(c => {
+    (c.sessions||[]).forEach(s => E.push({ t:s.t, kind: s.with==='Алина' ? 'sess' : 'lera', title:`Сессия ${c.tg} · ${s.n} · с ${s.with==='Алина'?'Алиной':'Лерой'}`, c }));
+    if (c.diagPlan) E.push({ t:c.diagPlan.when, kind:'diag', title:`Диагностика ${c.tg} · проводит ${c.diagPlan.by}`, c });
+  });
+  const COL = { diag:'var(--c-diag)', sess:'var(--c-sess)', lera:'var(--c-lera)', other:'var(--c-other)' };
+  return `<div class="head"><div><h1>Календарь проекта</h1><p>Общий Google-календарь на аккаунте проекта. Диагностики ставит тот, кто продал. Сессии ставит Полина после того, как согласует время с клиенткой. Название события — с ником: «Диагностика @ник», «Сессия @ник», тогда оно само попадёт в карточку клиента.</p></div></div>
+  <div class="legend"><span><i style="background:var(--c-diag)"></i>Диагностики</span><span><i style="background:var(--c-sess)"></i>Сессии Алины</span><span><i style="background:var(--c-lera)"></i>Сессии Леры</span><span><i style="background:var(--c-other)"></i>Другие события проекта</span></div>
+  ${days.map(d => { const list = E.filter(e => sameDay(e.t, d)).sort((a,b)=>a.t-b.t);
+    return `<section class="calday"><h3>${WD[d.getDay()]}, ${dd(d)}${sameDay(d,TODAY)?' · сегодня':''}</h3>
+    ${list.length ? list.map(e => `<div class="item"><div class="stripe" style="background:${COL[e.kind]}"></div><div class="body">
+      <div class="row"><b>${hm(e.t)}</b><span>${e.c ? esc(e.title).replace(esc(e.c.tg), tgLink(e.c.tg)) : esc(e.title)}</span></div>
+      ${e.c ? `<div class="row"><button class="link" data-open="${e.c.id}">${esc(e.c.name)}</button>${consentPill(e.c)}${cmpBtn(e.c)}</div>` : ''}
+    </div></div>`).join('') : '<div class="small muted">Событий нет</div>'}</section>`; }).join('')}`;
+};
+VIEWS.schedule = () => VIEWS.sessions('Расписание Алины', 'Из календаря Алины. Чтобы система поняла, чья сессия, в названии события должен стоять ник клиентки: «Сессия @ник».');
+
+/* ===================== КАРТОЧКА КЛИЕНТА ===================== */
+function openCard(id){
+  const c = byId(id); if (!c) return;
+  const ev = [];
+  ev.push({t:c.at, cls:'acc', h: c.src.startsWith('Директ') ? 'Написала в директ (лид без анкеты)' : 'Анкета', d: c.src});
+  (c.deals||[]).forEach(d => d.pays.forEach(p => ev.push({t:p.t, cls:'ok', h:`Оплата ${rub(p.sum)}${p.bron?' (бронь)':''}`, d:`${d.p} · ${p.how}${p.auto?' · пришла сама':''}`})));
+  if (c.diag) ev.push({t:c.diag.when, cls:'acc', h:`Диагностика · ${c.diag.res}`, d:`Проводила ${c.diag.by}. ${c.diag.note}`});
+  (c.sessions||[]).forEach(s => ev.push({t:s.t, cls:s.st==='прошла'?'ok':'', h:`Сессия ${s.n} с ${s.with==='Алина'?'Алиной':'Лерой'} · ${s.st}`, d:''}));
+  (c.touches||[]).forEach(t => ev.push({t:t.t, cls:'', h:`${t.who}: ${t.what}`, d:`Итог: ${t.res}${t.note?' · '+t.note:''}`}));
+  ev.sort((a,b)=>b.t-a.t);
+  const canMove = role==='Лера' || role==='Пётр';
+  const showMoney = role!=='Полина';
+  $('#layer').innerHTML = `<div class="scrim" data-close></div><aside class="drawer" role="dialog" aria-label="Карточка клиента">
+    <div class="dhead"><div><h1>${esc(c.name)}</h1><div class="row" style="margin-top:6px">${pill(c.stage)}<span class="pill">${c.owner?'ведёт '+esc(c.owner):'никто не взял'}</span>${c.review?'<span class="pill ok">отзыв получен</span>':''}${c.consent===false?'<span class="pill crit">нет согласия на запись</span>':c.consent?'<span class="pill ok">согласие на запись есть</span>':''}</div></div><button class="close" data-close aria-label="Закрыть">×</button></div>
+    <div class="row"><button class="btn pri" data-stagebtn="${c.id}">Сменить этап</button><button class="btn" data-compose="${c.id}">Составить сообщение</button><button class="btn" data-touch="${c.id}">Отметить касание</button>${showMoney?`<button class="btn" data-pay="${c.id}">Внести оплату</button><button class="btn" data-handoff="${c.id}">Передать на следующий шаг</button>`:''}${canMove?`<button class="btn" data-move="${c.id}">Передать другому менеджеру</button>`:''}${c._undo?`<button class="btn" data-undo="${c.id}">Отменить последнее касание</button>`:''}</div>
+    ${c.task && !c.task.done ? `<div class="next"><span class="lbl">Следующий шаг</span><b>${esc(c.task.kind)} · ${dueLabel(c.task.due)}</b><span class="small">${esc(c.task.why)}</span>
+      ${c.thinkUntil?`<span class="small">Думает до <b>${dd(c.thinkUntil)}</b>. Не ответит в течение суток после этого — голосовое от Алины, потом два дожима, дальше «Кладбище лидов».</span>`:''}</div>` : ''}
+    ${c.handoffPending && !c.handoff ? `<div class="next" style="background:var(--crit-soft)"><b style="color:var(--crit)">Клиент не передан дальше</b><span class="small">После брони или покупки нужно передать следующий шаг: сессии в расписание или доступы.</span><div><button class="btn pri sm" data-handoff="${c.id}">Передать</button></div></div>` : ''}
+    ${c.handoff ? `<div class="next"><span class="lbl">Следующий шаг у ${esc(c.handoff.to)}</span><b>${esc(c.handoff.what)}</b><span class="small">${esc(c.handoff.prod)} · до ${dt(c.handoff.due)} · ${c.handoff.done ? 'сделано' : 'в работе'}. Ответственный за клиентку — ${esc(c.owner || '—')}.</span></div>` : ''}
+    <section class="panel"><h3>Контакты</h3><div class="contact" style="margin-top:8px"><span class="pill tg">Telegram ${tgLink(c.tg)}</span><span class="pill">${esc(c.phone)}</span>${phoneBtns(c)}</div></section>
+    <section class="panel"><h3>${c.src.startsWith('Директ')?'Что писала в директ':'Анкета'}</h3><dl class="kv" style="margin-top:8px">
+      <dt>Запрос</dt><dd>${esc(c.req)}</dd>
+      <dt>Тема запроса</dt><dd><div class="chips">${Object.keys(THEMES).map(t => `<button class="chip" aria-pressed="${themesOf(c).includes(t)}" data-themetog="${c.id}|${t}">${t}</button>`).join('')}</div><div class="small muted" style="margin-top:4px">Подобрана по словам из анкеты. Нажми, чтобы поправить, — по темам ищем людей на тематические эфиры.</div></dd>
+      <dt>Откуда</dt><dd>${esc(c.src)}</dd><dt>Доход</dt><dd>${esc(c.income)}</dd><dt>Готовность</dt><dd>${esc(c.ready)}</dd>
+      <dt>Город</dt><dd>${esc(cityOf(c))} <button class="btn sm" data-city="${c.id}">изменить</button></dd><dt>Возраст</dt><dd>${esc(c.age)}</dd><dt>Пришла</dt><dd>${dt(c.at)}</dd></dl></section>
+    ${['Аня','Лера','Пётр'].includes(role) ? (() => {
+      const th = themesOf(c), sent = (c.touches||[]).filter(t => t.what==='Отправила лид-магнит');
+      const fit = MAGNETS.map((m,i) => [m,i]).filter(([m]) => m.themes.some(t => th.includes(t)) || !m.themes.length).slice(0,4);
+      return `<section class="panel"><h3>Что отправить ей</h3><p class="small muted">Лид-магниты под её запрос${th.length ? ': ' + th.join(', ').toLowerCase() : ''}. Вся база — во вкладке «База лид-магнитов».</p>
+        <div class="list" style="margin-top:8px">${fit.map(([m,i]) => { const was = sent.find(s => s.res===m.title);
+          return `<div class="row"><span class="pill acc">${esc(m.type)}</span><b>${esc(m.title)}</b>${was ? `<span class="pill ok">отправляла ${dd(was.t)}</span>` : ''}
+            ${m.link ? `<button class="btn sm" data-lmsend="${c.id}|${i}">Скопировать и отметить</button>` : '<span class="small muted">ссылка появится</span>'}</div>`; }).join('')}</div></section>`; })() : ''}
+    ${showMoney && (c.deals||[]).length ? `<section class="panel"><h3>Сделки и оплаты</h3><div class="tbl" style="margin-top:8px"><table><thead><tr><th>Продукт</th><th class="num">Цена в сделке</th><th class="num">Внесено</th><th class="num">Осталось</th></tr></thead><tbody>
+      ${c.deals.map(d => { const paid = d.pays.reduce((s,p)=>s+p.sum,0); return `<tr><td>${esc(d.p)}<div class="small muted">${dd(d.at)} · продала ${esc(d.seller)}</div></td><td class="num">${rub(d.price)}</td><td class="num">${rub(paid)}</td><td class="num">${d.price-paid>0?`<span class="pill warn">${rub(d.price-paid)}</span>`:'0 ₽'}</td></tr>`; }).join('')}
+      </tbody></table></div><p class="small muted">Цена записана на день продажи и не меняется, даже если прайс поменяется.</p></section>` : ''}
+    <section class="panel"><h3>История</h3><div class="timeline" style="margin-top:10px">${ev.map(e => `<div class="ev ${e.cls}"><time>${dt(e.t)}</time><b>${esc(e.h)}</b>${e.d?`<div class="small muted">${esc(e.d)}</div>`:''}</div>`).join('')}</div></section>
+  </aside>`;
+}
+
+/* ===================== ВСПЛЫВАЮЩИЕ ФОРМЫ ===================== */
+function sheet(html){ const l = document.createElement('div'); l.id='sheet'; l.innerHTML = `<div class="sheet-scrim" data-sclose></div><div class="sheet" role="dialog">${html}</div>`; document.body.append(l); }
+function closeSheet(){ $('#sheet')?.remove(); }
+
+function thinkSheet(id, val, mode = ''){
+  const c = byId(id);
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  sheet(`<h2>До какого дня думает?</h2>
+    <p class="small muted">${esc(c.name)} · ${esc(val)}</p>
+    <div class="hint">Спроси: «Сколько тебе нужно времени, чтобы принять решение?» Если называет долгий срок — договоритесь на 2–3 дня: предложение ограничено, время Алины на сессии ограничено. Дольше 7 дней система не даст.</div>
+    <label class="f">Связаться с ней<input id="thinkdate" type="date" value="${iso(addDays(TODAY,3))}" min="${iso(addDays(TODAY,1))}" max="${iso(addDays(TODAY,7))}"></label>
+    <div class="small muted">В этот день в 9:00 придёт напоминание вернуться к ней. Не ответит в течение суток — задача Алине на голосовое с зеркала. Потом два дожима и «Кладбище лидов».</div>
+    <div class="row"><button class="btn pri" data-thinksave="${id}" data-val="${esc(val)}" data-mode="${mode}">Записать</button><button class="btn" data-sclose>Отмена</button></div>`);
+}
+// «Отметить касание» — записать в историю контакт вне задач: клиентка написала сама, созвонились, ответила вне плана
+function touchSheet(id){
+  const c = byId(id);
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  sheet(`<h2>Отметить касание</h2><p class="small muted">${esc(c.name)} · ${tgLink(c.tg)}</p>
+    <div class="hint">Для контакта, которого не было в задачах: клиентка написала сама, вы созвонились, ты ответила вне плана. Запишется в историю карточки.</div>
+    <form id="touchform" class="grid" data-id="${c.id}">
+      <label class="f">Что было<select id="t1"><option>Написала клиентке</option><option>Клиентка написала сама</option><option>Созвонились</option><option>Отправила голосовое</option></select></label>
+      <label class="f">Чем закончилось<select id="t2"><option>Ответила, в диалоге</option><option>Написала, жду ответа</option><option>Думает</option><option>Хочет купить</option><option>Не отвечает</option><option>Отказ</option></select></label>
+      <label class="f">Коротко, о чём (необязательно)<input id="t3" placeholder="Например: спрашивала про рассрочку"></label>
+      <label class="f">Напомнить связаться (необязательно)<input id="t4" type="date" min="${iso(addDays(TODAY,1))}"></label>
+      <div class="small muted">Поставишь дату — в этот день в 9:00 придёт напоминание. Для «Думает» дата обязательна, не дальше 7 дней.</div>
+      <div class="row"><button class="btn pri" type="submit">Записать</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+function handoffSheet(id, why){
+  const c = byId(id); c.handoffPending = true;
+  const last = (c.deals||[]).slice(-1)[0];
+  const guess = last && HANDOFF_PRODUCTS.includes(last.p) ? last.p : 'Пакет 3 сессий Алины';
+  const [to, what] = handoffFor(guess, c.tg);
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:00`;
+  sheet(`<h2>Кому передаёшь клиента дальше?</h2><p class="small muted">${esc(c.name)} · ${tgLink(c.tg)}${why ? ' · ' + esc(why) : ''}</p>
+    <div class="hint">Клиент не должен остаться один. Передаёшь только следующий шаг — сессии в расписание или доступы. Касания после сессий и продления остаются за тобой.</div>
+    <form id="hoform" class="grid" data-id="${c.id}">
+      <label class="f">Что купила или забронировала<select id="hoProd">${HANDOFF_PRODUCTS.map(p => `<option ${p===guess?'selected':''}>${esc(p)}</option>`).join('')}</select></label>
+      <label class="f">Кому передаёшь<select id="hoTo">${Object.entries(HANDOFF_TO).map(([k,v]) => `<option value="${k}" ${k===to?'selected':''}>${esc(v)}</option>`).join('')}</select></label>
+      <label class="f">Что сделать<textarea id="hoWhat" rows="3">${esc(what)}</textarea></label>
+      <label class="f">Сделать до<input id="hoDue" type="datetime-local" value="${iso(new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate(), 21))}"></label>
+      <div class="small muted">После «Передать» в ветке отдела продаж придёт сообщение с тегом исполнителя. Пока не передашь, клиент горит красным в твоём «Сегодня».</div>
+      <div class="row"><button class="btn pri" type="submit">Передать</button><button class="btn" type="button" data-sclose>Позже</button></div></form>`);
+}
+const STAGE_GROUPS = {
+  'До покупки':['Новая анкета','Лид из директа','Анкета отправлена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена','Думает','Бронь'],
+  'Купила':['Клиент','Завершила'],
+  'Выбыла':['Кладбище лидов','Отказ'],
+};
+function stageSheet(id){
+  const c = byId(id);
+  sheet(`<h2>Этап: ${esc(c.name)}</h2>
+    <p class="small muted">Сейчас: ${pill(c.stage)}</p>
+    <div class="hint">Обычно этап меняется сам: пришла анкета, прошла оплата, сессия появилась в календаре, ты нажала итог касания. Руками — когда что-то случилось вне системы.</div>
+    ${Object.entries(STAGE_GROUPS).map(([g, list]) => `<div class="lbl">${g}</div><div class="chips">${list.map(s => `<button class="chip" aria-pressed="${s===c.stage}" data-setstage="${id}|${s}">${s}</button>`).join('')}</div>`).join('')}
+    <div class="row"><button class="btn" data-sclose>Закрыть</button></div>`);
+}
+function directSheet(){
+  sheet(`<h2>Лид из директа</h2><p class="small muted">Человек написал что-то целевое, но анкету не заполнил. Внеси — он не потеряется и попадёт в «Сегодня».</p>
+    <form id="directform" class="grid">
+      <label class="f">Ник в Telegram или Instagram<input id="d1" required placeholder="@ник"></label>
+      <label class="f">Имя<input id="d2" placeholder="как подписана"></label>
+      <label class="f">Телефон (если дала)<input id="d3" placeholder="+7"></label>
+      <label class="f">Где писала<select id="d4"><option>Директ Instagram</option><option>Комментарий</option><option>Личка Telegram</option><option>Зеркало Алины</option></select></label>
+      <label class="f">О чём спрашивала<textarea id="d5" rows="2" placeholder="Например: сколько стоит сессия с Алиной"></textarea></label>
+      <div class="hint">Следующий шаг — отправить ссылку на анкету. Задача появится в «Сегодня», срок 24 часа. Когда человек заполнит анкету, она сама найдёт эту карточку по нику или телефону.</div>
+      <div class="row"><button class="btn pri" type="submit">Сохранить</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+function priceSheet(){
+  sheet(`<h2>Новая цена</h2><form id="priceform" class="grid">
+    <label class="f">Продукт<select id="p1">${[...new Set(PRICES.map(p=>p.p))].map(p=>`<option>${esc(p)}</option>`).join('')}</select></label>
+    <label class="f">Действует с<input id="p2" type="date" value="2026-11-01"></label>
+    <label class="f">Полная оплата, ₽<input id="p3" type="number" value="35000"></label>
+    <label class="f">Частями, ₽<input id="p4" type="number" value="45000"></label>
+    <div class="hint">Сделки до этой даты сохранят свою цену. Новые продажи с этой даты пойдут по новой.</div>
+    <div class="row"><button class="btn pri" type="submit">Добавить</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`);
+}
+
+/* ===================== ДЕЙСТВИЯ ===================== */
+function recordOutcome(id, val, until){
+  const c = byId(id);
+  if (val==='Перевести в кладбище лидов' && c.task.due > TODAY){ toast(`Рано: сутки после второго дожима пройдут ${dt(c.task.due)}`); return; }
+  c._undo = structuredClone({ task:c.task, stage:c.stage, thinkUntil:c.thinkUntil, alinaVoice:c.alinaVoice, n:(c.touches||[]).length });
+  c.touches = c.touches || [];
+  c.touches.push({ t:new Date(TODAY), who: role==='Пётр'?'Аня':role, what:c.task.kind, res: val + (until?` — связь ${dd(until)}`:'') });
+  const kind = c.task.kind;
+  c.task.done = val;
+  const STAGE_BY = { 'Купила диагностику':'Диагностика оплачена', 'Оплатила':'Диагностика оплачена', 'Поставила в календарь':'Диагностика назначена',
+    'Купила':'Клиент', 'Купила продолжение':'Клиент', 'Доплатила':'Клиент', 'Бронь':'Бронь', 'Ответила, в диалоге':'Диалог',
+    'Написала, жду ответа':'Написала', 'Отказ':'Отказ', 'Не хочет продолжать':'Завершила' };
+  if (STAGE_BY[val]) c.stage = STAGE_BY[val];
+  if (until){ c.thinkUntil = until; if (c.stage!=='Клиент') c.stage = 'Думает'; }
+  let msg = `Записала в карточку: ${val}`;
+  // лид из директа: следующий шаг — анкета, а не продажа диагностики
+  const NEXT = {
+    'Отправила ссылку на анкету': { stage:'Анкета отправлена', kind:'Анкета не заполнена', why:'Ссылку на анкету отправила. Не заполнит за сутки — напомнить', msg:'Записала. Не заполнит анкету за сутки — завтра в 9:00 придёт напоминание' },
+    'Напомнила ещё раз': { stage:'Анкета отправлена', kind:'Анкета не заполнена', why:'Напомнила про анкету. Не заполнит — два дожима, потом «Кладбище лидов»', msg:'Записала. Проверю ещё через сутки' },
+    'Заполнила анкету': { stage:'Анкета заполнена', kind:'Предложить диагностику', why:'Анкету заполнила — теперь предложить диагностику. Срок — 24 часа', msg:'Анкета в карточке. В рабочей версии это отметится само: анкета придёт из формы и найдёт карточку по нику или телефону' },
+  };
+  if (NEXT[val]){
+    const n = NEXT[val];
+    c.stage = n.stage;
+    c.task = { kind:n.kind, due:new Date(TODAY.getTime()+864e5), why:n.why };
+    msg = n.msg;
+  }
+  // после сессии: как прошла → о продолжении → предложение продления → молчит — голосовое Алины
+  const lastSess = (c.sessions||[]).filter(s => s.st==='прошла').slice(-1)[0];
+  const isLast = lastSess && /^(\d+) из \1$/.test(lastSess.n);
+  if (kind==='Как прошла сессия' && val.startsWith('Ответила')){
+    if (val.includes('отзыв')) c.review = true;
+    if (isLast){ c.task = { kind:'Спросить о продолжении', due:addDays(TODAY,1), why:'Сессия была последней. Спросить, планирует ли продолжать работу с Алиной, — пока без сроков и цены' }; msg = 'Записала. Сессия была последней — завтра спросить о продолжении'; }
+    else msg = 'Записала. Ждёт следующую сессию — после неё снова напомню';
+  }
+  if (val==='Хочет продолжить'){ c.task = { kind:'Предложить продление', due:addDays(TODAY,1), why:'Хочет продолжить. Предложить пакет 3 сессий по текущей цене 81 000 ₽ и закрепить место на 2–3 дня' }; msg = 'Записала. Следующий шаг — предложение продления'; }
+  if (val==='Не отвечает' && ['Как прошла сессия','Спросить о продолжении','Предложить продление'].includes(kind)){
+    c.alinaVoice = { due:addDays(TODAY,1), after:true }; msg = 'Записала. Не ответит до завтра — Алине придёт задача на голосовое с зеркала'; }
+  if (val==='Не планирует'){ c.stage = 'Завершила'; msg = 'Записала. Клиентка остаётся в твоей базе — позовёшь на эфиры и практикумы'; }
+  if (val==='Купила продолжение'){ c.stage = 'Клиент'; }
+  if (kind==='Вернуться к «думает»' && val==='Не отвечает'){
+    c.alinaVoice = { due: addDays(TODAY,1) };
+    msg = 'Записала. Не ответит до завтра — Алине придёт задача на голосовое с зеркала';
+  }
+  // правило двух дожимов: не отвечает → дожим 1 → дожим 2 → сутки тишины → только тогда «Кладбище лидов»
+  const BEFORE_SALE = ['Новая анкета','Отправить анкету','Анкета не заполнена','Предложить диагностику','Помочь с оплатой','Назначить диагностику','Касание'];
+  if (val==='Не отвечает' && BEFORE_SALE.includes(kind)){
+    c.task = { kind:'Дожим 1', due:addDays(TODAY,1), why:'Не отвечает. Отправь первый дожим' }; msg = 'Записала. Завтра в 9:00 — первый дожим'; }
+  if (val==='Отправила дожим 1'){
+    c.task = { kind:'Дожим 2', due:addDays(TODAY,2), why:`Первый дожим отправлен ${dd(TODAY)}. Ответа нет — отправь второй, последний` }; msg = 'Записала. Ответит — нажми «Ответила». Нет — через 2 дня второй дожим'; }
+  if (val==='Отправила дожим 2'){
+    c.task = { kind:'Нет ответа после дожимов', due:addDays(TODAY,1), why:`Второй дожим отправлен ${dt(TODAY)}. Если за сутки не ответит — переведи в кладбище лидов. Раньше нельзя` }; msg = 'Записала. Если за сутки не ответит — можно переводить в кладбище лидов'; }
+  if (val==='Перевести в кладбище лидов'){
+    c.graveFrom = c._undo.stage; c.stage = 'Кладбище лидов'; c.graveAt = new Date(TODAY);
+    msg = 'Клиент на «Кладбище лидов» и ушёл из твоего списка. Ответит позже — вернёшь одной кнопкой'; }
+  render(); toast(msg);
+  if (['Бронь','Купила','Купила продолжение'].includes(val)) handoffSheet(c.id, val);
+}
+
+document.addEventListener('click', e => {
+  const mx = e.target.closest('[data-maxcopy]');
+  if (mx){ const c = byId(+mx.dataset.maxcopy); try { navigator.clipboard.writeText(c.phone).catch(() => {}); } catch(_) {} toast(`Номер ${c.phone} скопирован — вставь его в поиск MAX`); return; }
+  const b = e.target.closest('button, [data-close], [data-sclose]'); if (!b) return;
+  if (b.dataset.wademo){ toast('У тестовых клиентов номер скрыт. С настоящим номером сразу откроется чат WhatsApp'); return; }
+  const d = b.dataset;
+  if (d.role){ if (!ACCESS[login].includes(d.role)) return; role = d.role; tab = ROLES[role][0]; clientFilter='В работе'; render(); return; }
+  if (d.tab){ tab = d.tab; render(); return; }
+  if (d.open){ openCard(+d.open); return; }
+  if ('close' in d){ $('#layer').innerHTML=''; return; }
+  if ('sclose' in d){ closeSheet(); return; }
+  if (d.filter){ clientFilter = d.filter; render(); return; }
+  if (d.stagebtn){ stageSheet(+d.stagebtn); return; }
+  if (d.compose){ composeSheet(+d.compose); return; }
+  if (d.preset){ baseF = { prod: ALL_BUYERS, city:'Все', income:'Все', theme:'Все', ...(SEGMENTS[d.preset] || {}) }; baseSel.clear(); render(); return; }
+  if ('invtheme' in d){ const list = baseList(); const theme = baseF.theme;
+    INVITES.unshift({ ev:`Тематический эфир: ${theme}`, list: list.filter(c => c.owner==='Аня').map(c => [c.id, 'Не пригласила']) });
+    const free = list.filter(c => !c.owner).length;
+    toast(`Эфир «${theme}»: ${list.length} клиенток. У менеджеров они появились в «Приглашениях»${free ? `, ${free} без менеджера — у Леры` : ''}`); return; }
+  if (d.city){ const c = byId(+d.city); sheet(`<h2>Город: ${esc(c.name)}</h2><form id="cityform" class="grid" data-id="${c.id}"><label class="f">Город<input id="cityinp" value="${esc(c.city==='—'?'':c.city)}" placeholder="Например: Москва"></label>
+      <div class="hint">Город приходит из анкеты. Если клиентка сказала в переписке — поправь здесь, он попадёт в фильтр «Город» в базе клиентов.</div>
+      <div class="row"><button class="btn pri" type="submit">Сохранить</button><button class="btn" type="button" data-sclose>Отмена</button></div></form>`); return; }
+  if (d.themetog){ const [id, t] = d.themetog.split('|'); const c = byId(+id); const th = themesOf(c);
+    c.themes = th.includes(t) ? th.filter(x => x!==t) : th.concat(t); openCard(c.id); return; }
+  if (d.psec){ prodSection = d.psec; render(); return; }
+  if (d.lmtype){ lmType = d.lmtype; render(); return; }
+  if ('lmadd' in d){ lmSheet(); return; }
+  if (d.lmsend){ const [cid, i] = d.lmsend.split('|'); const m = MAGNETS[+i];
+    const after = () => { if (cid){ const c = byId(+cid); (c.touches = c.touches || []).push({ t:new Date(TODAY), who:role, what:'Отправила лид-магнит', res:m.title }); openCard(c.id); toast('Ссылка скопирована, в истории отмечено: отправила'); } else toast('Ссылка скопирована'); };
+    try { navigator.clipboard.writeText(m.link).then(after, after); } catch(_) { after(); } return; }
+  if (d.revive){ const c = byId(+d.revive); c.stage = 'Диалог';
+    (c.touches = c.touches || []).push({ t:new Date(TODAY), who:role, what:'Сама написала — вернулась с кладбища лидов', res:'Ответила, в диалоге' });
+    c.task = { kind:'Касание', due:new Date(TODAY.getTime()+864e5), why:'Вернулась с кладбища лидов: написала сама. Ответь в течение суток' };
+    render(); toast(`${c.name} снова в «Мои клиенты», задача — в «Сегодня»`); return; }
+  if ('gcopy' in d){ const nicks = C.filter(c => c.stage==='Кладбище лидов' && (role==='Аня' ? c.owner==='Аня' : true)).map(c => c.tg).join('\n');
+    try { navigator.clipboard.writeText(nicks).then(() => toast('Ники скопированы'), () => toast('Не удалось скопировать — браузер не дал доступ')); } catch(_) { toast('Не удалось скопировать — браузер не дал доступ'); } return; }
+  if (d.match){ const u = UNMATCHED.find(x => x.id === +d.match); u.done = u.id===1 ? 'Ульяна Сорокина (совпал телефон)' : 'выбрана вручную'; render(); toast('Оплата привязана к карточке и попала в учёт сделок'); return; }
+  if ('bselall' in d){ const list = baseList(); const all = list.every(c => baseSel.has(c.id)); list.forEach(c => all ? baseSel.delete(c.id) : baseSel.add(c.id)); render(); return; }
+  if ('bcopy' in d){ const list = baseList(); const pick = list.filter(c => baseSel.has(c.id)); const nicks = (pick.length ? pick : list).map(c => c.tg).join('\n');
+    try { navigator.clipboard.writeText(nicks).then(() => toast(`Скопировано ников: ${(pick.length ? pick : list).length}`), () => toast('Не удалось скопировать — браузер не дал доступ')); } catch(_) { toast('Не удалось скопировать — браузер не дал доступ'); } return; }
+  if ('bimport' in d){ importSheet(); return; }
+  if ('copy' in d){ const ta = $('#cmp'); const done = () => toast('Скопировано — вставь в переписку');
+    try { navigator.clipboard.writeText(ta.value).then(done, () => { ta.select(); toast('Выдели текст и скопируй'); }); } catch(_) { ta.select(); toast('Выдели текст и скопируй'); } return; }
+  if (d.setstage){ const [id, s] = d.setstage.split('|'); const c = byId(+id); const was = c.stage;
+    if (s==='Кладбище лидов' && was!==s && !(c.task && c.task.kind==='Нет ответа после дожимов' && c.task.due <= TODAY)){
+      toast('На кладбище лидов — только после двух дожимов и суток без ответа после второго'); return; }
+    if (s==='Думает'){ closeSheet(); thinkSheet(c.id, 'Этап: думает', 'stage'); return; }
+    if (s !== was){ c.stage = s; (c.touches = c.touches || []).push({ t:new Date(TODAY), who: role, what:'Этап изменён вручную', res:`${was} → ${s}` }); }
+    closeSheet(); render(); if ($('#layer').innerHTML) openCard(c.id); toast(`Этап: ${s}`);
+    if (['Бронь','Клиент'].includes(s) && s!==was) handoffSheet(c.id, `этап «${s}»`); return; }
+  if (d.undo){ const c = byId(+d.undo), u = c._undo; c.task = u.task; c.stage = u.stage; c.thinkUntil = u.thinkUntil; c.alinaVoice = u.alinaVoice;
+    c.touches.length = u.n; delete c._undo; render(); openCard(c.id); toast('Последнее касание отменено, задача вернулась в «Сегодня»'); return; }
+  if (d.sched){ const [m, ds] = d.sched.split('|'); const k = d.sched; const on = SCHED.has(k); on ? SCHED.delete(k) : SCHED.add(k);
+    render(); toast(`${m}, ${dd(new Date(ds))}: ${on ? 'выходной — отчёт в этот день не нужен' : 'смена — в этот день ждём отчёт до 23:59'}`); return; }
+  if (d.take){ const c = byId(+d.take); c.owner = role; c.stage='Новая анкета'; c.task = {kind:'Новая анкета', due:new Date(c.at.getTime()+864e5), why:`Анкета пришла ${dt(c.at)}. Написать в течение 24 часов`};
+    c.touches=[{t:new Date(TODAY), who:role, what:'Взяла анкету', res:'Ответственная — '+role}]; render(); toast(`${c.name} теперь у тебя. Задача — в «Сегодня»`); return; }
+  if (d.out){ const val = d.val; if (THINK_OUTS.includes(val)) { thinkSheet(+d.out, val); return; } recordOutcome(+d.out, val); return; }
+  if (d.thinksave){ const v = $('#thinkdate').value; const until = v ? new Date(v + 'T09:00') : null;
+    if (!until || until <= TODAY){ toast('Выбери дату, начиная с завтра'); return; }
+    if (until > addDays(TODAY,7)){ toast('Не дальше 7 дней: договоритесь на срок короче'); return; }
+    closeSheet();
+    if (d.mode==='stage'){ const c = byId(+d.thinksave), was = c.stage;
+      c.stage = 'Думает'; c.thinkUntil = until;
+      c.task = { kind:'Вернуться к «думает»', due:new Date(until.getFullYear(), until.getMonth(), until.getDate(), 12, 0), why:`Договорились, что решит до ${dd(until)}. В этот день — связаться. Не ответит в течение суток — голосовое Алины` };
+      (c.touches = c.touches || []).push({ t:new Date(TODAY), who:role, what:'Этап изменён вручную', res:`${was} → Думает до ${dd(until)}` });
+      render(); if ($('#layer').innerHTML) openCard(c.id); toast(`Думает до ${dd(until)} — в этот день в 9:00 придёт напоминание связаться`); return; }
+    recordOutcome(+d.thinksave, d.val, until); return; }
+  if ('direct' in d){ directSheet(); return; }
+  if ('newprice' in d){ priceSheet(); return; }
+  if (d.alinasend){ const c = byId(+d.alinasend), type = $('#cmpType').value, text = $('#cmp').value.trim(), v = $('#cmpDue').value;
+    const due = v ? new Date(v) : null;
+    if (!text){ toast('Напиши, что Алине сказать'); return; }
+    if (!due || due <= TODAY){ toast('Поставь срок — когда Алине записать'); return; }
+    c.alinaVoice = { due, type, text, by: role==='Пётр' ? (c.owner || 'Аня') : role };
+    (c.touches = c.touches || []).push({ t:new Date(TODAY), who:c.alinaVoice.by, what:`Текст Алине: ${type.toLowerCase()} с Зеркала`, res:`записать до ${dt(due)}` });
+    closeSheet(); render(); toast(`Алине ушла задача в Telegram: @ali_shali, ${type.toLowerCase()} для ${c.tg}, до ${dt(due)}`); return; }
+  if (d.voice){ byId(+d.voice).alinaVoice.done = true; render(); toast('Отметила: голосовое ушло. Ане придёт задача проверить ответ завтра в 9:00'); return; }
+  if (d.handoff){ handoffSheet(+d.handoff); return; }
+  if ('addperson' in d){ personSheet(); return; }
+  if (d.access){ const p = PEOPLE[+d.access]; p.open = !p.open; p.note = p.open ? '' : `доступ закрыт ${dd(TODAY)}`; render(); toast(p.open ? `${p.name}: доступ открыт` : `${p.name} больше не войдёт. Клиенты остались в системе`); return; }
+  if (d.hodone){ const c = byId(+d.hodone); c.handoff.done = true; render(); toast(`Сделано. ${c.owner || 'Менеджер'} увидит это в карточке`); return; }
+  if (d.mila){ const c = byId(+d.mila); c.milaTask = false; if (c.handoff) c.handoff.done = true; c.sessions = [{t:D(29,10,12,0), n:'1 из 1', with:'Алина', st:'назначена'}]; render(); toast('Сессия появится в карточке из общего календаря, как только Полина её поставит'); return; }
+  if (d.touch){ touchSheet(+d.touch); return; }
+  if (d.pay){ toast('В рабочей версии: продукт, сумма, способ — и оплата встанет в «Учёт сделок» сама'); return; }
+  if (d.move){ const c = byId(+d.move); const to = c.owner==='Аня'?'Лера':'Аня'; c.owner = to; if (c.task && c.task.kind==='Передать клиента') c.task.done = 'Передала: '+to; $('#layer').innerHTML=''; render(); toast(`Клиент передан: ${to}. В истории это останется`); return; }
+  if ('addinv' in d){ toast('Откроется твоя база с фильтрами: клиенты, завершили, кладбище лидов'); return; }
+});
+document.addEventListener('change', e => {
+  const s = e.target;
+  if (s.dataset.assign && s.value){ const c = byId(+s.dataset.assign); c.owner = s.value; c.task = {kind:'Новая анкета', due:new Date(c.at.getTime()+864e5), why:`Отдали ${s.value}. Написать в течение 24 часов с анкеты`}; render(); toast(`${c.name} → ${s.value}`); }
+  if (s.dataset.inv){ toast(`Приглашение: ${s.value}`); }
+  if (s.id==='loginSel'){ login = s.value; role = login; tab = ROLES[role][0]; clientFilter = 'В работе'; $('#layer').innerHTML = ''; render(); toast(`Вошли как ${login}: видны только разрешённые вкладки`); }
+  if (s.id==='cmpFrom' || s.id==='cmpType'){ updateCompose(); }
+  if (s.id==='cmpTpl'){ $('#cmp').value = fillTpl(byId(+s.dataset.cid), s.value); }
+  if (s.id==='hoProd'){ const c = byId(+$('#hoform').dataset.id); const [to, what] = handoffFor(s.value, c.tg); $('#hoTo').value = to; $('#hoWhat').value = what; }
+  if ('lmtheme' in s.dataset){ lmTheme = s.value; render(); }
+  if (s.dataset.bf){ baseF[s.dataset.bf] = s.value; baseSel.clear(); render(); }
+  if (s.dataset.bsel){ const id = +s.dataset.bsel; s.checked ? baseSel.add(id) : baseSel.delete(id); render(); }
+});
+document.addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.target.id==='directform'){
+    const nick = $('#d1').value.trim() || '@новый_лид';
+    const id = Math.max(...C.map(c=>c.id))+1;
+    C.unshift({ id, name: $('#d2').value.trim() || nick, tg: nick, phone: $('#d3').value.trim() || '—', src:'Директ (без анкеты)', owner: role==='Пётр'?'Аня':role, stage:'Лид из директа', at:new Date(TODAY),
+      income:'не спрашивали', ready:'—', req: $('#d5').value.trim() || 'Целевой вопрос в директе', age:'—', city:'—', consent:null,
+      touches:[{t:new Date(TODAY), who: role, what:'Лид из директа: '+$('#d4').value, res:'Внесла в базу'}],
+      task:{ kind:'Отправить анкету', due:new Date(TODAY.getTime()+864e5), why:'Лид из директа. Следующий шаг — чтобы заполнила анкету. Срок — 24 часа' } });
+    closeSheet(); render(); toast('Лид сохранён, задача — в «Сегодня»');
+  }
+  if (e.target.id==='personform'){
+    const name = $('#pp1').value.trim(), mail = $('#pp2').value.trim(), level = $('#pp3').value;
+    if (!name || !mail){ toast('Нужны имя и почта'); return; }
+    PEOPLE.push({ name, level, mail, open:true, note:'приглашение отправлено' });
+    closeSheet(); render(); toast(`${name} добавлен(а): ${LEVEL_NAME[level].toLowerCase()}. На почту ушло приглашение`);
+  }
+  if (e.target.id==='hoform'){
+    const c = byId(+e.target.dataset.id), to = $('#hoTo').value, what = $('#hoWhat').value.trim(), v = $('#hoDue').value, prod = $('#hoProd').value;
+    if (!what){ toast('Напиши, что нужно сделать'); return; }
+    const due = v ? new Date(v) : addDays(TODAY,1);
+    c.handoff = { to, what, prod, due, from: c.owner || role, done:false }; c.handoffPending = false;
+    if (to==='Полина') c.milaTask = true;
+    (c.touches = c.touches || []).push({ t:new Date(TODAY), who: c.owner || role, what:`Передала: ${to}`, res:`${prod} — ${what}` });
+    closeSheet(); render(); if ($('#layer').innerHTML) openCard(c.id);
+    toast(`Передано: ${to}. В ветке отдела продаж ушло сообщение с тегом ${MAN[to] || to}`);
+  }
+  if (e.target.id==='lmform'){
+    const title = $('#l1').value.trim(); if (!title){ toast('Напиши название'); return; }
+    MAGNETS.unshift({ title, type:$('#l2').value, link:$('#l3').value.trim(), themes:[], when:$('#l4').value.trim() || '—' });
+    closeSheet(); lmType = 'Все'; lmTheme = 'Все'; render(); toast('Лид-магнит добавлен — он сразу виден менеджерам');
+  }
+  if (e.target.id==='touchform'){
+    const c = byId(+e.target.dataset.id), what = $('#t1').value, res = $('#t2').value, note = $('#t3').value.trim();
+    const v = $('#t4').value, when = v ? new Date(v + 'T09:00') : null;
+    if (res==='Думает' && !when){ toast('Для «Думает» поставь дату, когда связаться'); return; }
+    if (res==='Думает' && when > addDays(TODAY,7)){ toast('Не дальше 7 дней: договоритесь на срок короче'); return; }
+    c._undo = structuredClone({ task:c.task, stage:c.stage, thinkUntil:c.thinkUntil, alinaVoice:c.alinaVoice, n:(c.touches||[]).length });
+    (c.touches = c.touches || []).push({ t:new Date(TODAY), who: role, what, res, note });
+    const STAGE_BY_TOUCH = { 'Ответила, в диалоге':'Диалог', 'Думает':'Думает', 'Отказ':'Отказ' };
+    if (STAGE_BY_TOUCH[res] && !['Клиент','Завершила'].includes(c.stage)) c.stage = STAGE_BY_TOUCH[res];
+    if (res==='Думает') c.thinkUntil = when;
+    if (when) c.task = { kind: res==='Думает' ? 'Вернуться к «думает»' : 'Касание', due: when, why: note || (res==='Думает' ? `Договорились, что решит до ${dd(when)}` : 'Связаться, как договорились') };
+    closeSheet(); render(); openCard(c.id);
+    toast(when ? `Записала в историю. ${dd(when)} в 9:00 придёт напоминание` : 'Записала в историю карточки');
+  }
+  if (e.target.id==='cityform'){
+    const c = byId(+e.target.dataset.id), v = $('#cityinp').value.trim();
+    if (v && v!==c.city){ (c.touches = c.touches || []).push({ t:new Date(TODAY), who:role, what:'Уточнила город', res:`${c.city} → ${v}` }); c.city = v; }
+    closeSheet(); render(); openCard(c.id); toast(`Город: ${v || 'не указан'}`);
+  }
+  if (e.target.id==='expform'){
+    const sum = +$('#e4').value;
+    if (!sum){ toast('Укажи сумму расхода'); return; }
+    EXPENSES.push({ t:new Date($('#e1').value + 'T12:00'), cat:$('#e2').value, what:$('#e3').value.trim() || $('#e2').value, sum });
+    render(); toast(`Расход ${rub(sum)} добавлен — чистая прибыль в «Деньгах» пересчиталась`);
+  }
+  if (e.target.id==='importform'){
+    const name = $('#i1').value.trim() || 'Практикум', t = new Date($('#i2').value + 'T12:00');
+    let added = 0, found = 0;
+    $('#i3').value.split('\n').map(x => x.trim()).filter(Boolean).forEach(raw => {
+      const nick = '@' + raw.replace(/^@/, '').toLowerCase();
+      let c = C.find(x => x.tg.toLowerCase() === nick);
+      if (c) found++; else { added++; c = { id: Math.max(...C.map(x => x.id)) + 1, name: nick, tg: nick, phone:'—', src:'Чат практикума', owner:null, stage:'Завершила', at:t,
+        income:'—', ready:'—', req:'—', age:'—', city:'—', consent:null }; C.push(c); }
+      (c.buys = c.buys || []).push({ g:'Практикумы', p:name, t });
+    });
+    baseF = { prod:'Практикумы', city:'Все', income:'Все', theme:'Все' }; closeSheet(); render(); toast(`Новых карточек: ${added}, отметка о практикуме у ${found} уже знакомых`);
+  }
+  if (e.target.id==='priceform'){
+    PRICES.push({ p: $('#p1').value, from: new Date($('#p2').value+'T00:00'), full: +$('#p3').value, part: +$('#p4').value, bron: 5000 });
+    closeSheet(); render(); toast('Новая цена добавлена. Старые сделки не изменились');
+  }
+  if (e.target.id==='shiftform'){
+    const who = role==='Пётр' ? 'Аня' : role, day = +$('#sh0').value;
+    if (!SHIFTS[who]) { toast('Отчёт смены отправлен'); return; }
+    if (day===25){ SHIFTS[who][25] = ['late','26 окт, '+hm(TODAY)]; render(); toast('Отчёт за 25 октября принят с опозданием — Петя и Лера увидят время сдачи'); }
+    else { SHIFTS[who][26] = ['ok', hm(TODAY)]; render(); toast('Отчёт за сегодня сдан вовремя'); }
+  }
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape'){ closeSheet(); $('#layer').innerHTML=''; } });
+
+render();
+</script>
+
+</body>
+</html>
