@@ -312,7 +312,7 @@ let C = [
    task:{ kind:'Назначить диагностику', due:D(26,10,16,40), why:'Оплатила вчера в 16:40. Согласуй время и поставь в календарь «Диагностики»: «Диагностика @karina_yus»' } },
  { id:13, name:'Ульяна Сорокина', tg:'@ulya_sor', phone:'+7 985 ••• 66 30', src:'Ссылка Ани', owner:'Аня', stage:'Заказ без оплаты', at:D(24,10,12,0),
    income:'до 80 тыс.', ready:'Очень важно, готова инвестировать', req:'Панические атаки в транспорте', age:'26', city:'Москва', consent:true,
-   task:{ kind:'Помочь с оплатой', due:D(26,10,9,50), why:'Оформила заказ на диагностику на сайте сегодня в 7:50, оплата не прошла' } },
+   task:{ kind:'Помочь с оплатой', gc:'демо', due:D(26,10,9,50), why:'Оформила заказ на диагностику на сайте сегодня в 7:50, оплата не прошла' } },
  { id:14, name:'Регина Фомина', tg:'@regina_f', phone:'+7 912 ••• 11 04', src:'Шапка профиля', owner:'Аня', stage:'Кладбище лидов', at:D(15,10,12,0), graveAt:D(20,10,11,0), graveFrom:'Написала',
    income:'до 80 тыс.', ready:'Пока изучаю варианты', req:'Хочу полюбить своё тело', age:'22', city:'Уфа', consent:null,
    touches:[{t:D(15,10,18,0), who:'Аня', what:'После анкеты', res:'Написала, жду ответа'},{t:D(16,10,18,0), who:'Аня', what:'Дожим 1', res:'Не отвечает'},{t:D(18,10,11,0), who:'Аня', what:'Дожим 2', res:'Не отвечает'}] },
@@ -367,14 +367,23 @@ C.find(c => c.id===15).buys = [{ g:'Практикумы', p:'Практикум
 // отчёты смен: сдать до 23:59 по Москве в день смены. ok — вовремя, late — после полуночи, miss — не сдан, off — не её смена
 // какие дни смена — ставит Лера в «Графике смен»; в остальные дни отчёт не нужен
 const SHIFTS = {
-  'Аня': { 14:['ok','22:40'], 15:['late','16 окт, 00:12'], 16:['late','17 окт, 11:52'], 17:['late','18 окт, 10:42'], 18:['ok','23:05'], 19:['ok','21:30'], 20:['off'], 21:['late','22 окт, 01:03'], 22:['late','23 окт, 00:34'], 23:['ok','23:41'], 24:['ok','22:10'], 25:['miss'], 26:['today'] },
+  'Аня': { '2026-10-14':['ok','22:40'], '2026-10-15':['late','16 окт, 00:12'], '2026-10-16':['late','17 окт, 11:52'], '2026-10-17':['late','18 окт, 10:42'], '2026-10-18':['ok','23:05'], '2026-10-19':['ok','21:30'], '2026-10-20':['off'], '2026-10-21':['late','22 окт, 01:03'], '2026-10-22':['late','23 окт, 00:34'], '2026-10-23':['ok','23:41'], '2026-10-24':['ok','22:10'], '2026-10-25':['miss'] },
 };
+// день в виде «2026-10-25» — так даты смен хранит сервер
+const isoDay = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const shiftDays = () => Array.from({length:13}, (_, i) => { const d = new Date(TODAY); d.setDate(d.getDate() - 12 + i); return d; });
+// статус смены: отчёт есть — его время; смены нет по графику — прочерк; смена была, а отчёта нет — «не сдан»
+const shiftStatus = (who, d) => { const k = isoDay(d), rep = (SHIFTS[who] || {})[k];
+  if (rep) return rep;
+  if (!SCHED.has(who + '|' + d.toDateString())) return ['off'];
+  return k < isoDay(TODAY) ? ['miss'] : ['today']; };
 const MANAGERS = ['Аня', 'Новый менеджер'];
 const SCHED = new Set();
 for (let i = 0; i < 14; i++){ const d = new Date(2026, 9, 26 + i); if (d.getDate() !== 1) SCHED.add('Аня|' + d.toDateString()); }
-const shiftStats = who => { const v = Object.values(SHIFTS[who]).filter(x => x[0]!=='off' && x[0]!=='today'); return { all:v.length, ok:v.filter(x=>x[0]==='ok').length, late:v.filter(x=>x[0]==='late').length, miss:v.filter(x=>x[0]==='miss').length }; };
-const onShiftToday = () => MANAGERS.filter(m => SCHED.has(m + '|' + new Date(2026,9,26).toDateString()));
-const yesterdayMissing = who => SHIFTS[who] && SHIFTS[who][25] && SHIFTS[who][25][0]==='miss';
+for (let i = 14; i <= 25; i++){ if (i !== 20) SCHED.add('Аня|' + new Date(2026, 9, i).toDateString()); }
+const shiftStats = who => { const v = shiftDays().map(d => shiftStatus(who, d)).filter(x => x[0]!=='off' && x[0]!=='today'); return { all:v.length, ok:v.filter(x=>x[0]==='ok').length, late:v.filter(x=>x[0]==='late').length, miss:v.filter(x=>x[0]==='miss').length }; };
+const onShiftToday = () => MANAGERS.filter(m => SCHED.has(m + '|' + TODAY.toDateString()));
+const yesterdayMissing = who => { const y = new Date(TODAY); y.setDate(y.getDate() - 1); return shiftStatus(who, y)[0]==='miss'; };
 // расходы проекта: вносит ассистент (Полина); из них считается чистая прибыль
 const EXP_CATS = ['Съёмки','Монтажёр','Контент-продюсер','Технический специалист','Ассистент','Подписки','Площадки и мероприятия','Незапланированное','Прочее'];
 const EXPENSES = [
@@ -386,6 +395,8 @@ const EXPENSES = [
   { t:D(24,10), cat:'Площадки и мероприятия', what:'Предоплата площадки VIP-тренинга 31.10', sum:10000 },
 ];
 // оплаты, которые пришли в кассу, но не нашли карточку клиента
+// одна и та же оплата двумя строками в «Учёте сделок» — сервер находит и показывает здесь, сам ничего не удаляет
+const DUPS = [];
 const UNMATCHED = [
   { id:1, t:D(24,10,14,12), sum:3900, how:'ЮKassa — T-Pay', payer:'в чеке: Ульяна С., +7 985 ••• 66 30' },
   { id:2, t:D(25,10,19,40), sum:3900, how:'ЮKassa — SberPay', payer:'в чеке: Дарья, телефона нет' },
@@ -414,7 +425,7 @@ function dueLabel(d){ if (d < TODAY && !sameDay(d,TODAY)) return `просроч
 function toast(t){ const el = document.createElement('div'); el.className='toast'; el.textContent=t; document.body.append(el); setTimeout(()=>el.remove(), 2600); }
 
 const STAGE_PILL = { 'Новая анкета':'acc','Лид из директа':'acc','Анкета отправлена':'acc','Анкета заполнена':'acc','Написала':'', 'Диалог':'', 'Заказ без оплаты':'warn','Диагностика оплачена':'warn','Диагностика назначена':'warn',
-  'Думает':'warn','Бронь':'warn','Клиент':'ok','Кладбище лидов':'', 'Завершила':'', 'Отказ':'' };
+  'Думает':'warn','Бронь':'warn','Клиент':'ok','Кладбище лидов':'', 'Завершила':'', 'Отказ':'', 'Диагностика проведена':'warn', 'Архив до CRM':'' };
 const pill = s => `<span class="pill ${STAGE_PILL[s]||''}">${esc(s)}</span>`;
 // ник Telegram — всегда ссылка: нажал и сразу в переписке с человеком
 const tgLink = nick => { const u = String(nick || '').trim().replace(/^@/, '');
@@ -442,6 +453,7 @@ const OUTS = {
   'Спросить о продолжении':['Хочет продолжить','Думает','Не планирует','Не отвечает'],
   'Предложить продление':['Купила продолжение','Думает','Не отвечает'],
   'Касание':['Написала, жду ответа','Ответила, в диалоге','Не отвечает'],
+  'Отметить итог диагностики':['Купила','Бронь','Думает','Отказ'],
   'Доплата до старта':['Доплатила','Напомнила, ждём','Переносит старт'],
   'Назначить диагностику':['Поставила в календарь','Не отвечает'],
   'Помочь с оплатой':['Оплатила','Помогла, ждём оплату','Не отвечает'],
@@ -509,13 +521,17 @@ function newAnkety(){ return C.filter(c => c.stage==='Новая анкета' &
 /* ===================== КОМУ ПИСАТЬ ПЕРВЫМ ===================== */
 // блоки сверху вниз; внутри блока — сначала тот, у кого раньше срок, потом кто горячее
 const TIERS = ['🔴 Просрочено','🔥 Только что прошли сессию или продукт','🟠 Деньги на подходе','🟢 Тёплые лиды','⚪ Позже','Без задач — всё по плану','Навести порядок'];
+// самый верх: начала оплату в GetCourse и не оплатила (решение Петра 29.10) — номер блока −1, остальные номера не сдвигаем
+const PAY_TIER = '💳 Начала оплату и не оплатила';
+const tierName = n => n === -1 ? PAY_TIER : TIERS[n];
 const AFTER_SESSION = ['Как прошла сессия','Спросить о продолжении','Предложить продление'];
-const MONEY_NEAR = ['Доплата до старта','Помочь с оплатой','Назначить диагностику','Вернуться к «думает»'];
+const MONEY_NEAR = ['Доплата до старта','Помочь с оплатой','Назначить диагностику','Вернуться к «думает»','Отметить итог диагностики'];
 const endOfToday = () => { const e = new Date(TODAY); e.setHours(23,59); return e; };
 const lastSession = c => (c.sessions||[]).filter(x => x.st==='прошла').slice(-1)[0];
 const justFinished = c => { const s = lastSession(c); return !!s && /^(\d+) из \1$/.test(s.n) && TODAY - s.t < 7*864e5; };
 function attention(c){
   const t = c.task && !c.task.done ? c.task : null;
+  if (t && t.gc) return { tier:-1, why:`Начала оплату и не оплатила · ${dueLabel(t.due)}` };
   if (c.handoffPending && !c.handoff) return { tier:0, why:'Не передан дальше после брони или покупки' };
   if (!t) return { tier:5, why: c.stage==='Клиент' ? 'Сессии идут по плану' : 'Задач нет' };
   if (t.kind==='Нет ответа после дожимов') return { tier:6, why:'Два дожима без ответа — можно переводить на кладбище лидов' };
@@ -588,37 +604,107 @@ function badgeFor(t){
 }
 function renderChrome(){
   const can = ACCESS[login];
-  $('#roles').innerHTML = `<label class="small muted">Вход (в прототипе)<select id="loginSel" class="btn sm" style="margin-left:6px">${Object.keys(ACCESS).map(p => `<option ${p===login?'selected':''}>${p}</option>`).join('')}</select></label>`
-    + (can.length > 1 ? `<span class="small muted">Смотреть как:</span>` + can.map(r => `<button class="role" aria-pressed="${r===role}" data-role="${r}">${r} · ${ROLE_NOTE[r]}</button>`).join('') : '');
+  $('#roles').innerHTML = (LIVE ? '' : `<label class="small muted">Вход (в прототипе)<select id="loginSel" class="btn sm" style="margin-left:6px">${Object.keys(ACCESS).map(p => `<option ${p===login?'selected':''}>${p}</option>`).join('')}</select></label>`)
+    + (can.length > 1 ? `<span class="small muted">Смотреть как:</span>` + can.map(r => `<button class="role" aria-pressed="${r===role}" data-role="${r}">${r} · ${ROLE_NOTE[r]}</button>`).join('') : '')
+    + (LIVE ? '<button class="btn sm" data-logout>Выйти</button>' : '');
   $('#whoami').textContent = `Вошли: ${login}` + (role!==login ? ` · смотрите как ${role}` : '');
   $('#nav').innerHTML = ROLES[role].map(t => { const b = badgeFor(t); return `<button class="tab" data-tab="${t}" ${t===tab?'aria-current="page"':''}><span>${TABS[t]}</span>${b?`<span class="badge ${['new','today','team','voice','mila','shift'].includes(t)?'hot':''}">${b}</span>`:''}</button>`; }).join('');
 }
-function render(){ renderChrome(); $('#view').innerHTML = (VIEWS[tab]||VIEWS.home)(); window.scrollTo({top:0}); }
+function render(){ if (LIVE) { if (!BOOTED) return; TODAY.setTime(Date.now()); } renderChrome(); $('#view').innerHTML = (VIEWS[tab]||VIEWS.home)(); window.scrollTo({top:0}); persist(); }
 
 /* ===================== ЭКРАНЫ ===================== */
 const VIEWS = {};
 
+/* ===================== ЦИФРЫ МЕСЯЦА ===================== */
+// всё считается из карточек: анкеты, отметки касаний, оплаты, сессии из календаря
+const MONTHS_NOM = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const inMonth = d => !!d && d.getFullYear()===TODAY.getFullYear() && d.getMonth()===TODAY.getMonth();
+const monthTitle = () => `${MONTHS_NOM[TODAY.getMonth()]} ${TODAY.getFullYear()}, с 1 по ${TODAY.getDate()} число`;
+const pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
+const STAGE_RANK = { 'Написала':1, 'Анкета отправлена':1, 'Диалог':2, 'Заказ без оплаты':2, 'Диагностика оплачена':3, 'Диагностика назначена':3,
+  'Диагностика проведена':4, 'Думает':4, 'Бронь':5, 'Клиент':5, 'Завершила':5 };
+const isManagerTouch = t => t.who && !['система','—'].includes(t.who) && t.from !== 'CRM-таблица' || (t.from === 'CRM-таблица' && t.what === 'Написала после анкеты');
+// докуда дошёл человек по воронке: 1 написали · 2 ответила · 3 купила диагностику · 4 провели · 5 купила продукт
+function reached(c){
+  let r = STAGE_RANK[c.stage] || 0;
+  const T = c.touches || [];
+  if (T.some(isManagerTouch)) r = Math.max(r, 1);
+  if (T.some(t => /^Ответила|^Хочет|^Купила|написала сама/i.test(t.res || '') || t.what === 'Клиентка написала сама')) r = Math.max(r, 2);
+  if ((c.deals || []).some(d => d.p === 'Диагностика')) r = Math.max(r, 3);
+  if (c.diag && /^Проведена/.test(c.diag.res || '')) r = Math.max(r, 4);
+  if ((c.deals || []).some(d => d.p !== 'Диагностика')) r = Math.max(r, 5);
+  return r;
+}
+const firstTouchHours = c => { const t = (c.touches || []).filter(isManagerTouch).map(x => x.t).filter(x => x >= c.at).sort((a, b) => a - b)[0]; return t ? (t - c.at) / 36e5 : null; };
+function afterSessionOnTime(list){
+  const S = []; list.forEach(c => (c.sessions || []).forEach(s => { if (s.st === 'прошла' && inMonth(s.t)) S.push({ c, s }); }));
+  const ok = S.filter(({ c, s }) => (c.touches || []).some(t => t.what === 'Как прошла сессия' && t.t >= s.t && t.t - (s.end || s.t) <= 864e5)).length;
+  return { ok, all: S.length };
+}
+const monthPays = () => payments().filter(x => inMonth(x.p.t));
+// начисления менеджеру и РОП за месяц — по правилам из CLAUDE.md проекта
+// тренинг 5 декабря (решение 29.10): процентов нет — 500 / 750 ₽ за место по своей ссылке; выручка по своей ссылке идёт в личный план,
+// в порог команды — только оплаты по ссылкам менеджеров; Лере премия 5 000, если на 5 декабря продано 50 мест
+const isTraining = x => /^Тренинг 5 декабря/.test(x.d.p);
+const sumOf = L => L.reduce((s, x) => s + x.p.sum, 0);
+function payroll(m){
+  const P = monthPays();
+  const prodPays = P.filter(x => x.d.p !== 'Диагностика' && !x.p.bron);
+  const own = sumOf(prodPays.filter(x => x.d.seller === m));
+  const ownPct = sumOf(prodPays.filter(x => x.d.seller === m && !isTraining(x)));
+  const prodAll = sumOf(prodPays.filter(x => !isTraining(x) || x.d.seller));
+  const prodPct = sumOf(prodPays.filter(x => !isTraining(x)));
+  const seats = prodPays.filter(x => isTraining(x) && x.d.seller === m);
+  const seatSum = seats.reduce((s, x) => s + Math.sign(x.p.sum) * (/VIP/.test(x.d.p) ? 750 : 500), 0);
+  const diagSold = P.filter(x => x.d.p === 'Диагностика' && x.d.seller === m).length;
+  const diagDone = C.filter(c => c.diag && c.diag.by === m && inMonth(c.diag.when) && /^Проведена/.test(c.diag.res || '')).length;
+  const isRop = m === 'Лера';
+  const rows = [];
+  if (m === 'Аня' || m === 'Ева') rows.push(['Фикс', 5000]);
+  if (ownPct) rows.push([`${own >= 250000 ? 7 : 6}% с продаж продуктов (${rub(ownPct)})`, Math.round(ownPct * (own >= 250000 ? .07 : .06))]);
+  if (seats.length) rows.push([`Места на тренинге 5 декабря · ${seats.reduce((s, x) => s + Math.sign(x.p.sum), 0)}`, seatSum]);
+  if (diagSold) rows.push([`Продажа диагностик · ${diagSold} × 500`, diagSold * 500]);
+  if (diagDone) rows.push([`Проведение диагностик · ${diagDone} × ${isRop ? '2 000' : '1 000'}`, diagDone * (isRop ? 2000 : 1000)]);
+  if (isRop && prodPct) rows.push([`${prodAll >= 650000 ? 3 : 2}% РОП со всех продаж (${rub(prodPct)})`, Math.round(prodPct * (prodAll >= 650000 ? .03 : .02))]);
+  if (isRop && inMonth(new Date(2026, 11, 5))) {
+    const sold = payments().filter(x => isTraining(x) && !x.p.bron && x.p.t < new Date(2026, 11, 6)).reduce((s, x) => s + Math.sign(x.p.sum), 0);
+    if (sold >= 50) rows.push([`Премия за полный зал тренинга · ${sold} мест на 5 декабря`, 5000]);
+  }
+  if (isRop){ const v = P.filter(x => x.d.p === 'Пакет 3 сессий Валерии' && !x.p.bron).length; if (v) rows.push([`Сопровождение, пакет Валерии · ${v} × 6 000`, v * 6000]); }
+  return { rows, own, total: rows.reduce((s, r) => s + r[1], 0) };
+}
+
 VIEWS.home = () => {
-  const ank = 37, direct = 9, directAnk = 4;
-  const f = [['Анкеты', ank+directAnk],['Написали',38],['Ответили',31],['Купили диагностику',11],['Провели диагностику',8],['Купили продукт',5]];
-  const max = f[0][1];
+  const leads = C.filter(c => inMonth(c.at) && c.stage !== 'Архив до CRM');
+  const isDirect = c => /Директ/.test(c.src || '');
+  const directL = leads.filter(isDirect), directAnkL = directL.filter(c => (c.anketas || []).length || reached(c) >= 2);
+  const ank = leads.filter(c => !isDirect(c)).length, direct = directL.length, directAnk = directAnkL.length;
+  const base = leads.filter(c => !isDirect(c)).concat(directAnkL);
+  const cnt = r => base.filter(c => reached(c) >= r).length;
+  const f = [['Анкеты', base.length],['Написали',cnt(1)],['Ответили',cnt(2)],['Купили диагностику',cnt(3)],['Провели диагностику',cnt(4)],['Купили продукт',cnt(5)]];
+  const max = Math.max(1, f[0][1]);
+  const hrs = base.map(firstTouchHours).filter(h => h !== null);
+  const avgH = hrs.length ? Math.round(hrs.reduce((s, h) => s + h, 0) / hrs.length) : null;
+  const ontime = hrs.filter(h => h <= 24).length;
+  const ast = afterSessionOnTime(C);
   const od = overdue();
+  const srcRows = [...new Set(base.map(c => c.src || 'Без метки'))].map(s => { const L = base.filter(c => (c.src || 'Без метки') === s);
+    return [s, L.length, L.filter(c => reached(c) >= 3).length, L.filter(c => reached(c) >= 5).length, monthPays().filter(x => L.includes(x.c)).reduce((a, x) => a + x.p.sum, 0)]; }).sort((a, b) => b[1] - a[1]);
   return `
-  <div class="head"><div><h1>Главная</h1><p>Октябрь 2026, с 1 по 26 число. Всё считается само из анкет, оплат, календарей и отметок менеджеров.</p></div>
-    <div class="chips"><span class="chip" aria-pressed="true">Октябрь</span><span class="chip">Неделя</span><span class="chip">Сентябрь</span></div></div>
+  <div class="head"><div><h1>Главная</h1><p>${monthTitle()}. Всё считается само из анкет, оплат, календарей и отметок менеджеров.</p></div></div>
   <div class="kpis">
     <div class="kpi"><span class="lbl">Анкеты</span><b>${ank+directAnk}</b><span class="note">из них ${directAnk} — лиды из директа</span></div>
-    <div class="kpi"><span class="lbl">Лиды из директа</span><b>${direct}</b><span class="note">${directAnk} заполнили анкету · ${Math.round(directAnk/direct*100)}%</span></div>
-    <div class="kpi bad"><span class="lbl">Первое касание</span><b>31 ч</b><span class="note">в среднем, норма 24 ч · вовремя 58%</span></div>
-    <div class="kpi"><span class="lbl">Диагностики</span><b>8 из 11</b><span class="note">проведено из оплаченных</span></div>
-    <div class="kpi good"><span class="lbl">Касания после сессий</span><b>86%</b><span class="note">сделаны в течение 24 ч</span></div>
+    <div class="kpi"><span class="lbl">Лиды из директа</span><b>${direct}</b><span class="note">${directAnk} заполнили анкету · ${pct(directAnk, direct)}</span></div>
+    <div class="kpi ${avgH !== null && avgH > 24 ? 'bad' : 'good'}"><span class="lbl">Первое касание</span><b>${avgH === null ? '—' : avgH + ' ч'}</b><span class="note">в среднем, норма 24 ч · вовремя ${pct(ontime, hrs.length)}</span></div>
+    <div class="kpi"><span class="lbl">Диагностики</span><b>${cnt(4)} из ${cnt(3)}</b><span class="note">проведено из оплаченных</span></div>
+    <div class="kpi ${ast.all && ast.ok < ast.all ? 'bad' : 'good'}"><span class="lbl">Касания после сессий</span><b>${pct(ast.ok, ast.all)}</b><span class="note">сделаны в течение 24 ч · сессий ${ast.all}</span></div>
     <div class="kpi bad"><span class="lbl">Просрочено сейчас</span><b>${od.length}</b><span class="note">задач у команды</span></div>
     <div class="kpi ${shiftStats('Аня').miss?'bad':''}"><span class="lbl">Отчёты смен вовремя</span><b>${shiftStats('Аня').ok} из ${shiftStats('Аня').all}</b><span class="note">Аня · ${shiftStats('Аня').miss?'вчерашний не сдан':'всё сдано'}</span></div>
   </div>
   <div class="grid g2">
     <section class="panel"><h2>Воронка</h2><p class="muted small">От анкеты до покупки продукта</p>
       <div class="funnel">${f.map(([n,v]) => `<div class="fstep"><span>${n}</span><div class="fbar"><i style="width:${Math.max(4,v/max*100)}%"></i></div><span class="v">${v}</span></div>`).join('')}</div>
-      <p class="small muted">До анкет: лиды из директа ${direct} → заполнили анкету ${directAnk}. Анкета → продукт: <b>${Math.round(5/(ank+directAnk)*100)}%</b> · Диагностика → продукт: <b>${Math.round(5/8*100)}%</b></p>
+      <p class="small muted">До анкет: лиды из директа ${direct} → заполнили анкету ${directAnk}. Анкета → продукт: <b>${pct(cnt(5), base.length)}</b> · Диагностика → продукт: <b>${pct(cnt(5), cnt(4))}</b></p>
     </section>
     <section class="panel"><h2>Просрочки по людям</h2><p class="muted small">Нажми на клиента — откроется карточка</p>
       <div class="list">${od.map(c => `<div class="row"><span class="pill crit">${esc(c.task.escalated?'Лера (передано)':c.owner)}</span><button class="link" data-open="${c.id}">${esc(c.name)}</button>${cmpBtn(c)}<span class="why">${esc(c.task.kind)} · ${dueLabel(c.task.due)}</span></div>`).join('') || '<div class="empty">Просрочек нет</div>'}</div>
@@ -626,11 +712,7 @@ VIEWS.home = () => {
   </div>
   <section class="panel"><h2>Откуда приходят</h2>
     <div class="tbl"><table><thead><tr><th>Источник</th><th class="num">Анкеты</th><th class="num">Диагностика</th><th class="num">Продукт</th><th class="num">Выручка</th></tr></thead><tbody>
-      <tr><td>Ссылки менеджеров</td><td class="num">14</td><td class="num">6</td><td class="num">4</td><td class="num">${rub(203000)}</td></tr>
-      <tr><td>Шапка профиля</td><td class="num">16</td><td class="num">4</td><td class="num">1</td><td class="num">${rub(30000)}</td></tr>
-      <tr><td>Директ (9 лидов → 4 анкеты)</td><td class="num">4</td><td class="num">1</td><td class="num">0</td><td class="num">0 ₽</td></tr>
-      <tr><td>Сторис Алины</td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num">0 ₽</td></tr>
-      <tr><td>Rutube</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0 ₽</td></tr>
+      ${srcRows.map(r => `<tr><td>${esc(r[0])}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td><td class="num">${r[3]}</td><td class="num">${rub(r[4])}</td></tr>`).join('') || '<tr><td colspan="5" class="muted">В этом месяце анкет пока нет</td></tr>'}
     </tbody></table></div></section>`;
 };
 
@@ -669,13 +751,13 @@ VIEWS.today = () => {
   const all = tasksFor(me);
   // те же блоки, что в «Мои клиенты»: здесь только то, что нужно сделать сегодня
   const R = all.map(c => ({ c, a: c.task.done ? { tier:9 } : attention(c), t: temperature(c) })).sort(rankCmp);
-  const SHOW = { 0:TIERS[0], 1:TIERS[1], 2:TIERS[2], 3:TIERS[3], 6:TIERS[6], 9:'✅ Сделано сегодня' };
+  const SHOW = { [-1]:PAY_TIER, 0:TIERS[0], 1:TIERS[1], 2:TIERS[2], 3:TIERS[3], 6:TIERS[6], 9:'✅ Сделано сегодня' };
   const g = {}; R.forEach(x => { const n = SHOW[x.a.tier]; if (n) (g[n] = g[n] || []).push(x.c); });
   const later = R.filter(x => x.a.tier===4).length;
   return `<div class="head"><div><h1>Сегодня</h1><p>${dd(TODAY)}, понедельник. Кому написать сегодня — одна строка на клиента. Нажми итог, и он запишется в карточку. Это же в 9:00 пришло в ветку «Отдел продаж».</p></div>
     <button class="btn pri" data-direct>+ Лид из директа</button></div>
   ${yesterdayMissing(me) ? `<div class="item crit"><div class="stripe"></div><div class="body">
-    <div class="row"><b>Отчёт смены за 25 октября не заполнен</b><span class="pill crit">нужно было до 23:59</span></div>
+    <div class="row"><b>Отчёт смены за ${dd(addDays(TODAY,-1))} не заполнен</b><span class="pill crit">нужно было до 23:59</span></div>
     <div class="why">Петя и Лера видят, что отчёт не сдан. Заполни сейчас — он засчитается как сданный с опозданием.</div>
     <div class="outs"><button class="btn pri sm" data-tab="shift">Заполнить отчёт</button></div></div></div>` : ''}
   ${C.filter(c => c.handoffPending && !c.handoff && c.owner===me).map(c => `<div class="item crit"><div class="stripe"></div><div class="body">
@@ -686,24 +768,24 @@ VIEWS.today = () => {
     <div class="row"><b>Передали тебе</b><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill warn">${dueLabel(c.handoff.due)}</span></div>
     <div class="why">${esc(c.handoff.prod)} · ${esc(c.handoff.what)} · передала ${esc(c.handoff.from)}</div>
     <div class="outs"><button class="btn pri sm" data-hodone="${c.id}">Сделала</button></div></div></div>`).join('')}
-  ${Object.entries(g).map(([name, list]) => list.length ? `<div class="group-t"><h2>${name}</h2><span class="badge ${name===TIERS[0]?'hot':''}">${list.length}</span></div><div class="list">${list.map(taskCard).join('')}</div>` : '').join('')}
+  ${Object.entries(g).map(([name, list]) => list.length ? `<div class="group-t"><h2>${name}</h2><span class="badge ${name===TIERS[0]||name===PAY_TIER?'hot':''}">${list.length}</span></div><div class="list">${list.map(taskCard).join('')}</div>` : '').join('')}
   ${later ? `<div class="hint">Ещё ${later} — не сегодня. Весь список по тому же порядку — в «Мои клиенты».</div>` : ''}`;
 };
 
 VIEWS.clients = () => {
   const mine = role==='Аня' ? C.filter(c => c.owner==='Аня') : role==='Лера' ? C.filter(c => c.owner==='Лера' || c.owner==='Ева') : C;
-  const F = { 'В работе':c=>!['Кладбище лидов','Завершила','Отказ'].includes(c.stage), 'Лиды':c=>['Новая анкета','Лид из директа','Анкета отправлена','Анкета заполнена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена'].includes(c.stage),
+  const F = { 'В работе':c=>!['Кладбище лидов','Завершила','Отказ','Архив до CRM'].includes(c.stage), 'Лиды':c=>['Диагностика проведена','Новая анкета','Лид из директа','Анкета отправлена','Анкета заполнена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена'].includes(c.stage),
     'Думают':c=>c.stage==='Думает'||c.stage==='Бронь', 'Клиенты':c=>c.stage==='Клиент', 'Завершили':c=>c.stage==='Завершила' };
   const list = mine.filter(F[clientFilter]);
   const ranked = list.map(c => ({ c, a: attention(c), t: temperature(c) })).sort(rankCmp);
   const cols = role!=='Аня' ? 5 : 4;
-  let lastTier = -1;
+  let lastTier = null;
   return `<div class="head"><div><h1>${role==='Пётр'?'Все клиенты':'Мои клиенты'}</h1><p>${role==='Аня'?'В работе — только те, кого ты сейчас ведёшь: потенциальные и действующие клиенты. Кто не ответил на два дожима, уходит на «Кладбище лидов», завершившие — в «Завершили». Клиент закреплён за тобой навсегда.':'Вся база с ответственными. Передать клиента другому менеджеру — в его карточке.'}</p></div>
     ${role!=='Пётр'?'<button class="btn pri" data-direct>+ Лид из директа</button>':''}</div>
   <div class="chips">${Object.keys(F).map(k => `<button class="chip" aria-pressed="${k===clientFilter}" data-filter="${k}">${k} · ${mine.filter(F[k]).length}</button>`).join('')}</div>
   <div class="tbl"><table><thead><tr><th>Клиент</th><th>Этап и температура</th>${role!=='Аня'?'<th>Ответственный</th>':''}<th>Почему здесь</th><th>Откуда</th></tr></thead><tbody>
-  ${ranked.map(({c, a, t}) => (a.tier!==lastTier ? (lastTier = a.tier, `<tr><td colspan="${cols}" style="background:var(--sunk)"><b>${TIERS[a.tier]}</b></td></tr>`) : '') + `<tr><td><button class="link" data-open="${c.id}">${esc(c.name)}</button><div class="small muted">${tgLink(c.tg)}</div>${cmpBtn(c)}</td><td>${pill(c.stage)} ${tempPill(t)} <button class="btn sm" data-stagebtn="${c.id}">сменить</button></td>${role!=='Аня'?`<td>${esc(c.owner||'не взяли')}</td>`:''}
-    <td class="tw"><span class="pill ${a.tier===0?'crit':a.tier<=2?'warn':''}">${esc(a.why)}</span></td><td>${esc(c.src)}</td></tr>`).join('')}
+  ${ranked.map(({c, a, t}) => (a.tier!==lastTier ? (lastTier = a.tier, `<tr><td colspan="${cols}" style="background:var(--sunk)"><b>${tierName(a.tier)}</b></td></tr>`) : '') + `<tr><td><button class="link" data-open="${c.id}">${esc(c.name)}</button><div class="small muted">${tgLink(c.tg)}</div>${cmpBtn(c)}</td><td>${pill(c.stage)} ${tempPill(t)} <button class="btn sm" data-stagebtn="${c.id}">сменить</button></td>${role!=='Аня'?`<td>${esc(c.owner||'не взяли')}</td>`:''}
+    <td class="tw"><span class="pill ${a.tier<=0?'crit':a.tier<=2?'warn':''}">${esc(a.why)}</span></td><td>${esc(c.src)}</td></tr>`).join('')}
   </tbody></table></div>`;
 };
 
@@ -724,7 +806,9 @@ const THEMES = {
   'Мама и дети': ['мам','ребён','ребен','дет'],
   'Деньги и реализация': ['финансов','деньг','реализац','блог'],
 };
-const themesOf = c => c.themes || (c.themes = Object.keys(THEMES).filter(t => THEMES[t].some(k => (c.req||'').toLowerCase().includes(k))));
+// тема по словам анкеты считается на лету; в карточку пишется, только если менеджер поправил её руками
+const AUTO_THEMES = new WeakMap();
+const themesOf = c => c.themes || AUTO_THEMES.get(c) || (AUTO_THEMES.set(c, Object.keys(THEMES).filter(t => THEMES[t].some(k => (c.req||'').toLowerCase().includes(k)))), AUTO_THEMES.get(c));
 const cityOf = c => c.city && c.city!=='—' ? c.city : 'не указан';
 const incomeOf = c => /тыс/.test(c.income||'') ? c.income : 'не указан';
 const ALL_BUYERS = 'Все, кто покупал', ALL_BASE = 'Все в базе, включая тех, кто не покупал';
@@ -771,7 +855,7 @@ function importSheet(){
   sheet(`<h2>Занести участниц практикума</h2><p class="small muted">Базы практикумов сейчас живут только в чатах. Скопируй ники из чата — по одному в строке. Кто уже есть в базе, получит отметку о практикуме, новые появятся карточками.</p>
     <form id="importform" class="grid">
       <label class="f">Практикум<input id="i1" value="Практикум «Тело и тревога»"></label>
-      <label class="f">Дата практикума<input id="i2" type="date" value="2026-09-14"></label>
+      <label class="f">Дата практикума<input id="i2" type="date" value="${isoDay(TODAY)}"></label>
       <label class="f">Ники участниц<textarea id="i3" rows="5">@sveta_oreh
 @new_member_1
 @new_member_2</textarea></label>
@@ -779,7 +863,13 @@ function importSheet(){
 }
 VIEWS.team = () => {
   const od = overdue();
-  return `<div class="head"><div><h1>Команда</h1><p>Что горит у отдела продаж и как работает каждый менеджер в октябре.</p></div></div>
+  const leads = C.filter(c => inMonth(c.at) && c.stage !== 'Архив до CRM');
+  const mgrs = [...new Set(leads.map(c => c.owner).filter(Boolean).concat(['Лера']))];
+  const teamRows = mgrs.map(m => { const L = leads.filter(c => c.owner === m), hrs = L.map(firstTouchHours).filter(h => h !== null);
+    const P = monthPays().filter(x => x.d.seller === m), ast = afterSessionOnTime(C.filter(c => c.owner === m));
+    return [m, L.length, pct(hrs.filter(h => h <= 24).length, hrs.length), P.filter(x => x.d.p === 'Диагностика').length,
+            new Set(P.filter(x => x.d.p !== 'Диагностика').map(x => x.c.id + x.d.p)).size, pct(ast.ok, ast.all), shiftStats(m).all || '—']; });
+  return `<div class="head"><div><h1>Команда</h1><p>Что горит у отдела продаж и как работает каждый менеджер. ${monthTitle()}.</p></div></div>
   <div class="kpis">
     <div class="kpi bad"><span class="lbl">Просрочено</span><b>${od.length}</b><span class="note">задач прямо сейчас</span></div>
     <div class="kpi"><span class="lbl">Не взяли анкеты</span><b>${newAnkety().length}</b><span class="note">ждут, кто нажмёт «Беру»</span></div>
@@ -790,9 +880,7 @@ VIEWS.team = () => {
   ${shiftPanel()}
   <section class="panel"><h2>По менеджерам</h2>
   <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Менеджер</th><th class="num">Анкет и лидов</th><th class="num">Касание вовремя</th><th class="num">Диагностик продано</th><th class="num">Продуктов продано</th><th class="num">После сессий вовремя</th><th class="num">Смен</th></tr></thead><tbody>
-    <tr><td>Аня</td><td class="num">31</td><td class="num">62%</td><td class="num">9</td><td class="num">5</td><td class="num">83%</td><td class="num">12</td></tr>
-    <tr><td>Лера</td><td class="num">4</td><td class="num">75%</td><td class="num">2</td><td class="num">0</td><td class="num">100%</td><td class="num">—</td></tr>
-    <tr><td>Ева (место свободно)</td><td class="num">1</td><td class="num">—</td><td class="num">0</td><td class="num">1</td><td class="num">—</td><td class="num">2</td></tr>
+    ${teamRows.map(r => `<tr><td>${esc(r[0])}</td>${r.slice(1).map(x => `<td class="num">${x}</td>`).join('')}</tr>`).join('')}
   </tbody></table></div></section>`;
 };
 
@@ -808,44 +896,47 @@ VIEWS.shifts = () => {
   <div class="hint">Нажми на день, чтобы поставить или снять смену. Пример: у Ани выходной 1 ноября — в этот день отчёт от неё не ждём, а анкеты на «Беру» видит тот, кто на смене.</div>`;
 };
 function shiftPanel(){
-  const days = Object.keys(SHIFTS['Аня']).map(Number).sort((a,b)=>a-b);
+  const days = shiftDays();
+  const who = [...new Set(Object.keys(SHIFTS).concat([...SCHED].map(k => k.split('|')[0])))].filter(w => w !== 'Новый менеджер' || days.some(d => SCHED.has(w + '|' + d.toDateString())));
   const cell = x => !x ? '<td class="num muted">·</td>' : x[0]==='today' ? '<td class="num"><span class="pill">сегодня, до 23:59</span></td>' :
     x[0]==='ok' ? `<td class="num"><span class="pill ok" title="сдан в ${x[1]}">✓ ${x[1]}</span></td>` :
     x[0]==='late' ? `<td class="num"><span class="pill warn" title="сдан ${x[1]}">${x[1].split(', ')[1]}</span></td>` :
     x[0]==='miss' ? '<td class="num"><span class="pill crit">не сдан</span></td>' : '<td class="num muted">—</td>';
   return `<section class="panel"><h2>Отчёты смен</h2><p class="small muted">Сдать в день смены до 23:59 по Москве. Зелёный — вовремя, жёлтый — после полуночи (время сдачи), красный — не сдан, прочерк — не её смена. Не сдан к утру — в 9:00 менеджеру приходит напоминание.</p>
-    <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Менеджер</th><th class="num">Вовремя</th>${days.map(d=>`<th class="num">${d}.10</th>`).join('')}</tr></thead><tbody>
-    ${Object.keys(SHIFTS).map(w => { const s = shiftStats(w); return `<tr><td>${w}</td><td class="num"><b>${s.ok} из ${s.all}</b><div class="small muted">опозд. ${s.late} · нет ${s.miss}</div></td>${days.map(d=>cell(SHIFTS[w][d])).join('')}</tr>`; }).join('')}
+    <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Менеджер</th><th class="num">Вовремя</th>${days.map(d=>`<th class="num">${d.getDate()}.${String(d.getMonth()+1).padStart(2,'0')}</th>`).join('')}</tr></thead><tbody>
+    ${who.map(w => { const s = shiftStats(w); return `<tr><td>${w}</td><td class="num"><b>${s.ok} из ${s.all}</b><div class="small muted">опозд. ${s.late} · нет ${s.miss}</div></td>${days.map(d=>cell(shiftStatus(w, d))).join('')}</tr>`; }).join('')}
     </tbody></table></div><p class="small muted">Смены берутся из «Графика смен», который ведёт Лера. Прочерк — выходной по графику. Место Евы свободно — придёт новый менеджер, появится строкой.</p></section>`;
 }
 function payments(){ const out=[]; C.forEach(c => (c.deals||[]).forEach(d => d.pays.forEach(p => out.push({c, d, p})))); return out; }
 VIEWS.money = () => {
-  const P = payments().filter(x => x.p.t.getMonth()===9);
-  const rev = P.reduce((s,x)=>s+x.p.sum,0) + DIAG_EXTRA*3900;
+  const P = monthPays();
+  const rev = P.reduce((s,x)=>s+x.p.sum,0);
   const prod = P.filter(x=>x.d.p!=='Диагностика').reduce((s,x)=>s+x.p.sum,0);
-  const anya = Math.round(P.filter(x=>x.d.seller==='Аня'&&x.d.p!=='Диагностика'&&!x.p.bron).reduce((s,x)=>s+x.p.sum,0)*0.06) + 5000 + 9*500 + 5*1000;
-  const lera = Math.round(prod*0.02) + 6*2000 + 6000;
+  const team = [...new Set(['Аня','Лера'].concat(C.map(c => c.owner).filter(o => o && !['Ева'].includes(o))))].map(m => [m, payroll(m)]);
+  const anya = (team.find(t => t[0]==='Аня') || [0, { total:0 }])[1].total, lera = (team.find(t => t[0]==='Лера') || [0, { total:0 }])[1].total;
+  const teamTotal = team.reduce((s, t) => s + t[1].total, 0);
   const tax = Math.round(rev*0.07), acq = Math.round(rev*0.035);
-  const EXM = EXPENSES.filter(e => e.t.getMonth()===9);
+  const EXM = EXPENSES.filter(e => inMonth(e.t));
   const exp = EXM.reduce((s,e) => s + e.sum, 0);
   const byCat = EXP_CATS.map(k => [k, EXM.filter(e => e.cat===k).reduce((s,e) => s + e.sum, 0)]).filter(x => x[1]);
-  const profit = rev - tax - acq - anya - lera - 5000 - exp;
+  const profit = rev - tax - acq - teamTotal - exp;
   const showShares = role==='Пётр' || role==='Алина';
   const unmatched = UNMATCHED;
-  return `<div class="head"><div><h1>${role==='Лера'?'Деньги отдела':'Деньги'}</h1><p>Октябрь 2026. Оплаты из ЮKassa и Продамуса приходят сами, остальное менеджер вносит руками. ${role==='Лера'?'Доли проекта здесь не показываются.':''}</p></div></div>
+  return `<div class="head"><div><h1>${role==='Лера'?'Деньги отдела':'Деньги'}</h1><p>${monthTitle()}. Оплаты из ЮKassa и Продамуса приходят сами, остальное менеджер вносит руками. ${role==='Лера'?'Доли проекта здесь не показываются.':''}</p></div></div>
   <div class="kpis">
     <div class="kpi"><span class="lbl">Выручка</span><b>${rub(rev)}</b><span class="note">продукты ${rub(prod)} · диагностики ${rub(rev-prod)}</span></div>
-    <div class="kpi"><span class="lbl">Зарплата Ани</span><b>${rub(anya)}</b><span class="note">фикс 5 000 + 6% + диагностики</span></div>
-    <div class="kpi"><span class="lbl">Зарплата Леры</span><b>${rub(lera)}</b><span class="note">2% РОП + диагностики + сопровождение</span></div>
-    <div class="kpi"><span class="lbl">Зарплата Евы</span><b>${rub(5000)}</b><span class="note">место свободно</span></div>
+    ${team.map(([m, p]) => `<div class="kpi"><span class="lbl">Зарплата: ${esc(m)}</span><b>${rub(p.total)}</b><span class="note">${m==='Лера' ? 'РОП + диагностики + сопровождение' : 'фикс 5 000 + % + диагностики'} · пока начислено</span></div>`).join('')}
   </div>
   ${showShares ? `<section class="panel"><h2>Доли · видят только Пётр и Алина</h2>
     <div class="tbl" style="margin-top:10px"><table><tbody>
       <tr><td>Выручка</td><td class="num">${rub(rev)}</td></tr><tr><td>− налог 7%</td><td class="num">${rub(tax)}</td></tr><tr><td>− эквайринг</td><td class="num">${rub(acq)}</td></tr>
-      <tr><td>− отдел продаж</td><td class="num">${rub(anya+lera+5000)}</td></tr><tr><td>− расходы проекта<div class="small muted">${byCat.map(x => `${x[0]} ${rub(x[1])}`).join(' · ')}</div></td><td class="num">${rub(exp)}</td></tr>
+      <tr><td>− отдел продаж</td><td class="num">${rub(teamTotal)}</td></tr><tr><td>− расходы проекта<div class="small muted">${byCat.map(x => `${x[0]} ${rub(x[1])}`).join(' · ')}</div></td><td class="num">${rub(exp)}</td></tr>
       <tr><td><b>Чистая прибыль</b></td><td class="num"><b>${rub(profit)}</b></td></tr>
       <tr><td>Алина · 65%</td><td class="num">${rub(Math.round(profit*.65))}</td></tr><tr><td>Пётр · 35%</td><td class="num">${rub(Math.round(profit*.35))}</td></tr>
     </tbody></table></div><p class="small muted">Тестовый расчёт. Расходы проекта вносит ассистент во вкладке «Расходы» — чистая прибыль пересчитывается сразу.</p></section>` : ''}
+  ${DUPS.length && role !== 'Аня' ? `<section class="panel" style="border-color:var(--crit)"><h2>Похоже, оплата внесена дважды: ${DUPS.length}</h2>
+    <p class="small muted">В «Учёте сделок» одна и та же оплата стоит двумя строками: тот же клиент, продукт и день. Платформа ничего не удаляет — проверь и удали лишнюю строку в таблице руками, иначе выплаты посчитаются дважды.</p>
+    <div class="list" style="margin-top:10px">${DUPS.map(x => `<div class="row"><span class="pill crit">строки ${x.rows.join(' и ')}</span><span>${esc(x.text)}</span></div>`).join('')}</div></section>` : ''}
   ${unmatched.length ? `<section class="panel" style="border-color:var(--warn)"><h2>Сверка оплат: ${unmatched.length} без клиента</h2>
     <p class="small muted">Платформа берёт оплаты прямо из ЮKassa и Продамуса, а не из таблицы Тильды, и каждый день сверяет их с заказами на сайте. Здесь — деньги, которые пришли в кассу, но не нашли свою карточку: например, заказ с Тильды не дошёл в таблицу.</p>
     <div class="list" style="margin-top:10px">${unmatched.map(u => `<div class="row"><span class="pill warn">${dd(u.t)}, ${hm(u.t)}</span><b>${rub(u.sum)}</b><span class="muted">${esc(u.how)} · ${esc(u.payer)}</span>${u.done ? `<span class="pill ok">привязана: ${esc(u.done)}</span>` : `<button class="btn sm" data-match="${u.id}">Привязать к клиенту</button>`}</div>`).join('')}</div></section>` : ''}
@@ -915,23 +1006,23 @@ VIEWS.grave = () => {
   <div class="hint">Отсюда же зовём на эфиры и спецпредложения: в «Базе клиентов» выбери «Все в базе» и тему запроса — кладбище тоже попадёт в список.</div>`;
 };
 VIEWS.expenses = () => {
-  const EXM = EXPENSES.filter(e => e.t.getMonth()===9).sort((a,b) => b.t - a.t);
+  const EXM = EXPENSES.filter(e => inMonth(e.t)).sort((a,b) => b.t - a.t);
   const total = EXM.reduce((s,e) => s + e.sum, 0);
   return `<div class="head"><div><h1>Расходы</h1><p>Каждый расход проекта — сюда, в день оплаты: съёмки, монтаж, подписки, площадки, оплаты подрядчикам. Из них Петя и Алина видят реальную чистую прибыль.</p></div></div>
   <form class="panel grid g2" id="expform">
-    <label class="f">Дата<input id="e1" type="date" value="2026-10-26"></label>
+    <label class="f">Дата<input id="e1" type="date" value="${isoDay(TODAY)}"></label>
     <label class="f">Категория<select id="e2">${EXP_CATS.map(k => `<option>${k}</option>`).join('')}</select></label>
     <label class="f">За что<input id="e3" placeholder="Например: Артём — съёмка 31.10"></label>
     <label class="f">Сумма, ₽<input id="e4" type="number" min="0" placeholder="0"></label>
     <div><button class="btn pri" type="submit">Добавить расход</button></div></form>
-  <section class="panel"><h2>Октябрь · ${rub(total)}</h2>
+  <section class="panel"><h2>${MONTHS_NOM[TODAY.getMonth()]} · ${rub(total)}</h2>
   <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Дата</th><th>Категория</th><th>За что</th><th class="num">Сумма</th></tr></thead><tbody>
     ${EXM.map(e => `<tr><td>${dd(e.t)}</td><td>${esc(e.cat)}</td><td class="tw">${esc(e.what)}</td><td class="num">${rub(e.sum)}</td></tr>`).join('')}
   </tbody></table></div></section>`;
 };
 VIEWS.cheat = () => `<div class="head"><div><h1>Шпаргалка</h1><p>Работаем только здесь. Таблицы остаются «под капотом»: платформа сама дописывает их для аналитики и архива, вносить туда руками больше не нужно.</p></div></div>
   <section class="panel"><h2>Продающая линия</h2><p class="small muted">Что и как писать клиенту на каждом шаге. Открывается в новой вкладке.</p>
-    <p class="muted">В рабочей версии здесь будет ссылка на продающую линию.</p></section>
+    <p class="muted">Ссылку на продающую линию добавим после запуска.</p></section>
   <section class="panel"><h2>Было в таблицах — теперь здесь</h2>
   <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Раньше</th><th>Теперь</th></tr></thead><tbody>
     <tr><td class="tw">CRM-таблица, лист «Анкеты»: искать свою анкету, ставить статус</td><td class="tw">«Новые анкеты» → «Беру». Дальше клиент в «Мои клиенты», этап меняется кнопками итогов или «Сменить этап» в карточке</td></tr>
@@ -991,7 +1082,7 @@ VIEWS.tg = () => {
   return `<div class="head"><div><h1>Как выглядит в Telegram</h1><p>Ветка «Отдел продаж» в чате команды. В 9:00 бот присылает каждому, кому написать сегодня, — одно сообщение на одного клиента. Срочное (новая анкета, оплата, заказ без оплаты) приходит сразу, но только с 9:00 до 21:00.</p></div></div>
   <div class="tgwrap">
     <span class="tgtime">Сегодня, 9:00</span>
-    ${yesterdayMissing('Аня')?`<div class="tgmsg"><span class="from">Бот отдела продаж</span><div>@a40tokens · <b>Отчёт смены за вчера не заполнен</b></div><div>Смена 25 октября — отчёт нужно было сдать до 23:59. Заполни сейчас, он засчитается с опозданием.</div><div class="tgbtns"><span>Заполнить отчёт</span></div></div>`:''}
+    ${yesterdayMissing('Аня')?`<div class="tgmsg"><span class="from">Бот отдела продаж</span><div>@a40tokens · <b>Отчёт смены за вчера не заполнен</b></div><div>Смена ${dd(addDays(TODAY,-1))} — отчёт нужно было сдать до 23:59. Заполни сейчас, он засчитается с опозданием.</div><div class="tgbtns"><span>Заполнить отчёт</span></div></div>`:''}
     ${ts.map(c => `<div class="tgmsg"><span class="from">Бот отдела продаж</span>
       <div>${c.task.escalated?'@valeriachuk':MAN[c.owner]} · <b>${c.task.due<TODAY?'⚠️ Просрочено: ':''}${esc(c.task.kind)}</b></div>
       <div>${tgLink(c.tg)} — ${esc(c.task.why)}</div><div class="small muted">Срок: ${dueLabel(c.task.due)} · карточка: crm.alinaageeva.ru/k/${c.id}</div>
@@ -1037,14 +1128,20 @@ VIEWS.voice = () => {
   </div></div>`).join('')}</div>`;
 };
 
-VIEWS.alina = () => `<div class="head"><div><h1>Показатели</h1><p>Октябрь 2026, коротко.</p></div></div>
+VIEWS.alina = () => {
+  const S = []; C.forEach(c => (c.sessions || []).forEach(s => { if (s.with === 'Алина' && inMonth(s.t)) S.push(s); }));
+  const finished = C.filter(c => (c.sessions || []).some(s => s.st === 'прошла' && /^(\d+) из \1$/.test(s.n || '')));
+  const extended = finished.filter(c => (c.deals || []).filter(d => d.p !== 'Диагностика').length > 1);
+  const ank = C.filter(c => inMonth(c.at) && c.stage !== 'Архив до CRM').length;
+  return `<div class="head"><div><h1>Показатели</h1><p>${monthTitle()}, коротко.</p></div></div>
   <div class="kpis">
-    <div class="kpi"><span class="lbl">Сессий проведено</span><b>9</b><span class="note">ещё 4 назначено до конца месяца</span></div>
-    <div class="kpi"><span class="lbl">Клиентов в работе</span><b>6</b><span class="note">пакеты и разовые сессии</span></div>
-    <div class="kpi good"><span class="lbl">Продлили</span><b>2 из 5</b><span class="note">после последней сессии</span></div>
-    <div class="kpi"><span class="lbl">Анкет</span><b>41</b><span class="note">из них 4 — лиды из директа</span></div>
+    <div class="kpi"><span class="lbl">Сессий проведено</span><b>${S.filter(s => s.st === 'прошла').length}</b><span class="note">ещё ${S.filter(s => s.st !== 'прошла').length} назначено до конца месяца</span></div>
+    <div class="kpi"><span class="lbl">Клиентов в работе</span><b>${C.filter(c => c.stage === 'Клиент').length}</b><span class="note">пакеты и разовые сессии</span></div>
+    <div class="kpi good"><span class="lbl">Продлили</span><b>${extended.length} из ${finished.length}</b><span class="note">после последней сессии</span></div>
+    <div class="kpi"><span class="lbl">Анкет</span><b>${ank}</b><span class="note">за месяц, включая лиды из директа</span></div>
   </div>
   <div class="hint">Выручка и доли — во вкладке «Деньги».</div>`;
+};
 
 VIEWS.invite = () => `<div class="head"><div><h1>Приглашения</h1><p>Лично зовёшь своих клиенток на эфиры, запуски и акции. Отмечай, кого позвала и что ответили, — Петя увидит, сколько пришло из личных приглашений.</p></div></div>
   ${INVITES.map((ev,i) => `<section class="panel"><h2>${esc(ev.ev)}</h2><div class="list" style="margin-top:10px">
@@ -1052,24 +1149,23 @@ VIEWS.invite = () => `<div class="head"><div><h1>Приглашения</h1><p>�
     <button class="btn sm" data-addinv>+ Добавить из моей базы</button></div></section>`).join('')}`;
 
 VIEWS.pay = () => {
-  const P = payments().filter(x => x.p.t.getMonth()===9 && x.d.seller==='Аня');
-  const prod = P.filter(x=>x.d.p!=='Диагностика'&&!x.p.bron).reduce((s,x)=>s+x.p.sum,0);
-  const rows = [['Фикс', 5000],['6% с продаж продуктов ('+rub(prod)+')', Math.round(prod*.06)],['Продажа диагностик · 9 × 500', 4500],['Проведение диагностик · 5 × 1 000', 5000]];
-  const total = rows.reduce((s,r)=>s+r[1],0);
-  return `<div class="head"><div><h1>Мои выплаты</h1><p>Октябрь 2026. Видишь только свои начисления. Выплата — 15-го и 1-го числа.</p></div></div>
-  <section class="panel"><div class="tbl"><table><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${rub(r[1])}</td></tr>`).join('')}<tr><td><b>Итого за октябрь</b></td><td class="num"><b>${rub(total)}</b></td></tr></tbody></table></div></section>
+  const me = role==='Пётр' ? 'Аня' : role;
+  const { rows, own: prod, total } = payroll(me);
+  return `<div class="head"><div><h1>Мои выплаты</h1><p>${MONTHS_NOM[TODAY.getMonth()]} ${TODAY.getFullYear()}. Видишь только свои начисления. Выплата — 15-го и 1-го числа.</p></div></div>
+  <section class="panel"><div class="tbl"><table><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${rub(r[1])}</td></tr>`).join('')}<tr><td><b>Итого за ${MONTHS_NOM[TODAY.getMonth()].toLowerCase()}</b></td><td class="num"><b>${rub(total)}</b></td></tr></tbody></table></div></section>
   <section class="panel"><h2>Личный план</h2><p class="small muted">При 250 000 ₽ продаж продуктов за месяц ставка 7% вместо 6% — за весь месяц.</p>
     <div class="progress"><i style="width:${Math.min(100,prod/250000*100)}%"></i></div><p class="small">${rub(prod)} из ${rub(250000)} · осталось ${rub(Math.max(0,250000-prod))}</p></section>`;
 };
 
 VIEWS.shift = () => `<div class="head"><div><h1>Отчёт смены</h1><p>Сдать в день смены до 23:59 по Москве. Только то, чего система не видит сама: анкеты, диагностики и продажи она посчитает без тебя.</p></div></div>
-  ${yesterdayMissing(role==='Пётр'?'Аня':role) ? '<div class="hint" style="color:var(--crit);background:var(--crit-soft)">За 25 октября отчёт не сдан. Выбери эту дату и заполни — засчитается с опозданием.</div>' : ''}
+  ${yesterdayMissing(role==='Пётр'?'Аня':role) ? `<div class="hint" style="color:var(--crit);background:var(--crit-soft)">За ${dd(addDays(TODAY,-1))} отчёт не сдан. Выбери эту дату и заполни — засчитается с опозданием.</div>` : ''}
   <form class="panel grid g2" id="shiftform">
-    <label class="f" style="grid-column:1/-1">За какую смену<select id="sh0">${yesterdayMissing(role==='Пётр'?'Аня':role)?'<option value="25">25 октября — не сдан</option>':''}<option value="26">26 октября — сегодня, до 23:59</option></select></label>
+    <label class="f" style="grid-column:1/-1">За какую смену<select id="sh0">${yesterdayMissing(role==='Пётр'?'Аня':role)?`<option value="${isoDay(addDays(TODAY,-1))}">${dd(addDays(TODAY,-1))} — не сдан</option>`:''}<option value="${isoDay(TODAY)}">${dd(TODAY)} — сегодня, до 23:59</option></select></label>
     <label class="f">Сообщений в директе<input id="sh1" type="number" min="0" value="9"></label>
     <label class="f">Из них целевых<input id="sh2" type="number" min="0" value="3"></label>
     <label class="f">Комментариев отвечено<input id="sh3" type="number" min="0" value="2"></label>
     <label class="f">Из них целевых<input id="sh4" type="number" min="0" value="1"></label>
+    <label class="f">Отправлено ссылок на анкету<input id="sh6" type="number" min="0" value="2"></label>
     <label class="f" style="grid-column:1/-1">Что важного за смену<textarea id="sh5" rows="2">Две спрашивали про цену сессии — внесла как лиды из директа</textarea></label>
     <div><button class="btn pri" type="submit">Отправить отчёт</button></div></form>`;
 
@@ -1077,8 +1173,8 @@ VIEWS.mila = () => {
   const L = C.filter(c => c.milaTask || (c.stage==='Клиент' && c.task && c.task.kind==='Касание после сессии' && c.id===8));
   return `<div class="head"><div><h1>Назначить сессии</h1><p>Кто купил, а сессии в общем календаре проекта ещё нет. Согласуй с клиенткой время и поставь сессию в календарь с ником в названии — «Сессия @ник», — клиентка уйдёт из списка сама.</p></div></div>
   <div class="list">
-    ${C.filter(c=>c.milaTask).map(c => `<div class="item warn"><div class="stripe"></div><div class="body"><div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill warn">${c.handoff ? `передала ${esc(c.handoff.from)}, сделать ${dueLabel(c.handoff.due)}` : `купила ${dd(c.deals[0].at)}, сессии нет`}</span></div>
-      <div class="why">${c.handoff ? `${esc(c.handoff.prod)} · ${esc(c.handoff.what)}` : `${esc(c.deals[0].p)} · продала ${esc(c.deals[0].seller)}`}</div><div class="outs"><button class="btn pri sm" data-mila="${c.id}">Поставила в календарь</button></div></div></div>`).join('')}
+    ${C.filter(c=>c.milaTask).map(c => `<div class="item warn"><div class="stripe"></div><div class="body"><div class="row"><button class="link" data-open="${c.id}">${esc(c.name)}</button><span class="muted">${tgLink(c.tg)}</span>${cmpBtn(c)}<span class="pill warn">${c.handoff ? `передала ${esc(c.handoff.from)}, сделать ${dueLabel(c.handoff.due)}` : (c.deals && c.deals[0] ? `купила ${dd(c.deals[0].at)}, сессии нет` : 'купила, сессии нет')}</span></div>
+      <div class="why">${c.handoff ? `${esc(c.handoff.prod)} · ${esc(c.handoff.what)}` : (c.deals && c.deals[0] ? `${esc(c.deals[0].p)} · продала ${esc(c.deals[0].seller)}` : `ведёт ${esc(c.owner || '—')}`)}</div><div class="outs"><button class="btn pri sm" data-mila="${c.id}">Поставила в календарь</button></div></div></div>`).join('')}
     <div class="item warn"><div class="stripe"></div><div class="body"><div class="row"><button class="link" data-open="8">Яна Корнеева</button><span class="muted">@yana_korn</span><span class="pill warn">пакет: 2 из 3 прошли, 3-я не стоит</span></div>
       <div class="why">Последняя сессия была 25.10. Напомню снова, если через 7 дней её не будет в календаре.</div></div></div>
   </div><div class="hint">Если сессия не состоялась — отметь это в карточке клиентки, менеджеру придёт задача перенести.</div>`;
@@ -1190,9 +1286,9 @@ function handoffSheet(id, why){
       <div class="row"><button class="btn pri" type="submit">Передать</button><button class="btn" type="button" data-sclose>Позже</button></div></form>`);
 }
 const STAGE_GROUPS = {
-  'До покупки':['Новая анкета','Лид из директа','Анкета отправлена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена','Думает','Бронь'],
+  'До покупки':['Новая анкета','Лид из директа','Анкета отправлена','Написала','Диалог','Заказ без оплаты','Диагностика оплачена','Диагностика назначена','Диагностика проведена','Думает','Бронь'],
   'Купила':['Клиент','Завершила'],
-  'Выбыла':['Кладбище лидов','Отказ'],
+  'Выбыла':['Кладбище лидов','Отказ','Архив до CRM'],
 };
 function stageSheet(id){
   const c = byId(id);
@@ -1216,7 +1312,7 @@ function directSheet(){
 function priceSheet(){
   sheet(`<h2>Новая цена</h2><form id="priceform" class="grid">
     <label class="f">Продукт<select id="p1">${[...new Set(PRICES.map(p=>p.p))].map(p=>`<option>${esc(p)}</option>`).join('')}</select></label>
-    <label class="f">Действует с<input id="p2" type="date" value="2026-11-01"></label>
+    <label class="f">Действует с<input id="p2" type="date" value="${isoDay(new Date(TODAY.getFullYear(), TODAY.getMonth() + 1, 1))}"></label>
     <label class="f">Полная оплата, ₽<input id="p3" type="number" value="35000"></label>
     <label class="f">Частями, ₽<input id="p4" type="number" value="45000"></label>
     <div class="hint">Сделки до этой даты сохранят свою цену. Новые продажи с этой даты пойдут по новой.</div>
@@ -1294,6 +1390,8 @@ document.addEventListener('click', e => {
   if ('close' in d){ $('#layer').innerHTML=''; return; }
   if ('sclose' in d){ closeSheet(); return; }
   if (d.filter){ clientFilter = d.filter; render(); return; }
+  if ('logout' in d){ logout(); return; }
+  if ('relogin' in d){ loginScreen(); return; }
   if (d.stagebtn){ stageSheet(+d.stagebtn); return; }
   if (d.compose){ composeSheet(+d.compose); return; }
   if (d.preset){ baseF = { prod: ALL_BUYERS, city:'Все', income:'Все', theme:'Все', ...(SEGMENTS[d.preset] || {}) }; baseSel.clear(); render(); return; }
@@ -1383,10 +1481,20 @@ document.addEventListener('change', e => {
 });
 document.addEventListener('submit', e => {
   e.preventDefault();
+  if (e.target.id==='mailform'){
+    const email = $('#lm').value.trim();
+    api('login.code', { email }).then(() => loginScreen('code', email)).catch(err => toast(err.message)); return;
+  }
+  if (e.target.id==='codeform'){
+    api('login.verify', { email: e.target.dataset.email, code: $('#lc').value.trim() }).then(r => {
+      TOKEN = r.token; try { localStorage.setItem('pilotToken', TOKEN); } catch (_) {}
+      boot();
+    }).catch(err => toast(err.message)); return;
+  }
   if (e.target.id==='directform'){
     const nick = $('#d1').value.trim() || '@новый_лид';
     const id = Math.max(...C.map(c=>c.id))+1;
-    C.unshift({ id, name: $('#d2').value.trim() || nick, tg: nick, phone: $('#d3').value.trim() || '—', src:'Директ (без анкеты)', owner: role==='Пётр'?'Аня':role, stage:'Лид из директа', at:new Date(TODAY),
+    C.unshift({ _new: true, id, name: $('#d2').value.trim() || nick, tg: nick, phone: $('#d3').value.trim() || '—', src:'Директ (без анкеты)', owner: role==='Пётр'?'Аня':role, stage:'Лид из директа', at:new Date(TODAY),
       income:'не спрашивали', ready:'—', req: $('#d5').value.trim() || 'Целевой вопрос в директе', age:'—', city:'—', consent:null,
       touches:[{t:new Date(TODAY), who: role, what:'Лид из директа: '+$('#d4').value, res:'Внесла в базу'}],
       task:{ kind:'Отправить анкету', due:new Date(TODAY.getTime()+864e5), why:'Лид из директа. Следующий шаг — чтобы заполнила анкету. Срок — 24 часа' } });
@@ -1444,7 +1552,7 @@ document.addEventListener('submit', e => {
     $('#i3').value.split('\n').map(x => x.trim()).filter(Boolean).forEach(raw => {
       const nick = '@' + raw.replace(/^@/, '').toLowerCase();
       let c = C.find(x => x.tg.toLowerCase() === nick);
-      if (c) found++; else { added++; c = { id: Math.max(...C.map(x => x.id)) + 1, name: nick, tg: nick, phone:'—', src:'Чат практикума', owner:null, stage:'Завершила', at:t,
+      if (c) found++; else { added++; c = { _new: true, id: Math.max(...C.map(x => x.id)) + 1, name: nick, tg: nick, phone:'—', src:'Чат практикума', owner:null, stage:'Завершила', at:t,
         income:'—', ready:'—', req:'—', age:'—', city:'—', consent:null }; C.push(c); }
       (c.buys = c.buys || []).push({ g:'Практикумы', p:name, t });
     });
@@ -1455,15 +1563,128 @@ document.addEventListener('submit', e => {
     closeSheet(); render(); toast('Новая цена добавлена. Старые сделки не изменились');
   }
   if (e.target.id==='shiftform'){
-    const who = role==='Пётр' ? 'Аня' : role, day = +$('#sh0').value;
-    if (!SHIFTS[who]) { toast('Отчёт смены отправлен'); return; }
-    if (day===25){ SHIFTS[who][25] = ['late','26 окт, '+hm(TODAY)]; render(); toast('Отчёт за 25 октября принят с опозданием — Петя и Лера увидят время сдачи'); }
-    else { SHIFTS[who][26] = ['ok', hm(TODAY)]; render(); toast('Отчёт за сегодня сдан вовремя'); }
+    const who = role==='Пётр' ? 'Аня' : role, day = $('#sh0').value;
+    const report = { msgs:+$('#sh1').value, target:+$('#sh2').value, comments:+$('#sh3').value, ctarget:+$('#sh4').value, links:+$('#sh6').value, note:$('#sh5').value.trim() };
+    SHIFTS[who] = SHIFTS[who] || {};
+    const done = st => { SHIFTS[who][day] = [st, st==='ok' ? hm(new Date()) : `${dd(new Date())}, ${hm(new Date())}`]; render();
+      toast(st==='ok' ? 'Отчёт за сегодня сдан вовремя' : `Отчёт за ${dd(new Date(day+'T12:00'))} принят с опозданием — Петя и Лера увидят время сдачи`); };
+    if (LIVE) api('shift.report', { day, report }).then(r => done(r.status)).catch(err => toast(err.message));
+    else done(day < isoDay(TODAY) ? 'late' : 'ok');
   }
 });
 document.addEventListener('keydown', e => { if (e.key==='Escape'){ closeSheet(); $('#layer').innerHTML=''; } });
 
-render();
+/* ===================== ПИЛОТ: работа с сервером ===================== */
+// В демо адрес сервера пустой — работают выдуманные данные. Для пилота сборка вписывает
+// адрес сервера в window.PILOT_API: данные приходят только после входа по коду на почту,
+// любое изменение карточки или настроек сразу уходит на сервер, а он проверяет права.
+const API_URL = window.PILOT_API || '';
+const LIVE = !!API_URL;
+let TOKEN = ''; try { TOKEN = localStorage.getItem('pilotToken') || ''; } catch (_) {}
+let BOOTED = false, ME = null, SNAP = {}, SHARED_SNAP = {}, PEOPLE_SNAP;
+
+async function api(action, data){
+  const r = await fetch(API_URL, { method:'POST', body: JSON.stringify(Object.assign({ action, token: TOKEN }, data || {})) });
+  const j = await r.json();
+  if (!j.ok){ if (/Нужно войти|Вход устарел|Доступ закрыт/.test(j.error || '')) logout(); throw new Error(j.error || 'Сервер не ответил'); }
+  return j;
+}
+const toD = v => v ? new Date(v) : v;
+function reviveClient(c){
+  ['at','thinkUntil','graveAt'].forEach(k => { if (c[k]) c[k] = toD(c[k]); });
+  if (c.task) c.task.due = toD(c.task.due);
+  if (c.diag) c.diag.when = toD(c.diag.when);
+  if (c.diagPlan) c.diagPlan.when = toD(c.diagPlan.when);
+  if (c.alinaVoice) c.alinaVoice.due = toD(c.alinaVoice.due);
+  if (c.handoff) c.handoff.due = toD(c.handoff.due);
+  c.touches = (c.touches || []).map(t => Object.assign(t, { t: toD(t.t) }));
+  c.deals = (c.deals || []).map(d => Object.assign(d, { at: toD(d.at), pays: (d.pays || []).map(p => Object.assign(p, { t: toD(p.t) })) }));
+  c.sessions = (c.sessions || []).map(s => Object.assign(s, { t: toD(s.t), end: toD(s.end) }));
+  (c.buys || []).forEach(b => b.t = toD(b.t));
+  return c;
+}
+// служебные поля (_undo, _new…) и версия на сервер не уходят и не считаются изменением
+const snapOf = c => JSON.stringify(c, (k, v) => (k && (k[0] === '_' || k === 'ver')) ? undefined : v);
+const plain = c => Object.assign(JSON.parse(snapOf(c)), { ver: c.ver });
+function sharedState(){
+  const schedule = {};
+  SCHED.forEach(k => { const [m, ds] = k.split('|'); (schedule[m] = schedule[m] || []).push(isoDay(new Date(ds))); });
+  return { prices: PRICES, expenses: EXPENSES, magnets: MAGNETS, invites: INVITES, unmatched: UNMATCHED, schedule };
+}
+const replaceAll = (arr, items) => { arr.length = 0; (items || []).forEach(x => arr.push(x)); };
+
+async function boot(){
+  try {
+    const b = await api('bootstrap');
+    ME = b.me; TODAY.setTime(Date.now());
+    replaceAll(C, b.clients.map(reviveClient));
+    if (b.shared.prices) replaceAll(PRICES, b.shared.prices.map(p => Object.assign(p, { from: toD(p.from) })));
+    replaceAll(EXPENSES, (b.shared.expenses || []).map(x => Object.assign(x, { t: toD(x.t) })));
+    if (b.shared.magnets && b.shared.magnets.length) replaceAll(MAGNETS, b.shared.magnets);
+    replaceAll(INVITES, b.shared.invites || []);
+    replaceAll(UNMATCHED, (b.shared.unmatched || []).map(x => Object.assign(x, { t: toD(x.t) })));
+    replaceAll(DUPS, b.shared.dups || []);
+    replaceAll(OTHER_EVENTS, []);
+    replaceAll(PEOPLE, (b.people || []).map(p => Object.assign({ note: p.open ? '' : 'доступ закрыт' }, p)));
+    SCHED.clear(); Object.entries(b.shared.schedule || {}).forEach(([m, days]) => days.forEach(ds => SCHED.add(m + '|' + new Date(ds + 'T12:00').toDateString())));
+    Object.keys(SHIFTS).forEach(k => delete SHIFTS[k]);
+    Object.entries(b.shared.shifts || {}).forEach(([m, o]) => { SHIFTS[m] = {}; Object.entries(o).forEach(([d, v]) => SHIFTS[m][d] = v.slice(0, 2)); });
+    SNAP = {}; C.forEach(c => SNAP[c.id] = snapOf(c));
+    SHARED_SNAP = {}; Object.entries(sharedState()).forEach(([k, v]) => SHARED_SNAP[k] = JSON.stringify(v));
+    PEOPLE_SNAP = JSON.stringify(PEOPLE);
+    Object.entries(ME.levels || {}).forEach(([n, l]) => { if (!ROLES[n]) ROLES[n] = ROLES[l]; if (!ROLE_NOTE[n]) ROLE_NOTE[n] = ROLE_NOTE[l]; });
+    ACCESS[ME.name] = ME.access; login = ME.name;
+    if (!ACCESS[ME.name].includes(role)) role = ME.name;
+    if (!ROLES[role].includes(tab)) tab = ROLES[role][0];
+    BOOTED = true; render();
+    const m = location.hash.match(/^#k(\d+)$/); if (m && byId(+m[1])) openCard(+m[1]);
+  } catch (err) { if (!TOKEN) loginScreen(); else toast(err.message); }
+}
+
+// автосохранение: после каждой отрисовки сравниваем с тем, что уже на сервере
+function persist(){
+  if (!LIVE || !BOOTED) return;
+  C.forEach(c => {
+    if (c._new){
+      if (c._creating) return;
+      c._creating = true;
+      api('client.create', { client: plain(c) }).then(r => { delete c._new; delete c._creating; c.id = r.id; c.ver = r.ver; SNAP[c.id] = snapOf(c); render(); })
+        .catch(err => { c._creating = false; toast(err.message); });
+      return;
+    }
+    const s = snapOf(c);
+    if (SNAP[c.id] === undefined){ SNAP[c.id] = s; return; }
+    if (SNAP[c.id] === s || c._saving) return;
+    const prev = SNAP[c.id]; SNAP[c.id] = s; c._saving = true;
+    api('client.save', { client: plain(c) })
+      .then(r => { c.ver = r.ver; c._saving = false; if (snapOf(c) !== SNAP[c.id]) persist(); })
+      .catch(err => { c._saving = false; SNAP[c.id] = prev; toast(err.message); if (/изменил кто-то другой/.test(err.message)) boot(); });
+  });
+  Object.entries(sharedState()).forEach(([k, v]) => {
+    const s = JSON.stringify(v);
+    if (SHARED_SNAP[k] === undefined || SHARED_SNAP[k] === s) { SHARED_SNAP[k] = s; return; }
+    SHARED_SNAP[k] = s; api('shared.save', { key: k, value: JSON.parse(s) }).catch(err => toast(err.message));
+  });
+  const ps = JSON.stringify(PEOPLE);
+  if (PEOPLE_SNAP !== ps && ME && ['Пётр','Алина'].includes(ME.level)){ PEOPLE_SNAP = ps; api('people.save', { people: PEOPLE }).catch(err => toast(err.message)); }
+}
+
+function loginScreen(step, email){
+  BOOTED = false; $('#nav').innerHTML = ''; $('#roles').innerHTML = ''; $('#whoami').textContent = 'Вход';
+  $('#view').innerHTML = `<section class="panel" style="max-width:420px;width:100%;margin:32px auto;display:flex;flex-direction:column;gap:12px">
+    <h1>Вход</h1><p class="muted">Платформа отдела продаж Алины Агеевой</p>
+    ${step==='code'
+      ? `<form id="codeform" class="grid" data-email="${esc(email)}"><p class="small">Код отправили на ${esc(email)}. Он действует 15 минут. Нет письма — загляни в «Спам».</p>
+          <label class="f">Код из письма<input id="lc" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required></label>
+          <div class="row"><button class="btn pri" type="submit">Войти</button><button class="btn" type="button" data-relogin>Другая почта</button></div></form>`
+      : `<form id="mailform" class="grid"><label class="f">Рабочая почта<input id="lm" type="email" autocomplete="email" required></label>
+          <button class="btn pri" type="submit">Получить код</button><p class="small muted">Паролей нет: на почту придёт код. На этом устройстве вход запомнится на 30 дней.</p></form>`}
+  </section>`;
+}
+function logout(){ TOKEN = ''; try { localStorage.removeItem('pilotToken'); } catch (_) {} $('#layer').innerHTML = ''; loginScreen(); }
+
+if (LIVE){ document.querySelector('.proto').hidden = true; TOKEN ? boot() : loginScreen(); }
+else render();
 </script>
 
 </body>
